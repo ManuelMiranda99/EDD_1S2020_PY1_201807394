@@ -36,3 +36,34 @@ char Queue::DeQueue() {
     }
     return NULL;
 }
+
+void Queue::GenerateReport() {
+    Coin *aux = first;
+    if(aux != NULL){
+        string graph = "diagraph L {\n";
+        int x = 1;
+        while(aux != NULL){
+            graph += "X" + to_string(x) + " [shape=box, color=lightblue, style=filled, label=\"" + aux->letter + "x" + to_string(aux->points) + "\"];\n";
+            x++;
+            aux = aux->next;
+        }
+        aux = first;
+        x = 1;
+        while(aux != last){
+            graph += "X" + to_string(x) + " -> ";
+            x++;
+            aux = aux->next;
+        }
+        graph += "X" + to_string(x) + ";\n}";
+
+        ofstream writeToFile;
+        writeToFile.open("Queue.txt", ios_base::out | ios_base::trunc);
+        if(writeToFile.is_open()){
+            writeToFile << graph;
+            writeToFile.close();
+        }
+
+        system("dot -Tpng Queue.txt -o C:/Users/Manuel/Desktop/Queue.png");
+        system("C:/Users/Manuel/Desktop/Queue.png");
+    }
+}

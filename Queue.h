@@ -56,6 +56,7 @@ class Queue {
     Queue();
     void EnQueue(char);
     char DeQueue();
+    void GenerateReport();
 };
 
 
