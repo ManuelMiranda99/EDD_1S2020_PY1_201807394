@@ -23,6 +23,7 @@ void CircularDoubleList::InsertNode(string _newWord) {
 
         first->previous = last;
     }
+    size++;
 }
 
 void CircularDoubleList::GenerateReport() {

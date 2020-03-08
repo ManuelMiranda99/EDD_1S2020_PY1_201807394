@@ -149,6 +149,33 @@ CircularDoubleList.cpp.s:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.s
 .PHONY : CircularDoubleList.cpp.s
 
+Queue.obj: Queue.cpp.obj
+
+.PHONY : Queue.obj
+
+# target to build an object file
+Queue.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.obj
+.PHONY : Queue.cpp.obj
+
+Queue.i: Queue.cpp.i
+
+.PHONY : Queue.i
+
+# target to preprocess a source file
+Queue.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.i
+.PHONY : Queue.cpp.i
+
+Queue.s: Queue.cpp.s
+
+.PHONY : Queue.s
+
+# target to generate assembly for a file
+Queue.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.s
+.PHONY : Queue.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -188,6 +215,9 @@ help:
 	@echo ... CircularDoubleList.obj
 	@echo ... CircularDoubleList.i
 	@echo ... CircularDoubleList.s
+	@echo ... Queue.obj
+	@echo ... Queue.i
+	@echo ... Queue.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
