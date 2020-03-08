@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/BinarySearchTree.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/BinarySearchTree.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/CircularDoubleList.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
@@ -92,6 +98,12 @@
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Queue.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/User.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/User.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/main.cpp">

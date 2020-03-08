@@ -122,6 +122,33 @@ EDD_1S2020_PY1_201807394/fast:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/build
 .PHONY : EDD_1S2020_PY1_201807394/fast
 
+BinarySearchTree.obj: BinarySearchTree.cpp.obj
+
+.PHONY : BinarySearchTree.obj
+
+# target to build an object file
+BinarySearchTree.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.obj
+.PHONY : BinarySearchTree.cpp.obj
+
+BinarySearchTree.i: BinarySearchTree.cpp.i
+
+.PHONY : BinarySearchTree.i
+
+# target to preprocess a source file
+BinarySearchTree.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.i
+.PHONY : BinarySearchTree.cpp.i
+
+BinarySearchTree.s: BinarySearchTree.cpp.s
+
+.PHONY : BinarySearchTree.s
+
+# target to generate assembly for a file
+BinarySearchTree.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.s
+.PHONY : BinarySearchTree.cpp.s
+
 CircularDoubleList.obj: CircularDoubleList.cpp.obj
 
 .PHONY : CircularDoubleList.obj
@@ -176,6 +203,33 @@ Queue.cpp.s:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.s
 .PHONY : Queue.cpp.s
 
+User.obj: User.cpp.obj
+
+.PHONY : User.obj
+
+# target to build an object file
+User.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj
+.PHONY : User.cpp.obj
+
+User.i: User.cpp.i
+
+.PHONY : User.i
+
+# target to preprocess a source file
+User.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.i
+.PHONY : User.cpp.i
+
+User.s: User.cpp.s
+
+.PHONY : User.s
+
+# target to generate assembly for a file
+User.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.s
+.PHONY : User.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -212,12 +266,18 @@ help:
 	@echo ... EDD_1S2020_PY1_201807394
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... BinarySearchTree.obj
+	@echo ... BinarySearchTree.i
+	@echo ... BinarySearchTree.s
 	@echo ... CircularDoubleList.obj
 	@echo ... CircularDoubleList.i
 	@echo ... CircularDoubleList.s
 	@echo ... Queue.obj
 	@echo ... Queue.i
 	@echo ... Queue.s
+	@echo ... User.obj
+	@echo ... User.i
+	@echo ... User.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
