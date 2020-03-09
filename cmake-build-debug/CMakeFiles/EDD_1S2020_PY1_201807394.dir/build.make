@@ -121,13 +121,55 @@ CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.s"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\User.cpp -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\User.cpp.s
 
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj: CMakeFiles/EDD_1S2020_PY1_201807394.dir/flags.make
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj: ../MatrixNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\MatrixNode.cpp.obj -c C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\MatrixNode.cpp
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\MatrixNode.cpp > CMakeFiles\EDD_1S2020_PY1_201807394.dir\MatrixNode.cpp.i
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\MatrixNode.cpp -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\MatrixNode.cpp.s
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj: CMakeFiles/EDD_1S2020_PY1_201807394.dir/flags.make
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj: ../Coin.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\Coin.cpp.obj -c C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Coin.cpp
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Coin.cpp > CMakeFiles\EDD_1S2020_PY1_201807394.dir\Coin.cpp.i
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Coin.cpp -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\Coin.cpp.s
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj: CMakeFiles/EDD_1S2020_PY1_201807394.dir/flags.make
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj: ../Matrix.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\Matrix.cpp.obj -c C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Matrix.cpp
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Matrix.cpp > CMakeFiles\EDD_1S2020_PY1_201807394.dir\Matrix.cpp.i
+
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\Matrix.cpp -o CMakeFiles\EDD_1S2020_PY1_201807394.dir\Matrix.cpp.s
+
 # Object files for target EDD_1S2020_PY1_201807394
 EDD_1S2020_PY1_201807394_OBJECTS = \
 "CMakeFiles/EDD_1S2020_PY1_201807394.dir/main.cpp.obj" \
 "CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.obj" \
 "CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.obj" \
 "CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.obj" \
-"CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj"
+"CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj" \
+"CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj" \
+"CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj" \
+"CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj"
 
 # External object files for target EDD_1S2020_PY1_201807394
 EDD_1S2020_PY1_201807394_EXTERNAL_OBJECTS =
@@ -137,11 +179,14 @@ EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDo
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.obj
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.obj
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj
+EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj
+EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj
+EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/build.make
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/linklibs.rsp
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/objects1.rsp
 EDD_1S2020_PY1_201807394.exe: CMakeFiles/EDD_1S2020_PY1_201807394.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable EDD_1S2020_PY1_201807394.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Manuel\Documents\Universidad\EDD\Lab\EDD_1S2020_PY1_201807394\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable EDD_1S2020_PY1_201807394.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\EDD_1S2020_PY1_201807394.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

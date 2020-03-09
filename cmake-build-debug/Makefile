@@ -176,6 +176,87 @@ CircularDoubleList.cpp.s:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.s
 .PHONY : CircularDoubleList.cpp.s
 
+Coin.obj: Coin.cpp.obj
+
+.PHONY : Coin.obj
+
+# target to build an object file
+Coin.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj
+.PHONY : Coin.cpp.obj
+
+Coin.i: Coin.cpp.i
+
+.PHONY : Coin.i
+
+# target to preprocess a source file
+Coin.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.i
+.PHONY : Coin.cpp.i
+
+Coin.s: Coin.cpp.s
+
+.PHONY : Coin.s
+
+# target to generate assembly for a file
+Coin.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.s
+.PHONY : Coin.cpp.s
+
+Matrix.obj: Matrix.cpp.obj
+
+.PHONY : Matrix.obj
+
+# target to build an object file
+Matrix.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj
+.PHONY : Matrix.cpp.obj
+
+Matrix.i: Matrix.cpp.i
+
+.PHONY : Matrix.i
+
+# target to preprocess a source file
+Matrix.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.i
+.PHONY : Matrix.cpp.i
+
+Matrix.s: Matrix.cpp.s
+
+.PHONY : Matrix.s
+
+# target to generate assembly for a file
+Matrix.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.s
+.PHONY : Matrix.cpp.s
+
+MatrixNode.obj: MatrixNode.cpp.obj
+
+.PHONY : MatrixNode.obj
+
+# target to build an object file
+MatrixNode.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj
+.PHONY : MatrixNode.cpp.obj
+
+MatrixNode.i: MatrixNode.cpp.i
+
+.PHONY : MatrixNode.i
+
+# target to preprocess a source file
+MatrixNode.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.i
+.PHONY : MatrixNode.cpp.i
+
+MatrixNode.s: MatrixNode.cpp.s
+
+.PHONY : MatrixNode.s
+
+# target to generate assembly for a file
+MatrixNode.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.s
+.PHONY : MatrixNode.cpp.s
+
 Queue.obj: Queue.cpp.obj
 
 .PHONY : Queue.obj
@@ -272,6 +353,15 @@ help:
 	@echo ... CircularDoubleList.obj
 	@echo ... CircularDoubleList.i
 	@echo ... CircularDoubleList.s
+	@echo ... Coin.obj
+	@echo ... Coin.i
+	@echo ... Coin.s
+	@echo ... Matrix.obj
+	@echo ... Matrix.i
+	@echo ... Matrix.s
+	@echo ... MatrixNode.obj
+	@echo ... MatrixNode.i
+	@echo ... MatrixNode.s
 	@echo ... Queue.obj
 	@echo ... Queue.i
 	@echo ... Queue.s

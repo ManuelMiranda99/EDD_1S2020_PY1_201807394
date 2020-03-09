@@ -94,6 +94,24 @@
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/CircularDoubleList.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Coin.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Coin.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Matrix.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Matrix.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/MatrixNode.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/MatrixNode.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Queue.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
