@@ -38,3 +38,17 @@ void User::AddCoins(char _letter) {
 void User::AddScore() {
     scores->InsertScore(points);
 }
+
+bool User::UseCoin(char _letter) {
+    int scoreCoin = coins->DeleteNode(_letter);
+    if(scoreCoin != NULL || scoreCoin != 0){
+        GetPoints(scoreCoin);
+        return true;
+    }else{
+        return false;
+    }
+}
+
+string User::GetCoins() {
+    return coins->GetCoins();
+}

@@ -180,7 +180,7 @@ public:
         size++;
     }
 
-    void DeleteNode(char _letter) {
+    int DeleteNode(char _letter) {
         if(first != NULL){
             NodeIC *aux2, *aux = first;
             while(aux != NULL){
@@ -199,7 +199,9 @@ public:
                     aux2->next = NULL;
                 }
             }
+            return aux->points;
         }
+        return 0;
     }
 
     string GetCoins() {
@@ -267,6 +269,8 @@ class User {
         void GetPoints(int);
         void StartGame();
         void AddCoins(char);
+        bool UseCoin(char);
+        string GetCoins();
         void AddScore();
         int GetMaximumScore();
         void GenerateScoresReport();
