@@ -273,6 +273,7 @@ class User {
         string GetCoins();
         void AddScore();
         int GetMaximumScore();
+        string GenerateGraphviz();
         void GenerateScoresReport();
         void GenerateCoinsReport();
 };

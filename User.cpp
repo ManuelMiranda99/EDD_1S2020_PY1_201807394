@@ -52,3 +52,22 @@ bool User::UseCoin(char _letter) {
 string User::GetCoins() {
     return coins->GetCoins();
 }
+
+string User::GenerateGraphviz() {
+    string graph;
+    if(left == NULL && right == NULL){
+        graph += "\"" + name + "\" [label=\"" + name + "\"];\n";
+    }else{
+        graph += "\"" + name + "\" [label=\"<C0>|" + name + "|<C1>\"];\n";
+    }
+
+    if(left != NULL){
+        graph += left->GenerateGraphviz() + "\"" + name + "\":C0->\"" + left->name + "\";\n";
+    }
+    if(right != NULL){
+        graph += right->GenerateGraphviz() + "\"" + name + "\":C1->\"" + right->name + "\";\n";
+    }
+    graph += "\n";
+    return graph;
+
+}
