@@ -259,13 +259,14 @@ public:
 class User {
     public:
         string name;
+        int id;
         User *left, *right;
 
         SimpleListIS *scores;
         DoubleList *coins;
 
         int points;
-        User(string);
+        User(string, int);
         void GetPoints(int);
         void StartGame();
         void AddCoins(char);

@@ -4,8 +4,9 @@
 
 #include "User.h"
 
-User::User(string _name) {
+User::User(string _name, int _id) {
     name = _name;
+    id = _id;
     coins = new DoubleList();
     scores = new SimpleListIS(name);
     left = right = NULL;

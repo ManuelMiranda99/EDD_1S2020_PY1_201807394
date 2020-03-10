@@ -75,6 +75,7 @@ public:
 class BinarySearchTree {
     public:
         User *root;
+        int size;
         SimpleListReport *report;
         BinarySearchTree();
         void addUser(string);

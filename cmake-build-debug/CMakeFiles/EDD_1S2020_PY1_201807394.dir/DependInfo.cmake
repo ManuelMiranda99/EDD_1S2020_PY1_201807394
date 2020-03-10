@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/BinarySearchTree.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/CircularDoubleList.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Coin.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Matrix.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/MatrixNode.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Queue.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/User.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/Coin.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/User.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/User.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/BinarySearchTree.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/BinarySearchTree.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj"
+  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Logic.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.obj"
   "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/main.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

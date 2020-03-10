@@ -10,7 +10,7 @@
 
 class Matrix {
 private:
-    MatrixNode *header = new MatrixNode(0 ,0 ,0);
+    MatrixNode *header;
     int maxDimension;
 
     MatrixNode *CreateRow();
@@ -21,7 +21,8 @@ private:
     MatrixNode *SearchColumn();
 public:
     Matrix(int);
-    void InsertNode();
+    void InsertNode(int, int, Coin);
+    Coin DeleteNode(int, int);
     void GenerateReport();
 };
 

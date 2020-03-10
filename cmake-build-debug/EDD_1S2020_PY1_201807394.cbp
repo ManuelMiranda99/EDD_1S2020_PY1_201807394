@@ -82,46 +82,52 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/BinarySearchTree.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/BinarySearchTree.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/CircularDoubleList.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/User.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/CircularDoubleList.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/User.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Coin.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/BinarySearchTree.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Coin.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/BinarySearchTree.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Matrix.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Matrix.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/MatrixNode.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/MatrixNode.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Queue.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Queue.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/User.cpp">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.cpp">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
-		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/User.h">
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.h">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Logic.cpp">
+			<Option target="EDD_1S2020_PY1_201807394"/>
+		</Unit>
+		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Logic.h">
 			<Option target="EDD_1S2020_PY1_201807394"/>
 		</Unit>
 		<Unit filename="C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/main.cpp">

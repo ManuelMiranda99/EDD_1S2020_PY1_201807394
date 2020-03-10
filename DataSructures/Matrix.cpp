@@ -4,11 +4,16 @@
 
 #include "Matrix.h"
 
-Matrix::Matrix(int) {
+Matrix::Matrix(int _dimension) {
+    header = new MatrixNode(0 ,0 ,0);
+    maxDimension = _dimension;
+}
+
+void Matrix::InsertNode(int _xCoord, int _yCoord, Coin _coin) {
 
 }
 
-void Matrix::InsertNode() {
+Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
 
 }
 

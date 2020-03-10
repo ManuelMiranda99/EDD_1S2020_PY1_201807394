@@ -122,194 +122,221 @@ EDD_1S2020_PY1_201807394/fast:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/build
 .PHONY : EDD_1S2020_PY1_201807394/fast
 
-BinarySearchTree.obj: BinarySearchTree.cpp.obj
+Classes/Coin.obj: Classes/Coin.cpp.obj
 
-.PHONY : BinarySearchTree.obj
-
-# target to build an object file
-BinarySearchTree.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.obj
-.PHONY : BinarySearchTree.cpp.obj
-
-BinarySearchTree.i: BinarySearchTree.cpp.i
-
-.PHONY : BinarySearchTree.i
-
-# target to preprocess a source file
-BinarySearchTree.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.i
-.PHONY : BinarySearchTree.cpp.i
-
-BinarySearchTree.s: BinarySearchTree.cpp.s
-
-.PHONY : BinarySearchTree.s
-
-# target to generate assembly for a file
-BinarySearchTree.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/BinarySearchTree.cpp.s
-.PHONY : BinarySearchTree.cpp.s
-
-CircularDoubleList.obj: CircularDoubleList.cpp.obj
-
-.PHONY : CircularDoubleList.obj
+.PHONY : Classes/Coin.obj
 
 # target to build an object file
-CircularDoubleList.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.obj
-.PHONY : CircularDoubleList.cpp.obj
+Classes/Coin.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/Coin.cpp.obj
+.PHONY : Classes/Coin.cpp.obj
 
-CircularDoubleList.i: CircularDoubleList.cpp.i
+Classes/Coin.i: Classes/Coin.cpp.i
 
-.PHONY : CircularDoubleList.i
+.PHONY : Classes/Coin.i
 
 # target to preprocess a source file
-CircularDoubleList.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.i
-.PHONY : CircularDoubleList.cpp.i
+Classes/Coin.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/Coin.cpp.i
+.PHONY : Classes/Coin.cpp.i
 
-CircularDoubleList.s: CircularDoubleList.cpp.s
+Classes/Coin.s: Classes/Coin.cpp.s
 
-.PHONY : CircularDoubleList.s
+.PHONY : Classes/Coin.s
 
 # target to generate assembly for a file
-CircularDoubleList.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/CircularDoubleList.cpp.s
-.PHONY : CircularDoubleList.cpp.s
+Classes/Coin.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/Coin.cpp.s
+.PHONY : Classes/Coin.cpp.s
 
-Coin.obj: Coin.cpp.obj
+Classes/User.obj: Classes/User.cpp.obj
 
-.PHONY : Coin.obj
+.PHONY : Classes/User.obj
 
 # target to build an object file
-Coin.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.obj
-.PHONY : Coin.cpp.obj
+Classes/User.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/User.cpp.obj
+.PHONY : Classes/User.cpp.obj
 
-Coin.i: Coin.cpp.i
+Classes/User.i: Classes/User.cpp.i
 
-.PHONY : Coin.i
+.PHONY : Classes/User.i
 
 # target to preprocess a source file
-Coin.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.i
-.PHONY : Coin.cpp.i
+Classes/User.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/User.cpp.i
+.PHONY : Classes/User.cpp.i
 
-Coin.s: Coin.cpp.s
+Classes/User.s: Classes/User.cpp.s
 
-.PHONY : Coin.s
+.PHONY : Classes/User.s
 
 # target to generate assembly for a file
-Coin.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Coin.cpp.s
-.PHONY : Coin.cpp.s
+Classes/User.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Classes/User.cpp.s
+.PHONY : Classes/User.cpp.s
 
-Matrix.obj: Matrix.cpp.obj
+DataSructures/BinarySearchTree.obj: DataSructures/BinarySearchTree.cpp.obj
 
-.PHONY : Matrix.obj
+.PHONY : DataSructures/BinarySearchTree.obj
 
 # target to build an object file
-Matrix.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.obj
-.PHONY : Matrix.cpp.obj
+DataSructures/BinarySearchTree.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/BinarySearchTree.cpp.obj
+.PHONY : DataSructures/BinarySearchTree.cpp.obj
 
-Matrix.i: Matrix.cpp.i
+DataSructures/BinarySearchTree.i: DataSructures/BinarySearchTree.cpp.i
 
-.PHONY : Matrix.i
+.PHONY : DataSructures/BinarySearchTree.i
 
 # target to preprocess a source file
-Matrix.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.i
-.PHONY : Matrix.cpp.i
+DataSructures/BinarySearchTree.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/BinarySearchTree.cpp.i
+.PHONY : DataSructures/BinarySearchTree.cpp.i
 
-Matrix.s: Matrix.cpp.s
+DataSructures/BinarySearchTree.s: DataSructures/BinarySearchTree.cpp.s
 
-.PHONY : Matrix.s
+.PHONY : DataSructures/BinarySearchTree.s
 
 # target to generate assembly for a file
-Matrix.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Matrix.cpp.s
-.PHONY : Matrix.cpp.s
+DataSructures/BinarySearchTree.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/BinarySearchTree.cpp.s
+.PHONY : DataSructures/BinarySearchTree.cpp.s
 
-MatrixNode.obj: MatrixNode.cpp.obj
+DataSructures/CircularDoubleList.obj: DataSructures/CircularDoubleList.cpp.obj
 
-.PHONY : MatrixNode.obj
+.PHONY : DataSructures/CircularDoubleList.obj
 
 # target to build an object file
-MatrixNode.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.obj
-.PHONY : MatrixNode.cpp.obj
+DataSructures/CircularDoubleList.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.obj
+.PHONY : DataSructures/CircularDoubleList.cpp.obj
 
-MatrixNode.i: MatrixNode.cpp.i
+DataSructures/CircularDoubleList.i: DataSructures/CircularDoubleList.cpp.i
 
-.PHONY : MatrixNode.i
+.PHONY : DataSructures/CircularDoubleList.i
 
 # target to preprocess a source file
-MatrixNode.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.i
-.PHONY : MatrixNode.cpp.i
+DataSructures/CircularDoubleList.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.i
+.PHONY : DataSructures/CircularDoubleList.cpp.i
 
-MatrixNode.s: MatrixNode.cpp.s
+DataSructures/CircularDoubleList.s: DataSructures/CircularDoubleList.cpp.s
 
-.PHONY : MatrixNode.s
+.PHONY : DataSructures/CircularDoubleList.s
 
 # target to generate assembly for a file
-MatrixNode.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/MatrixNode.cpp.s
-.PHONY : MatrixNode.cpp.s
+DataSructures/CircularDoubleList.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.s
+.PHONY : DataSructures/CircularDoubleList.cpp.s
 
-Queue.obj: Queue.cpp.obj
+DataSructures/Matrix.obj: DataSructures/Matrix.cpp.obj
 
-.PHONY : Queue.obj
+.PHONY : DataSructures/Matrix.obj
 
 # target to build an object file
-Queue.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.obj
-.PHONY : Queue.cpp.obj
+DataSructures/Matrix.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj
+.PHONY : DataSructures/Matrix.cpp.obj
 
-Queue.i: Queue.cpp.i
+DataSructures/Matrix.i: DataSructures/Matrix.cpp.i
 
-.PHONY : Queue.i
+.PHONY : DataSructures/Matrix.i
 
 # target to preprocess a source file
-Queue.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.i
-.PHONY : Queue.cpp.i
+DataSructures/Matrix.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.i
+.PHONY : DataSructures/Matrix.cpp.i
 
-Queue.s: Queue.cpp.s
+DataSructures/Matrix.s: DataSructures/Matrix.cpp.s
 
-.PHONY : Queue.s
+.PHONY : DataSructures/Matrix.s
 
 # target to generate assembly for a file
-Queue.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Queue.cpp.s
-.PHONY : Queue.cpp.s
+DataSructures/Matrix.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.s
+.PHONY : DataSructures/Matrix.cpp.s
 
-User.obj: User.cpp.obj
+DataSructures/MatrixNode.obj: DataSructures/MatrixNode.cpp.obj
 
-.PHONY : User.obj
+.PHONY : DataSructures/MatrixNode.obj
 
 # target to build an object file
-User.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.obj
-.PHONY : User.cpp.obj
+DataSructures/MatrixNode.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj
+.PHONY : DataSructures/MatrixNode.cpp.obj
 
-User.i: User.cpp.i
+DataSructures/MatrixNode.i: DataSructures/MatrixNode.cpp.i
 
-.PHONY : User.i
+.PHONY : DataSructures/MatrixNode.i
 
 # target to preprocess a source file
-User.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.i
-.PHONY : User.cpp.i
+DataSructures/MatrixNode.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.i
+.PHONY : DataSructures/MatrixNode.cpp.i
 
-User.s: User.cpp.s
+DataSructures/MatrixNode.s: DataSructures/MatrixNode.cpp.s
 
-.PHONY : User.s
+.PHONY : DataSructures/MatrixNode.s
 
 # target to generate assembly for a file
-User.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/User.cpp.s
-.PHONY : User.cpp.s
+DataSructures/MatrixNode.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.s
+.PHONY : DataSructures/MatrixNode.cpp.s
+
+DataSructures/Queue.obj: DataSructures/Queue.cpp.obj
+
+.PHONY : DataSructures/Queue.obj
+
+# target to build an object file
+DataSructures/Queue.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj
+.PHONY : DataSructures/Queue.cpp.obj
+
+DataSructures/Queue.i: DataSructures/Queue.cpp.i
+
+.PHONY : DataSructures/Queue.i
+
+# target to preprocess a source file
+DataSructures/Queue.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.i
+.PHONY : DataSructures/Queue.cpp.i
+
+DataSructures/Queue.s: DataSructures/Queue.cpp.s
+
+.PHONY : DataSructures/Queue.s
+
+# target to generate assembly for a file
+DataSructures/Queue.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.s
+.PHONY : DataSructures/Queue.cpp.s
+
+Logic.obj: Logic.cpp.obj
+
+.PHONY : Logic.obj
+
+# target to build an object file
+Logic.cpp.obj:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.obj
+.PHONY : Logic.cpp.obj
+
+Logic.i: Logic.cpp.i
+
+.PHONY : Logic.i
+
+# target to preprocess a source file
+Logic.cpp.i:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.i
+.PHONY : Logic.cpp.i
+
+Logic.s: Logic.cpp.s
+
+.PHONY : Logic.s
+
+# target to generate assembly for a file
+Logic.cpp.s:
+	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.s
+.PHONY : Logic.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -347,27 +374,30 @@ help:
 	@echo ... EDD_1S2020_PY1_201807394
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... BinarySearchTree.obj
-	@echo ... BinarySearchTree.i
-	@echo ... BinarySearchTree.s
-	@echo ... CircularDoubleList.obj
-	@echo ... CircularDoubleList.i
-	@echo ... CircularDoubleList.s
-	@echo ... Coin.obj
-	@echo ... Coin.i
-	@echo ... Coin.s
-	@echo ... Matrix.obj
-	@echo ... Matrix.i
-	@echo ... Matrix.s
-	@echo ... MatrixNode.obj
-	@echo ... MatrixNode.i
-	@echo ... MatrixNode.s
-	@echo ... Queue.obj
-	@echo ... Queue.i
-	@echo ... Queue.s
-	@echo ... User.obj
-	@echo ... User.i
-	@echo ... User.s
+	@echo ... Classes/Coin.obj
+	@echo ... Classes/Coin.i
+	@echo ... Classes/Coin.s
+	@echo ... Classes/User.obj
+	@echo ... Classes/User.i
+	@echo ... Classes/User.s
+	@echo ... DataSructures/BinarySearchTree.obj
+	@echo ... DataSructures/BinarySearchTree.i
+	@echo ... DataSructures/BinarySearchTree.s
+	@echo ... DataSructures/CircularDoubleList.obj
+	@echo ... DataSructures/CircularDoubleList.i
+	@echo ... DataSructures/CircularDoubleList.s
+	@echo ... DataSructures/Matrix.obj
+	@echo ... DataSructures/Matrix.i
+	@echo ... DataSructures/Matrix.s
+	@echo ... DataSructures/MatrixNode.obj
+	@echo ... DataSructures/MatrixNode.i
+	@echo ... DataSructures/MatrixNode.s
+	@echo ... DataSructures/Queue.obj
+	@echo ... DataSructures/Queue.i
+	@echo ... DataSructures/Queue.s
+	@echo ... Logic.obj
+	@echo ... Logic.i
+	@echo ... Logic.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

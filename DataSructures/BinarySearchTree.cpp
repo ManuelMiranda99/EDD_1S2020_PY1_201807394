@@ -6,11 +6,13 @@
 
 BinarySearchTree::BinarySearchTree() {
     root = NULL;
+    size = 0;
     report = new SimpleListReport();
 }
 
 void BinarySearchTree::addUser(string _name) {
     root = RecursiveAdd(root, _name);
+    size++;
 }
 
 User BinarySearchTree::GetUser(string _name) {
@@ -37,7 +39,7 @@ void BinarySearchTree::PostOrderReport() {
 
 User * BinarySearchTree::RecursiveAdd(User *_node, string _name) {
     if(_node == NULL){
-        _node = new User(_name);
+        _node = new User(_name, size+1);
     } else if(_name < _node->name){
         _node->left = RecursiveAdd(_node->left, _name);
     }else if(_name > _node->name){
