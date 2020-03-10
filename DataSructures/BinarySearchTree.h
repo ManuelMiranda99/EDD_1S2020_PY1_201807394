@@ -6,7 +6,7 @@
 #define EDD_1S2020_PY1_201807394_BINARYSEARCHTREE_H
 
 
-#include "User.h"
+#include "../Classes/User.h"
 
 class SimpleListReport{
     class NodeSL{
