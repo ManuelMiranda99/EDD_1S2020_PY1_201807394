@@ -6,7 +6,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj"
   "CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj"
   "CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj"
-  "CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.obj"
   "CMakeFiles/EDD_1S2020_PY1_201807394.dir/main.cpp.obj"
   "EDD_1S2020_PY1_201807394.exe"
   "EDD_1S2020_PY1_201807394.exe.manifest"

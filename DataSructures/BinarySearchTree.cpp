@@ -8,6 +8,7 @@ BinarySearchTree::BinarySearchTree() {
     root = NULL;
     size = 0;
     report = new SimpleListReport();
+    scoreboard = new Scoreboard();
 }
 
 void BinarySearchTree::addUser(string _name) {
@@ -100,4 +101,18 @@ void BinarySearchTree::GenerateReport() {
     system("dot -Tpng ArbolUsuarios.txt -o C:/Users/Manuel/Desktop/ArbolUsuarios.png");
     system("C:/Users/Manuel/Desktop/ArbolUsuarios.png");
 
+}
+
+void BinarySearchTree::GenerateScoreboard() {
+    scoreboard->deleteList();
+    RecursiveInOrder(root);
+    scoreboard->GenerateReport();
+}
+
+void BinarySearchTree::RecursiveGenerateScoreboard(User *_node) {
+    if(_node != NULL){
+        RecursiveGenerateScoreboard(_node->left);
+        scoreboard->InsertUser(_node);
+        RecursiveGenerateScoreboard(_node->right);
+    }
 }

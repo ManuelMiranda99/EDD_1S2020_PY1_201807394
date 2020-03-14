@@ -311,33 +311,6 @@ DataSructures/Queue.cpp.s:
 	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.s
 .PHONY : DataSructures/Queue.cpp.s
 
-Logic.obj: Logic.cpp.obj
-
-.PHONY : Logic.obj
-
-# target to build an object file
-Logic.cpp.obj:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.obj
-.PHONY : Logic.cpp.obj
-
-Logic.i: Logic.cpp.i
-
-.PHONY : Logic.i
-
-# target to preprocess a source file
-Logic.cpp.i:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.i
-.PHONY : Logic.cpp.i
-
-Logic.s: Logic.cpp.s
-
-.PHONY : Logic.s
-
-# target to generate assembly for a file
-Logic.cpp.s:
-	$(MAKE) -f CMakeFiles\EDD_1S2020_PY1_201807394.dir\build.make CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.s
-.PHONY : Logic.cpp.s
-
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -395,9 +368,6 @@ help:
 	@echo ... DataSructures/Queue.obj
 	@echo ... DataSructures/Queue.i
 	@echo ... DataSructures/Queue.s
-	@echo ... Logic.obj
-	@echo ... Logic.i
-	@echo ... Logic.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

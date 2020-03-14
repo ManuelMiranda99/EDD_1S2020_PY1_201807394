@@ -11,7 +11,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj"
   "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj"
   "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj"
-  "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Logic.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/Logic.cpp.obj"
   "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/main.cpp" "C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/cmake-build-debug/CMakeFiles/EDD_1S2020_PY1_201807394.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

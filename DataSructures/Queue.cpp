@@ -34,7 +34,7 @@ char Queue::DeQueue() {
 
         return charToReturn;
     }
-    return NULL;
+    return '\0';
 }
 
 void Queue::GenerateReport() {
