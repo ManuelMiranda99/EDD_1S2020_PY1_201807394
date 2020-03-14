@@ -46,7 +46,7 @@ void Logic::GameMenu() {
     do{
         Move(0,2);
         printf("\n\t\t\t\t MENU DE JUEGO \n");
-        printf("    \t1. Crear Jugadores \n    \t\t2. Iniciar Partida \n    \t\t3. Regresar \n");
+        printf("    \t1. Crear Jugadores \n    \t2. Iniciar Partida \n    \t3. Regresar \n");
         Move(0, 3 + sOpt); printf("--->");
 
         do{
@@ -105,7 +105,7 @@ void Logic::ReportsMenu() {
     do{
         Move(0,2);
         printf("\n\t\t\t\t MENU DE REPORTES \n");
-        printf("    \t1. Reporte de Diccionario \n    \t\t2. Reporte de Usuarios \n    \t\t3. Reporte de puntajes por jugador \n    \t\t4. Scoreboard \n    \t\t5. Regresar");
+        printf("    \t1. Reporte de Diccionario \n    \t2. Reporte de Usuarios \n    \t3. Reporte de puntajes por jugador \n    \t4. Scoreboard \n    \t5. Regresar");
         Move(0, 3 + sOpt); printf("--->");
 
         do{
@@ -147,6 +147,7 @@ void Logic::ReportsMenu() {
             break;
         case 4:
             // Scoreboard
+            users->GenerateScoreboard();
             break;
         case 5:
             // Going back
@@ -164,13 +165,72 @@ void Logic::ReportsMenu() {
             User *reportPlayer = SelectUser();
             if(reportPlayer != NULL)
                 reportPlayer->GenerateScoresReport();
+            if(reportPlayer == NULL)
+                printf("Usuario inexistente");
             break;
     }
 
 }
 
 void Logic::MenuUsersReport() {
+    bool bMenu = true;
+    int sOpt = 1, sKey;
+    do{
+        Move(0,2);
+        printf("\n\t\t\t\t MENU DE REPORTES DE USUARIOS \n");
+        printf("    \t1. Arbol binario \n    \t2. Recorrido PreOrden \n    \t3. Recorrido InOrden \n    \t4. Recorrido PostOrden \n    \t5. Regresar");
+        Move(0, 3 + sOpt); printf("--->");
 
+        do{
+            sKey = getch();
+            if(sKey == -32){
+                sKey = getch();
+            }
+        }while(sKey != 72 && sKey != 80 && sKey != 13);
+
+        switch(sKey){
+            case 72:
+                sOpt--;
+                if(sOpt < 1){
+                    sOpt = 5;
+                }
+                break;
+            case 80:
+                sOpt++;
+                if(sOpt > 5){
+                    sOpt = 1;
+                }
+                break;
+            case 13:
+                bMenu = false;
+                break;
+        }
+    }while(bMenu);
+
+    system("cls");
+    switch(sOpt){
+        case 1:
+            users->GenerateReport();
+            break;
+        case 2:
+            users->PreOrderReport();
+            break;
+        case 3:
+            users->InOrderReport();
+            break;
+        case 4:
+            users->PostOrderReport();
+            break;
+        case 5:
+            ReportsMenu();
+            break;
+        default:
+            printf("Valor incorrecto, intente de nuevo \n\n");
+            Sleep(3000);
+            system("cls");
+            GeneralMenu();
+            break;
+    }
 }
 
 // General menu with the principals options
@@ -186,7 +246,7 @@ void Logic::GeneralMenu() {
     do{
         Move(0,6);
         printf("\n\t\t\t\t MENU \n");
-        printf("    \t1. Lectura de archivo \n    \t\t2. Jugar \n    \t\t3. Reportes \n    \t\t4. Salir");
+        printf("    \t1. Lectura de archivo \n    \t2. Jugar \n    \t3. Reportes \n    \t4. Salir");
         Move(0, 7 + sOpt); printf("--->");
 
         do{
@@ -243,4 +303,5 @@ void Logic::GeneralMenu() {
     }
 }
 
+// Select user for reports. Used in "Reporte de puntajes por jugador"
 User * Logic::SelectUser() {}
