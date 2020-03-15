@@ -11,11 +11,21 @@ private:
     BinarySearchTree *users = new BinarySearchTree();
 public:
     void Move(int, int);
-    void GeneralMenu();
+
+    // Read file with JSON libary
     void ReadFile();
+
+    // Menus used in the proyect
+    void GeneralMenu();
     void GameMenu();
     void ReportsMenu();
     void MenuUsersReport();
+
+    // Options of the play menu
+    void Play();
+    void CreateUser();
+
+    // Select user for Reports
     User * SelectUser();
 };
 
@@ -79,6 +89,7 @@ void Logic::GameMenu() {
     switch(sOpt){
         case 1:
             // Create Players
+            CreateUser();
             break;
         case 2:
             // Play
@@ -304,4 +315,23 @@ void Logic::GeneralMenu() {
 }
 
 // Select user for reports. Used in "Reporte de puntajes por jugador"
-User * Logic::SelectUser() {}
+User * Logic::SelectUser() {
+    return NULL;
+}
+
+void Logic::Play() {
+
+}
+
+void Logic::CreateUser() {
+    string nameOfUser;
+
+    Move(2, 8);
+    printf("Ingrese nombre de usuario: \n");
+    cin >> nameOfUser;
+    users->addUser(nameOfUser);
+    printf("Usuario ingresado con exito");
+    Sleep(1000);
+    system("cls");
+    GameMenu();
+}

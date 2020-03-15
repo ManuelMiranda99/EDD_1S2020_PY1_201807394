@@ -85,7 +85,7 @@ void BinarySearchTree::RecursivePostOrder(User *_node) {
 }
 
 void BinarySearchTree::GenerateReport() {
-    string graph = "diagraph grafica{\n"
+    string graph = "digraph grafica{\n"
                    "rankdir=TB;\n"
                    "node [shape=record, style=filled, fillcolor=blue];\n";
     graph += root->GenerateGraphviz();

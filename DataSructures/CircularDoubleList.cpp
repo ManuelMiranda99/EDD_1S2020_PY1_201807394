@@ -29,7 +29,7 @@ void CircularDoubleList::InsertNode(string _newWord) {
 
 void CircularDoubleList::GenerateReport() {
     if(first != NULL){
-        string graph = "diagraph L{\n";
+        string graph = "digraph L{\n";
         int x = 1;
         WordNode *aux = first;
 

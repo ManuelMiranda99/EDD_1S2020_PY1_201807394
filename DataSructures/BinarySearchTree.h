@@ -167,6 +167,8 @@ class BinarySearchTree {
 
         BinarySearchTree();
         void addUser(string);
+
+        // Try to use IDs for each user. This to help the GetUser functionality
         User GetUser(string);
         void PreOrderReport();
         void InOrderReport();

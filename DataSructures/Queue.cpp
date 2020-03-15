@@ -40,7 +40,7 @@ char Queue::DeQueue() {
 void Queue::GenerateReport() {
     Coin *aux = first;
     if(aux != NULL){
-        string graph = "diagraph L {\n";
+        string graph = "digraph L {\n";
         int x = 1;
         while(aux != NULL){
             graph += "X" + to_string(x) + " [shape=box, color=lightblue, style=filled, label=\"" + aux->letter + "x" + to_string(aux->points) + "\"];\n";
