@@ -21,7 +21,8 @@ private:
     MatrixNode *SearchColumn();
 public:
     Matrix(int);
-    void InsertNode(int, int, Coin);
+    void InsertSpecialNode(int, int, int);
+    void PutCoin(int, int, Coin);
     Coin DeleteNode(int, int);
     void GenerateReport();
 };

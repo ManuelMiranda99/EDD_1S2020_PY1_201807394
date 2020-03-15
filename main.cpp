@@ -3,12 +3,17 @@
 #include <conio.h>
 #include "DataSructures/CircularDoubleList.h"
 #include "DataSructures/BinarySearchTree.h"
+#include "DataSructures/Matrix.h"
+#include "Library/json.hpp"
+
+using json = nlohmann::json;
 
 class Logic{
 private:
     // Data Structures
     CircularDoubleList *dictionary = new CircularDoubleList();
     BinarySearchTree *users = new BinarySearchTree();
+    Matrix *table;
 public:
     void Move(int, int);
 
@@ -46,7 +51,34 @@ void Logic::Move(int _x, int _y) {
 }
 
 void Logic::ReadFile() {
+    string route;
+    printf("Ingrese ruta del archivo JSON: ");
+    cin >> route;
 
+    ifstream i(route);
+    json j;
+    i >> j;
+
+    // Read File
+    // Dimension of the table
+    int dimension = j.at("dimension");
+    table = new Matrix(dimension);
+
+    // Especial cells
+    // Doubles
+    for(int i = 0; i < j.at("casillas").at("dobles").size(); i++){
+        table->InsertSpecialNode(j.at("casillas").at("dobles")[i].at("x"), j.at("casillas").at("dobles")[i].at("y"), 2);
+    }
+
+    // Triples
+    for(int i = 0; i < j.at("casillas").at("triples").size(); i++){
+        table->InsertSpecialNode(j.at("casillas").at("triples")[i].at("x"), j.at("casillas").at("dobles")[i].at("y"), 2);
+    }
+
+    // Dictionary
+    for(int i = 0; i < j.at("diccionario").size(); i++){
+        dictionary->InsertNode(j.at("diccionario")[i].at("palabra"));
+    }
 }
 
 void Logic::GameMenu() {
@@ -292,6 +324,7 @@ void Logic::GeneralMenu() {
         case 1:
             // Read File
             ReadFile();
+            GeneralMenu();
             break;
         case 2:
             // Game

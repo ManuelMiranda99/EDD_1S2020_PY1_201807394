@@ -9,8 +9,8 @@ Matrix::Matrix(int _dimension) {
     maxDimension = _dimension;
 }
 
-void Matrix::InsertNode(int _xCoord, int _yCoord, Coin _coin) {
-
+void Matrix::InsertSpecialNode(int _XCoord, int _YCoord, int _Multiplier) {
+    MatrixNode *newNode = new MatrixNode(_XCoord, _YCoord, _Multiplier);
 }
 
 Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
@@ -43,4 +43,8 @@ MatrixNode *Matrix::SearchRow() {
 
 MatrixNode *Matrix::SearchColumn() {
     return nullptr;
+}
+
+void Matrix::PutCoin(int _XPos, int _YPos, Coin _coin) {
+
 }

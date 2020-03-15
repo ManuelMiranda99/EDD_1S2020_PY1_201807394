@@ -1,0 +1,8 @@
+digraph L{
+X1 [color=lightgray,style=filled, label="hola"]; 
+X2 [color=lightgray,style=filled, label="mundo"]; 
+X3 [color=lightgray,style=filled, label="proyecto"]; 
+X4 [color=lightgray,style=filled, label="diccionario"]; 
+X1->X2->X3->X4; 
+X4->X3->X2->X1; 
+ }
