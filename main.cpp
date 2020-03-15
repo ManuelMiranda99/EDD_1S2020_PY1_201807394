@@ -64,15 +64,19 @@ void Logic::ReadFile() {
     int dimension = j.at("dimension");
     table = new Matrix(dimension);
 
-    // Especial cells
+    // Special cells
     // Doubles
     for(int i = 0; i < j.at("casillas").at("dobles").size(); i++){
-        table->InsertSpecialNode(j.at("casillas").at("dobles")[i].at("x"), j.at("casillas").at("dobles")[i].at("y"), 2);
+        int x = j.at("casillas").at("dobles")[i].at("x");
+        int y = j.at("casillas").at("dobles")[i].at("y");
+        table->InsertSpecialNode(x, y, 2);
     }
 
     // Triples
     for(int i = 0; i < j.at("casillas").at("triples").size(); i++){
-        table->InsertSpecialNode(j.at("casillas").at("triples")[i].at("x"), j.at("casillas").at("dobles")[i].at("y"), 2);
+        int x = j.at("casillas").at("triples")[i].at("x");
+        int y = j.at("casillas").at("triples")[i].at("y");
+        table->InsertSpecialNode(x, y, 3);
     }
 
     // Dictionary
@@ -324,6 +328,9 @@ void Logic::GeneralMenu() {
         case 1:
             // Read File
             ReadFile();
+            printf("Archivo leido con exito");
+            Sleep(1000);
+            system("cls");
             GeneralMenu();
             break;
         case 2:
