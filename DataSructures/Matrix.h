@@ -9,6 +9,8 @@
 #include "MatrixNode.h"
 #include "fstream"
 
+using namespace std;
+
 class Matrix {
 private:
     MatrixNode *header;

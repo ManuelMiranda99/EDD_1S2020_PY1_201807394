@@ -48,13 +48,14 @@ void CircularDoubleList::GenerateReport() {
             x++;
             aux = aux->next;
         }while(aux != last);
-        graph += "X" + to_string(x) + "; \n";
+        graph += "X" + to_string(x) + "->X1; \n";
 
+        string auxX = to_string(x);
         while(x > 1){
             graph += "X" + to_string(x) + "->";
             x--;
         }
-        graph += "X1; \n }";
+        graph += "X1->X" + auxX + "; \n }";
         ofstream writeToFile;
         writeToFile.open("Diccionario.txt", ios_base::out | ios_base::trunc);
         if(writeToFile.is_open()){

@@ -17,10 +17,10 @@ private:
 public:
     void Move(int, int);
 
-    // Read file with JSON libary
+    // Read file with JSON library
     void ReadFile();
 
-    // Menus used in the proyect
+    // Menus used in the project
     void GeneralMenu();
     void GameMenu();
     void ReportsMenu();
@@ -69,14 +69,14 @@ void Logic::ReadFile() {
     for(int i = 0; i < j.at("casillas").at("dobles").size(); i++){
         int x = j.at("casillas").at("dobles")[i].at("x");
         int y = j.at("casillas").at("dobles")[i].at("y");
-        table->InsertSpecialNode(x, y, 2);
+        table->InsertNode(x, y, 2);
     }
 
     // Triples
     for(int i = 0; i < j.at("casillas").at("triples").size(); i++){
         int x = j.at("casillas").at("triples")[i].at("x");
         int y = j.at("casillas").at("triples")[i].at("y");
-        table->InsertSpecialNode(x, y, 3);
+        table->InsertNode(x, y, 3);
     }
 
     // Dictionary
@@ -198,6 +198,7 @@ void Logic::ReportsMenu() {
             break;
         case 5:
             // Going back
+            table->GenerateReport();
             system("cls");
             GeneralMenu();
             break;

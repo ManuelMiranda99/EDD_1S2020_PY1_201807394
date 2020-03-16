@@ -43,7 +43,111 @@ Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
 }
 
 void Matrix::GenerateReport() {
+    if(header->down != NULL && header->next != NULL){
 
+        string graph = "digraph graph {\n\n"
+                       "\tnode [shape=box];\n\n"
+                       "\t// Nodo raiz\n"
+                       "\tMt[label=\"" + to_string(header->XCoord) + ", " + to_string(header->YCoord) + "\", width = 1.5, style=filled, fillcolor = firebrick1, group = 1];\n\n"
+                       "\t/* nodos vacios, necesarios para anular el posicionamiento de nodos de graphviz */\n"
+                       "\te0[shape=point, width = 0];\n"
+                       "\te1[shape=point, width = 0];\n\n";
+
+        /* -------------------- Go through each header row -------------------- */
+        // Auxiliar variable to number the nodes
+        int x = 1;
+        // Auxiliar node to go through each header row
+        MatrixNode *aux = header->down;
+        graph += "\t// Filas\n"
+                 "\tU0 [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", pos=\"5.3, 3.5!\", width = 1.5, style = filled, fillcolor = bisque1, group=1]; \n";
+        aux = aux->down;
+        while(aux != NULL){
+            graph += "\tU" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = bisque1, group=1]; \n";
+            x++;
+            aux = aux->down;
+        }
+        graph += "\n\t//Linkear filas\n\t";
+
+        /* -------------------- Link each the header Rows -------------------- */
+        x = 0;
+        aux = header->down;
+        while(aux->down != NULL){
+            graph += "U" + to_string(x) + "->";
+            x++;
+            aux = aux->down;
+        }
+        graph += "U" + to_string(x) + ";\n\t";
+
+        while(x > 0){
+            graph += "U" + to_string(x) + "->";
+            x--;
+        }
+        graph += "U0; \n\n";
+
+        /* -------------------- Go through each header Column -------------------- */
+        graph += "\t// Columnas\n";
+        // Setting the auxiliar variable to number nodes to 0
+        x = 0;
+        // Setting the auxiliar node to go through each header column
+        aux = header->next;
+        while(aux != NULL){
+            graph += "\tA" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = bisque1, group=" + to_string(aux->XCoord + 2) + "]; \n";
+            x++;
+            aux = aux->next;
+        }
+        graph += "\n\t// Linkear columnas\n\t";
+
+        /* -------------------- Link each header Column -------------------- */
+        x = 0;
+        aux = header->next;
+        while(aux->next != NULL){
+            graph += "A" + to_string(x) + "->";
+            x++;
+            aux = aux->next;
+        }
+        graph += "A" + to_string(x) + ";\n\t";
+
+        while(x > 1){
+            graph += "A" + to_string(x) + "->";
+            x--;
+        }
+        graph += "A0; \n\n";
+
+        /* -------------------- Link the principal nodes to the header -------------------- */
+        graph += "\t// Nodo raiz con primera fila y columna\n"
+                 "\tMt -> U0;\n\tMt -> A0; \n\n";
+
+        /* -------------------- Rank at the same row the columns -------------------- */
+        x = 0;
+        aux = header->next;
+        string columns;
+        while(aux != NULL){
+            columns += "A" + to_string(x) + "; ";
+            x++;
+            aux = aux->next;
+        }
+
+        graph += "\t// Colocar columnas de manera alineada\n"
+                 "\t {rank = same; Mt; " + columns + "} ";
+
+        // Go through each row generating the graphviz Node
+
+        //  Linking the nodes by row
+
+        // Linking the nodes by column
+
+        // Generate txt and image
+        ofstream writeToFile;
+        writeToFile.open("Tablero.txt", ios_base::out | ios_base::trunc);
+        if(writeToFile.is_open()){
+            writeToFile << graph;
+            writeToFile.close();
+        }
+
+        /*
+        system("dot -Tpng Tablero.txt -o C:/Users/Manuel/Desktop/Tablero.png");
+        system("C:/Users/Manuel/Desktop/Tablero.png");*/
+    }
 }
 
 MatrixNode *Matrix::CreateRow(int _y) {
