@@ -7,21 +7,22 @@
 
 
 #include "MatrixNode.h"
+#include "fstream"
 
 class Matrix {
 private:
     MatrixNode *header;
     int maxDimension;
 
-    MatrixNode *CreateRow();
-    MatrixNode *CreateColumn();
-    MatrixNode InsertOrderedRow();
-    MatrixNode InsertOrderedColumn();
-    MatrixNode *SearchRow();
-    MatrixNode *SearchColumn();
+    MatrixNode * InsertOrderedRow(MatrixNode *, MatrixNode *);
+    MatrixNode * InsertOrderedColumn(MatrixNode *, MatrixNode *);
+    MatrixNode *SearchRow(int);
+    MatrixNode *SearchColumn(int);
+    MatrixNode *CreateRow(int);
+    MatrixNode *CreateColumn(int);
 public:
     Matrix(int);
-    void InsertSpecialNode(int, int, int);
+    void InsertNode(int, int, int);
     void PutCoin(int, int, Coin);
     Coin DeleteNode(int, int);
     void GenerateReport();
