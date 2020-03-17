@@ -171,7 +171,8 @@ class BinarySearchTree {
         void addUser(string);
 
         // Try to use IDs for each user. This to help the GetUser functionality
-        User GetUser(string);
+        User * GetUser(string);
+        User * GetUser(int);
         void PreOrderReport();
         void InOrderReport();
         void PostOrderReport();
@@ -180,6 +181,7 @@ class BinarySearchTree {
     private:
         User * RecursiveAdd(User *, string);
         User * RecursiveGetUser(User *, string);
+        User * RecursiveGetUser(User *, int);
         void RecursivePreOrder(User *);
         void RecursiveInOrder(User *);
         void RecursivePostOrder(User *);

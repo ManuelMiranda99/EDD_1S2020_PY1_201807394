@@ -17,8 +17,12 @@ void BinarySearchTree::addUser(string _name) {
     size++;
 }
 
-User BinarySearchTree::GetUser(string _name) {
-    return *RecursiveGetUser(root, _name);
+User * BinarySearchTree::GetUser(string _name) {
+    return RecursiveGetUser(root, _name);
+}
+
+User * BinarySearchTree::GetUser(int _id) {
+    return RecursiveGetUser(root, _id);
 }
 
 void BinarySearchTree::PreOrderReport() {
@@ -42,7 +46,7 @@ void BinarySearchTree::PostOrderReport() {
 User * BinarySearchTree::RecursiveAdd(User *_node, string _name) {
     if(_node == NULL){
         _node = new User(_name, size+1);
-        txt += to_string(_node->id) + " - " + _node->name + "\n";
+        txt += "\t" + to_string(_node->id) + " - " + _node->name + "\n";
     } else if(_name < _node->name){
         _node->left = RecursiveAdd(_node->left, _name);
     }else if(_name > _node->name){
@@ -60,6 +64,22 @@ User * BinarySearchTree::RecursiveGetUser(User *_node, string _name) {
         return RecursiveGetUser(_node->left, _name);
     }
     return  RecursiveGetUser(_node->right, _name);
+}
+
+User * BinarySearchTree::RecursiveGetUser(User *_node, int _id) {
+    if(_node != NULL){
+        if(_node->id == _id){
+            return _node;
+        }else{
+            User *temp=RecursiveGetUser(_node->left, _id);
+            if(temp==0){
+                temp = RecursiveGetUser(_node->right, _id);
+            }
+            return temp;
+        }
+    }else{
+        return NULL;
+    }
 }
 
 void BinarySearchTree::RecursivePreOrder(User *_node) {

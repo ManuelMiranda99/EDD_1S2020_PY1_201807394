@@ -211,11 +211,11 @@ void Logic::ReportsMenu() {
             break;
         case 3:
             // Points by player
+            system("cls");
             User *reportPlayer = SelectUser();
             if(reportPlayer != NULL)
                 reportPlayer->GenerateScoresReport();
-            if(reportPlayer == NULL)
-                printf("Usuario inexistente");
+            ReportsMenu();
             break;
     }
 
@@ -362,7 +362,54 @@ void Logic::GeneralMenu() {
 
 // Select user for reports. Used in "Reporte de puntajes por jugador"
 User * Logic::SelectUser() {
-    return NULL;
+    bool bUser = true;
+    int sOpt = 1, sKey;
+
+    do{
+        //system("cls");
+        Move(0, 2);
+        printf("\n\t\t\t\t SELECCIONA UN JUGADOR O SALGA \n");
+        cout << users->txt + "\t" + to_string(users->size + 1) + " - Salir";
+        for(int i = 3; i < users->size + 5; i++){
+            Move(0, i);
+            printf("    ");
+        }
+        Move(0, 3 + sOpt); printf("--->");
+
+        do{
+            sKey = getch();
+            if(sKey == -32){
+                sKey = getch();
+            }
+        }while(sKey != 72 && sKey != 80 && sKey != 13);
+
+        switch(sKey){
+            case 72:
+                sOpt--;
+                if(sOpt < 1){
+                    sOpt = users->size + 1;
+                }
+                break;
+            case 80:
+                sOpt++;
+                if(sOpt > users->size + 1){
+                    sOpt = 1;
+                }
+                break;
+            case 13:
+                bUser = false;
+                break;
+        }
+    }while(bUser);
+
+    system("cls");
+
+    if(sOpt == (users->size + 1)){
+        return NULL;
+    }else{
+        User *selectedUser = users->GetUser(sOpt);
+        return selectedUser;
+    }
 }
 
 void Logic::Play() {
