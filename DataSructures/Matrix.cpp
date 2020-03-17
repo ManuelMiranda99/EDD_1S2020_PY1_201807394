@@ -140,11 +140,20 @@ void Matrix::GenerateReport() {
 
                 // If the node have a coin on it
                 if(temp_node->coin != NULL){
-                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"" + temp_node->coin->letter + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "];\n";
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"" + temp_node->coin->letter + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = salmon];\n";
                 }
                 // If the node doesnt have a coin, it is just a special cell
                 else{
-                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "];\n";
+                    // If the multiplier is x2
+                    string color;
+                    if(temp_node->multiplier == 2){
+                        color = "cadetblue";
+                    }
+                    // If the multiplier is x3
+                    else{
+                        color = "indianred";
+                    }
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "style = filled, fillcolor = " + color + "];\n";
                 }
                 temp_node = temp_node->next;
                 xPos++;
