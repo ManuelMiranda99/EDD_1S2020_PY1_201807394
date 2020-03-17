@@ -23,6 +23,7 @@ CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj: ../Cla
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj: ../DataSructures/MatrixNode.cpp
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/MatrixNode.cpp.obj: ../DataSructures/MatrixNode.h
 
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj: ../Classes/Coin.h
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj: ../DataSructures/Queue.cpp
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Queue.cpp.obj: ../DataSructures/Queue.h
 

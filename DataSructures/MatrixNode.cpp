@@ -9,6 +9,7 @@ MatrixNode::MatrixNode(int _X, int _Y, int _multiplier) {
     YCoord = _Y;
     multiplier = _multiplier;
     up = down = next = previous = 0;
+    coin = 0;
 }
 
 int MatrixNode::GetMultiplier() {

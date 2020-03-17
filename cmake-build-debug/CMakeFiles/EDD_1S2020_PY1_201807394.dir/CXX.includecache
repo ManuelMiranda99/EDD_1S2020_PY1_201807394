@@ -6,11 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.cpp
-CircularDoubleList.h
-C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.h
+fstream
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/fstream
 
-C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/CircularDoubleList.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.cpp
+Matrix.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.h
+
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.h
+MatrixNode.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.h
 fstream
 C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/fstream
+
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/MatrixNode.h
+../Classes/Coin.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.h
 

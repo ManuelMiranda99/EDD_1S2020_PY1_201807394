@@ -128,13 +128,69 @@ void Matrix::GenerateReport() {
         }
 
         graph += "\t// Colocar columnas de manera alineada\n"
-                 "\t {rank = same; Mt; " + columns + "} ";
+                 "\t {rank = same; Mt; " + columns + "} \n\n";
 
         // Go through each row generating the graphviz Node
+        int xPos = 0, yPos = 0;
+        graph += "\t// Creation of nodes\n";
+        aux = header->down;
+        while(aux != NULL){
+            graph += "\t// Fila " + to_string(yPos) + "\n";
+            MatrixNode *temp_node = aux->next;
+            xPos = 0;
+            while(temp_node != NULL){
 
-        //  Linking the nodes by row
+                // If the node have a coin on it
+                if(temp_node->coin != NULL){
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"" + temp_node->coin->letter + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "];\n";
+                }
+                // If the node doesnt have a coin, it is just a special cell
+                else{
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "];\n";
+                }
+                temp_node = temp_node->next;
+                xPos++;
+            }
+            graph += "\n\n";
+            aux = aux->down;
+            yPos++;
+        }
+
+        //  Linking the nodes by row and rank in the same row
+        xPos = 0; yPos = 0;
+        aux = header->down;
+        while(aux != NULL){
+            graph += "\t// Linkeando Fila " + to_string(yPos) + "\n"
+                     "\tU" + to_string(yPos);
+            MatrixNode *temp_node = aux->next;
+            while(temp_node != NULL){
+
+                graph += "->N" + to_string(temp_node->XCoord) +"_L" + to_string(temp_node->YCoord) + "";
+
+                temp_node = temp_node->next;
+            }
+            graph += ";\n\n";
+            aux = aux->down;
+            yPos++;
+        }
 
         // Linking the nodes by column
+        xPos = 0;
+        aux = header->next;
+        while(aux != NULL){
+            graph += "\t// Linkeando Columna " + to_string(xPos) + "\n"
+                     "\tA" + to_string(xPos);
+            MatrixNode *temp_node = aux->down;
+            while(temp_node != NULL){
+
+                graph += "->N" + to_string(temp_node->XCoord) +"_L" + to_string(temp_node->YCoord) + "";
+
+                temp_node = temp_node->down;
+            }
+            graph += ";\n\n";
+            aux = aux->next;
+            xPos++;
+        }
 
         // Generate txt and image
         ofstream writeToFile;
