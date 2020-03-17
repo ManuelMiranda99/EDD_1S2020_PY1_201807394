@@ -45,15 +45,13 @@ Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
 void Matrix::GenerateReport() {
     if(header->down != NULL && header->next != NULL){
 
-        string graph = "digraph graph {\n\n"
+        string graph = "digraph Matrix {\n\n"
                        "\tnode [shape=box];\n\n"
                        "\t// Nodo raiz\n"
-                       "\tMt[label=\"" + to_string(header->XCoord) + ", " + to_string(header->YCoord) + "\", width = 1.5, style=filled, fillcolor = firebrick1, group = 1];\n\n"
-                       "\t/* nodos vacios, necesarios para anular el posicionamiento de nodos de graphviz */\n"
-                       "\te0[shape=point, width = 0];\n"
-                       "\te1[shape=point, width = 0];\n\n";
+                       "\tMt[label=\"" + to_string(header->XCoord) + ", " + to_string(header->YCoord) + "\", width = 1.5, style=filled, fillcolor = firebrick1, group = 1];\n\n";
 
         /* -------------------- Go through each header row -------------------- */
+
         // Auxiliar variable to number the nodes
         int x = 1;
         // Auxiliar node to go through each header row
@@ -107,7 +105,7 @@ void Matrix::GenerateReport() {
         }
         graph += "A" + to_string(x) + ";\n\t";
 
-        while(x > 1){
+        while(x > 0){
             graph += "A" + to_string(x) + "->";
             x--;
         }
@@ -162,14 +160,19 @@ void Matrix::GenerateReport() {
         while(aux != NULL){
             graph += "\t// Linkeando Fila " + to_string(yPos) + "\n"
                      "\tU" + to_string(yPos);
+            string rankSame = "U" + to_string(yPos);
             MatrixNode *temp_node = aux->next;
             while(temp_node != NULL){
 
                 graph += "->N" + to_string(temp_node->XCoord) +"_L" + to_string(temp_node->YCoord) + "";
 
+                rankSame += "; N"+ to_string(temp_node->XCoord) +"_L" + to_string(temp_node->YCoord);
+
                 temp_node = temp_node->next;
             }
-            graph += ";\n\n";
+            graph += " [dir=both];\n\n"
+                     "{rank = same; " + rankSame + "}"
+                     "\n\n";
             aux = aux->down;
             yPos++;
         }
@@ -192,6 +195,8 @@ void Matrix::GenerateReport() {
             xPos++;
         }
 
+        graph += "}";
+
         // Generate txt and image
         ofstream writeToFile;
         writeToFile.open("Tablero.txt", ios_base::out | ios_base::trunc);
@@ -200,9 +205,8 @@ void Matrix::GenerateReport() {
             writeToFile.close();
         }
 
-        /*
         system("dot -Tpng Tablero.txt -o C:/Users/Manuel/Desktop/Tablero.png");
-        system("C:/Users/Manuel/Desktop/Tablero.png");*/
+        system("C:/Users/Manuel/Desktop/Tablero.png");
     }
 }
 
