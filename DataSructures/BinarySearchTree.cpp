@@ -7,6 +7,7 @@
 BinarySearchTree::BinarySearchTree() {
     root = NULL;
     size = 0;
+    txt = "";
     report = new SimpleListReport();
     scoreboard = new Scoreboard();
 }
@@ -41,6 +42,7 @@ void BinarySearchTree::PostOrderReport() {
 User * BinarySearchTree::RecursiveAdd(User *_node, string _name) {
     if(_node == NULL){
         _node = new User(_name, size+1);
+        txt += to_string(_node->id) + " - " + _node->name + "\n";
     } else if(_name < _node->name){
         _node->left = RecursiveAdd(_node->left, _name);
     }else if(_name > _node->name){
@@ -63,8 +65,8 @@ User * BinarySearchTree::RecursiveGetUser(User *_node, string _name) {
 void BinarySearchTree::RecursivePreOrder(User *_node) {
     if(_node != NULL){
         report->InsertNode(_node->name);
-        RecursiveInOrder(_node->left);
-        RecursiveInOrder(_node->right);
+        RecursivePreOrder(_node->left);
+        RecursivePreOrder(_node->right);
     }
 }
 
@@ -78,8 +80,8 @@ void BinarySearchTree::RecursiveInOrder(User *_node) {
 
 void BinarySearchTree::RecursivePostOrder(User *_node) {
     if(_node != NULL){
-        RecursiveInOrder(_node->left);
-        RecursiveInOrder(_node->right);
+        RecursivePostOrder(_node->left);
+        RecursivePostOrder(_node->right);
         report->InsertNode(_node->name);
     }
 }
@@ -105,7 +107,7 @@ void BinarySearchTree::GenerateReport() {
 
 void BinarySearchTree::GenerateScoreboard() {
     scoreboard->deleteList();
-    RecursiveInOrder(root);
+    RecursiveGenerateScoreboard(root);
     scoreboard->GenerateReport();
 }
 
@@ -116,3 +118,4 @@ void BinarySearchTree::RecursiveGenerateScoreboard(User *_node) {
         RecursiveGenerateScoreboard(_node->right);
     }
 }
+

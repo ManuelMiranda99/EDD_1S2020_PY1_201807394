@@ -195,10 +195,11 @@ void Logic::ReportsMenu() {
         case 4:
             // Scoreboard
             users->GenerateScoreboard();
+            ReportsMenu();
             break;
         case 5:
             // Going back
-            table->GenerateReport();
+            //table->GenerateReport();
             system("cls");
             GeneralMenu();
             break;
@@ -259,15 +260,19 @@ void Logic::MenuUsersReport() {
     switch(sOpt){
         case 1:
             users->GenerateReport();
+            MenuUsersReport();
             break;
         case 2:
             users->PreOrderReport();
+            MenuUsersReport();
             break;
         case 3:
             users->InOrderReport();
+            MenuUsersReport();
             break;
         case 4:
             users->PostOrderReport();
+            MenuUsersReport();
             break;
         case 5:
             ReportsMenu();

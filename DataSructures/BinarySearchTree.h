@@ -50,14 +50,15 @@ public:
                 graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" + aux->name + "\"];\n";
                 x++;
                 aux = aux->next;
-            }while (aux != first);
+            }while (aux != NULL);
             x = 1;
+            aux = first;
             do{
                 graph += "X" + to_string(x) + " -> ";
                 x++;
                 aux = aux->next;
-            }while(aux != first);
-            graph += " X1; \n }";
+            }while(aux->next != NULL);
+            graph += " X" + to_string(x) + "; \n }";
 
             ofstream writeToFile;
             writeToFile.open("ReportePreInPost.txt", ios_base::out | ios_base::trunc);
@@ -162,6 +163,7 @@ class BinarySearchTree {
     public:
         User *root;
         int size;
+        string txt;
         SimpleListReport *report;
         Scoreboard *scoreboard;
 
@@ -181,7 +183,6 @@ class BinarySearchTree {
         void RecursivePreOrder(User *);
         void RecursiveInOrder(User *);
         void RecursivePostOrder(User *);
-
         void RecursiveGenerateScoreboard(User *);
 };
 
