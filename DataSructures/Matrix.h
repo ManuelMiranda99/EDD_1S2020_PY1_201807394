@@ -18,6 +18,8 @@ private:
 
     MatrixNode * InsertOrderedRow(MatrixNode *, MatrixNode *);
     MatrixNode * InsertOrderedColumn(MatrixNode *, MatrixNode *);
+    Coin * DeleteOrderedRow(MatrixNode *, int);
+    Coin * DeleteOrderedColumn(MatrixNode *, int);
     MatrixNode *SearchRow(int);
     MatrixNode *SearchColumn(int);
     MatrixNode *CreateRow(int);
@@ -26,7 +28,7 @@ public:
     Matrix(int);
     void InsertNode(int, int, int);
     void PutCoin(int, int, Coin);
-    Coin DeleteNode(int, int);
+    Coin * DeleteNode(int, int);
     void GenerateReport();
 };
 

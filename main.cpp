@@ -5,6 +5,7 @@
 #include "DataSructures/BinarySearchTree.h"
 #include "DataSructures/Matrix.h"
 #include "Library/json.hpp"
+#include "DataSructures/Queue.h"
 
 using json = nlohmann::json;
 
@@ -13,6 +14,7 @@ private:
     // Data Structures
     CircularDoubleList *dictionary = new CircularDoubleList();
     BinarySearchTree *users = new BinarySearchTree();
+    Queue *coins = new Queue();
     Matrix *table;
 public:
     void Move(int, int);
@@ -26,9 +28,12 @@ public:
     void ReportsMenu();
     void MenuUsersReport();
 
-    // Options of the play menu
+    // Options of the play menu and reports
     void Play();
     void CreateUser();
+
+    // Random function for the coins
+    void Random();
 
     // Select user for Reports
     User * SelectUser();
@@ -413,6 +418,10 @@ User * Logic::SelectUser() {
 }
 
 void Logic::Play() {
+
+}
+
+void Logic::Random(){
 
 }
 

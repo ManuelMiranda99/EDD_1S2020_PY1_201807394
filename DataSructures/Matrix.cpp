@@ -38,8 +38,68 @@ void Matrix::InsertNode(int _XCoord, int _YCoord, int _Multiplier) {
     newNode = InsertOrderedRow(newNode, column);
 }
 
-Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
+Coin * Matrix::DeleteNode(int _xCoord, int _yCoord) {
+    MatrixNode *column = SearchColumn(_xCoord);
+    MatrixNode *row = SearchRow(_yCoord);
 
+    Coin *returnCoin;
+
+    if(column != NULL && row != NULL){
+        returnCoin = DeleteOrderedColumn(row, _xCoord);
+        DeleteOrderedRow(column, _yCoord);
+
+        return returnCoin;
+    }
+    return NULL;
+}
+
+Coin * Matrix::DeleteOrderedColumn(MatrixNode *_root, int _xPos) {
+    MatrixNode *aux1 = _root;
+
+    while(aux1 != NULL){
+        // Delete
+        if(aux1->XCoord == _xPos) {
+            // If the cell is not a special (x2 or x3) cell, we remove the pointers
+            if (aux1->multiplier <= 1) {
+                /*
+                    aux1.previous ->          <- aux1.next
+                                    <- aux1 ->
+                */
+                aux1->previous->next = aux1->next;
+
+                aux1->next->previous = aux1->previous;
+            }
+            return aux1->coin;
+        }
+        aux1 = aux1->next;
+    }
+
+    return NULL;
+}
+
+Coin * Matrix::DeleteOrderedRow(MatrixNode *_root, int _yPos) {
+    MatrixNode *aux1 = _root;
+
+    while(aux1 != NULL){
+        // Delete
+        if(aux1->YCoord == _yPos) {
+            // If the cell is not a special (x2 or x3) cell, we remove the pointers
+            if (aux1->multiplier <= 1) {
+                /*
+                    aux1.up
+                                aux1
+                    aux1.down
+                */
+                aux1->up->down = aux1->down;
+
+                aux1->down->up = aux1->up;
+            }
+            return aux1->coin;
+        }
+        aux1 = aux1->down;
+    }
+
+    return NULL;
 }
 
 void Matrix::GenerateReport() {
