@@ -202,12 +202,13 @@ public:
                     aux2->next = NULL;
                 }
             }
+            size--;
             return aux->points;
         }
         return 0;
     }
 
-    char DeleteNodeAt(int _pos){
+    int DeleteNodeAt(int _pos){
         if(first != NULL){
             NodeIC *aux2, *aux = first;
             for(int i = 0;i < _pos;i++){
@@ -223,9 +224,10 @@ public:
                     aux2->next = NULL;
                 }
             }
-            return aux->letter;
+            size--;
+            return aux->points;
         }
-        return '\00';
+        return 0;
     }
 
     string GetCoins() {
@@ -237,10 +239,9 @@ public:
                     text += aux->letter;
                 }
                 else{
-                    text += "Ñ";
+                    text += 'n';
                 }
                 text += ',';
-                text += ' ';
                 aux = aux->next;
             }
             text += aux->letter;
@@ -292,6 +293,17 @@ public:
         }
 
     };
+
+    char GetCoinAt(int _pos){
+        if(first != NULL){
+            NodeIC *aux = first;
+            for(int i = 0;i < _pos;i++){
+                aux = aux->next;
+            }
+            return aux->letter;
+        }
+        return '\00';
+    }
 };
 
 class User {
@@ -309,6 +321,8 @@ class User {
         void StartGame();
         void AddCoins(char);
         bool UseCoin(char);
+        bool UseCoin(int);
+        char GetCoinAt(int);
         string GetCoins();
         void AddScore();
         int GetMaximumScore();

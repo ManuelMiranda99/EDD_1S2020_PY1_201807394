@@ -684,29 +684,71 @@ void Logic::Play() {
         player2->AddCoins(coins->DeQueue());
     }
 
+    // Print the table in the console
     PrintTable();
-    actualPlayer = player1;
 
+    // Randomly starting player.
+    int randomPlayer = rand() + 10 + 1;
+    if(randomPlayer < 5){
+        actualPlayer = player1;
+    }
+    else{
+        actualPlayer = player2;
+    }
+
+    // Variables to use during the playing loop
+        // This keeps the loop running
     bool playing = true;
+        // For the selection of the coin
     int coinAt = 0;
+        // To insert in the matrix and to eliminate from the list of the player
+    char charToInsert;
 
+    // Initializing the messages that the program will show
     Move(0, table->maxDimension + 6);
-    cout << "Jugador actual: " << actualPlayer->name << endl;
-    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
+    cout << " Jugador actual: " << actualPlayer->name << endl;
+    cout << " Fichas: " << actualPlayer->GetCoins() << endl;
+    Move(9 + (2*coinAt), table->maxDimension + 8);
 
+    cout << "^";
+
+    // While they are playing
     while(playing){
         if(kbhit()){
             char key = getch();
             // Move through the Coins of the player
             if(key == -32){
-
+                key = getch();
+                switch(key){
+                    // Left
+                    case 75:
+                        if(coinAt != 0){
+                            coinAt--;
+                            Move(0, table->maxDimension + 8);
+                            cout << "                                         ";
+                            Move(9 + (2*coinAt), table->maxDimension + 8);
+                            cout << "^";
+                        }
+                        break;
+                    // Right
+                    case 77:
+                        if(coinAt != 6){
+                            coinAt++;
+                            Move(0, table->maxDimension + 8);
+                            cout << "                                         ";
+                            Move(9 + (2*coinAt), table->maxDimension + 8);
+                            cout << "^";
+                        }
+                        break;
+                }
             }
             else{
                 // Select coin
                 if(key == 13){
+                    charToInsert = actualPlayer->GetCoinAt(coinAt);
                     // Positions of the Matrix
                     int x = 0, y = 0;
-                    Move(x+7,y+5);
+                    Move(6 + (3*x),y+3);
                     // Boolean variable that will be false until they decide the place where they want to put the coin
                     bool putCoin = false;
                     while(!putCoin){
@@ -722,30 +764,30 @@ void Logic::Play() {
                         switch(key){
                             // Up
                             case 72:
-                                if(y != table->maxDimension){
-                                    y++;
-                                    Move(x+7, y+5);
+                                if(y != 0){
+                                    y--;
+                                    Move(6 + (3*x), y+3);
                                 }
                                 break;
                             // Down
                             case 80:
-                                if(y != 0){
-                                    y--;
-                                    Move(x+7, y+5);
+                                if(y != table->maxDimension - 1){
+                                    y++;
+                                    Move(6 + (3*x), y+3);
                                 }
                                 break;
                             // Left
                             case 75:
                                 if(x != 0){
                                     x--;
-                                    Move(x+7,y+5);
+                                    Move(6 + (3*x),y+3);
                                 }
                                 break;
                             // Right
                             case 77:
-                                if(x != table->maxDimension){
+                                if(x != table->maxDimension - 1){
                                     x++;
-                                    Move(x+7,y+5);
+                                    Move(6 + (3*x),y+3);
                                 }
                                 break;
                             // Enter. They decided the position of the coin
@@ -760,6 +802,10 @@ void Logic::Play() {
                 }
                 // Exit. Ctrl + X
                 else if(key == 24){
+
+                    player1->AddScore();
+                    player2->AddScore();
+
                     system("cls");
                     playing = false;
                     if(player1->points >= player2->points){
@@ -785,7 +831,17 @@ void Logic::Play() {
                 else if(key == 25){
                     BagOfCoins *auxiliarBag = new BagOfCoins();
                     cout << "Seleccione las fichas que desea eliminar" << endl;
+
+                    // Pass the turn
+                    PassTurn();
+                    Move(0, table->maxDimension + 6);
+                    cout << "                                                                                    " << endl;
+                    cout << "                                                                                    " << endl;
+                    Move(0, table->maxDimension + 6);
+                    cout << "Jugador actual: " << actualPlayer->name << endl;
+                    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
                 }
+                // Check word in the diccionary. Ctrl + T
             }
         }
     }
@@ -905,14 +961,15 @@ bool Logic::ExitStartGame() {
 void Logic::PrintTable() {
     system("cls");
     for (int i = 0; i < table->maxDimension; ++i) {
-        Move( 5, i+5);
+        Move( 5, i+3);
         for (int j = 0; j < table->maxDimension; ++j) {
             cout << "| |";
         }
         cout << endl;
     }
-    cout << endl << endl << endl << endl << endl;
-    cout << "\tCtrl + X para salir. Ctrl + Z para fichas del jugador actual. Ctrl + W para fichas disponibles";
+    cout << endl << endl << endl << endl << endl << endl << endl;
+    cout << "\tCtrl + X para salir. Ctrl + Z para fichas del jugador actual. Ctrl + W para fichas disponibles" << endl;
+    cout << "\t                                 Ctrl + Y para cambiar fichas";
 }
 
 // Pass the turn to other player

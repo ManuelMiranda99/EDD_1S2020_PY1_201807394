@@ -42,12 +42,26 @@ void User::AddScore() {
 
 bool User::UseCoin(char _letter) {
     int scoreCoin = coins->DeleteNode(_letter);
-    if(scoreCoin != NULL || scoreCoin != 0){
+    if(scoreCoin != 0){
         GetPoints(scoreCoin);
         return true;
     }else{
         return false;
     }
+}
+
+bool User::UseCoin(int _pos) {
+    int scoreCoin = coins->DeleteNodeAt(_pos);
+    if(scoreCoin != '\00'){
+        GetPoints(scoreCoin);
+        return true;
+    }else{
+        return false;
+    }
+}
+
+char User::GetCoinAt(int _pos) {
+    return coins->GetCoinAt(_pos);
 }
 
 string User::GetCoins() {
