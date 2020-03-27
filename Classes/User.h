@@ -233,7 +233,14 @@ public:
         if(first != NULL){
             NodeIC *aux = first;
             while(aux != last){
-                text += aux->letter + ", ";
+                if(aux->letter != -92){
+                    text += aux->letter;
+                }
+                else{
+                    text += "Ñ";
+                }
+                text += ',';
+                text += ' ';
                 aux = aux->next;
             }
             text += aux->letter;
@@ -247,8 +254,15 @@ public:
         NodeIC *aux = first;
         if (aux != NULL) {
             while (aux != NULL) {
-                graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"" + aux->letter + "\"];\n";
-                x++;
+                if(aux->letter != -92){
+                    graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"" + aux->letter + "\"];\n";
+                    x++;
+                }
+                else{
+                    graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"Ñ\"];\n";
+                    x++;
+                }
+
                 aux = aux->next;
             }
             graph += "nullNode [shape=none,label=\"null\"];\n";

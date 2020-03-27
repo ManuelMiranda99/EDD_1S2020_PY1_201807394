@@ -686,6 +686,109 @@ void Logic::Play() {
 
     PrintTable();
     actualPlayer = player1;
+
+    bool playing = true;
+    int coinAt = 0;
+
+    Move(0, table->maxDimension + 6);
+    cout << "Jugador actual: " << actualPlayer->name << endl;
+    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
+
+    while(playing){
+        if(kbhit()){
+            char key = getch();
+            // Move through the Coins of the player
+            if(key == -32){
+
+            }
+            else{
+                // Select coin
+                if(key == 13){
+                    // Positions of the Matrix
+                    int x = 0, y = 0;
+                    Move(x+7,y+5);
+                    // Boolean variable that will be false until they decide the place where they want to put the coin
+                    bool putCoin = false;
+                    while(!putCoin){
+                        do{
+                            key = getch();
+                            if(key == -32){
+                                key = getch();
+                            }
+                        }
+                        // While the pressing key is different from Enter, Left, Right, Up, Down
+                        while(key != 72 && key != 80 && key != 13 && key != 75 && key != 77);
+
+                        switch(key){
+                            // Up
+                            case 72:
+                                if(y != table->maxDimension){
+                                    y++;
+                                    Move(x+7, y+5);
+                                }
+                                break;
+                            // Down
+                            case 80:
+                                if(y != 0){
+                                    y--;
+                                    Move(x+7, y+5);
+                                }
+                                break;
+                            // Left
+                            case 75:
+                                if(x != 0){
+                                    x--;
+                                    Move(x+7,y+5);
+                                }
+                                break;
+                            // Right
+                            case 77:
+                                if(x != table->maxDimension){
+                                    x++;
+                                    Move(x+7,y+5);
+                                }
+                                break;
+                            // Enter. They decided the position of the coin
+                            case 13:
+                                putCoin = true;
+                                break;
+                        }
+                    }
+
+
+
+                }
+                // Exit. Ctrl + X
+                else if(key == 24){
+                    system("cls");
+                    playing = false;
+                    if(player1->points >= player2->points){
+                        cout << "¡¡¡FELICIDADES " << player1->name << " HAS GANADO CON" << player1->points << " PUNTOS!!!" << endl;
+                    }
+                    else{
+                        cout << "¡¡¡FELICIDADES " << player2->name << " HAS GANADO CON " << player2->points << " PUNTOS!!!" << endl;
+                    }
+                    Sleep(1000);
+                    cout << "Saliendo del juego..." << endl;
+                    system("cls");
+                    GeneralMenu();
+                }
+                // Available coins. Ctrl + W
+                else if(key == 23){
+                    coins->GenerateReport();
+                }
+                // Coins of the player
+                else if(key == 26){
+                    actualPlayer->GenerateCoinsReport();
+                }
+                // Change coins. Ctrl + Y
+                else if(key == 25){
+                    BagOfCoins *auxiliarBag = new BagOfCoins();
+                    cout << "Seleccione las fichas que desea eliminar" << endl;
+                }
+            }
+        }
+    }
 }
 
 // Create user and put it in the binary tree
@@ -804,12 +907,12 @@ void Logic::PrintTable() {
     for (int i = 0; i < table->maxDimension; ++i) {
         Move( 5, i+5);
         for (int j = 0; j < table->maxDimension; ++j) {
-            cout << "-|  |-";
+            cout << "| |";
         }
         cout << endl;
     }
-    cout << endl;
-    cout << "J1: " << player1->name << endl << player1->GetCoins() << endl << "J2: " << player2->name  << endl << player2->GetCoins();
+    cout << endl << endl << endl << endl << endl;
+    cout << "\tCtrl + X para salir. Ctrl + Z para fichas del jugador actual. Ctrl + W para fichas disponibles";
 }
 
 // Pass the turn to other player
