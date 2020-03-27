@@ -1,5 +1,7 @@
 #include <iostream>
 #include <windows.h>
+#include <stdlib.h>
+#include <time.h>
 #include <conio.h>
 #include "DataSructures/CircularDoubleList.h"
 #include "DataSructures/BinarySearchTree.h"
@@ -16,6 +18,7 @@ private:
     BinarySearchTree *users = new BinarySearchTree();
     Queue *coins = new Queue();
     Matrix *table;
+    User *player1, *player2;
 public:
     void Move(int, int);
 
@@ -30,6 +33,8 @@ public:
 
     // Options of the play menu and reports
     void Play();
+    void StartGame();
+    bool ExitStartGame();
     void CreateUser();
 
     // Random function for the coins
@@ -88,6 +93,7 @@ void Logic::ReadFile() {
     for(int i = 0; i < j.at("diccionario").size(); i++){
         dictionary->InsertNode(j.at("diccionario")[i].at("palabra"));
     }
+
 }
 
 void Logic::GameMenu() {
@@ -134,6 +140,8 @@ void Logic::GameMenu() {
             break;
         case 2:
             // Play
+            player1 = player2 = NULL;
+            StartGame();
             break;
         case 3:
             // Going back
@@ -204,7 +212,6 @@ void Logic::ReportsMenu() {
             break;
         case 5:
             // Going back
-            //table->GenerateReport();
             system("cls");
             GeneralMenu();
             break;
@@ -371,7 +378,7 @@ User * Logic::SelectUser() {
     int sOpt = 1, sKey;
 
     do{
-        //system("cls");
+        system("cls");
         Move(0, 2);
         printf("\n\t\t\t\t SELECCIONA UN JUGADOR O SALGA \n");
         cout << users->txt + "\t" + to_string(users->size + 1) + " - Salir";
@@ -411,18 +418,23 @@ User * Logic::SelectUser() {
 
     if(sOpt == (users->size + 1)){
         return NULL;
-    }else{
+    }
+    else{
         User *selectedUser = users->GetUser(sOpt);
         return selectedUser;
     }
 }
 
 void Logic::Play() {
-
+    string test;
+    cout << "Jugando..." << endl;
+    cout << player1->name << endl;
+    cout << player2->name << endl;
+    cin >> test;
 }
 
 void Logic::Random(){
-
+    int A;
 }
 
 void Logic::CreateUser() {
@@ -437,3 +449,98 @@ void Logic::CreateUser() {
     system("cls");
     GameMenu();
 }
+
+// Place where we select the players
+void Logic::StartGame() {
+    player1 = SelectUser();
+    if(player1 == NULL){
+        do{
+            if(ExitStartGame()){
+                GameMenu();
+                return;
+            }
+            player1 = SelectUser();
+        }while(player1 == NULL);
+    }
+
+    Move(5, 5);
+    cout << ("Jugador 1 es: " + player1->name) << endl;
+
+    Sleep(1000);
+
+    player2 = SelectUser();
+    if(player2 == NULL || player2 == player1){
+        do{
+            if(ExitStartGame()){
+                GameMenu();
+                return;
+            }
+            player2 = SelectUser();
+        }while(player2 == NULL || player2 == player1);
+    }
+
+    Move(5, 5);
+    cout << ("Jugador 2 es: " + player2->name) << endl;
+    Sleep(1000);
+
+    // Fill the queue in a random way
+    Random();
+    // Playing the game
+    Play();
+}
+
+bool Logic::ExitStartGame() {
+    bool exit = false;
+    system("cls");
+
+    bool bExit = true;
+    int sOpt = 1, sKey;
+    do{
+        Move(0,6);
+        printf("\n\t\t\t\t No selecciono ni un jugador o selecciono jugador repetido. Desea salir o volver a la seleccion de jugadores? \n");
+        printf("    \t1. Si deseo salir \n    \t2. No, si deseo jugar");
+        Move(0, 7 + sOpt); printf("--->");
+
+        do{
+            sKey = getch();
+            if(sKey == -32){
+                sKey = getch();
+            }
+        }while(sKey != 72 && sKey != 80 && sKey != 13);
+
+        switch(sKey){
+            case 72:
+                sOpt--;
+                if(sOpt < 1){
+                    sOpt = 2;
+                }
+                break;
+            case 80:
+                sOpt++;
+                if(sOpt > 2){
+                    sOpt = 1;
+                }
+                break;
+            case 13:
+                bExit = false;
+                break;
+        }
+
+    }while(bExit);
+
+    switch(sOpt){
+        case 1:
+            exit = true;
+            break;
+        case 2:
+            exit = false;
+            break;
+        default:
+            break;
+    }
+
+    system("cls");
+
+    return exit;
+}
+

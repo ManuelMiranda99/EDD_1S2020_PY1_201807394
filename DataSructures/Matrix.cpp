@@ -300,14 +300,16 @@ MatrixNode * Matrix::InsertOrderedRow(MatrixNode *_newNode, MatrixNode *_header_
             aux->XCoord = _newNode->XCoord;
             aux->coin = _newNode->coin;
             return aux;
-        }else if(aux->YCoord > _newNode->YCoord){
+        }
+        else if(aux->YCoord > _newNode->YCoord){
             flag = true;
             break;
         }
 
         if(aux->down != NULL){
             aux = aux->down;
-        }else{
+        }
+        else{
             break;
         }
     }
@@ -322,7 +324,8 @@ MatrixNode * Matrix::InsertOrderedRow(MatrixNode *_newNode, MatrixNode *_header_
         aux->up->down = _newNode;
         _newNode->up = aux->up;
         aux->up = _newNode;
-    }else{
+    }
+    else{
         aux->down = _newNode;
         _newNode->up = aux;
     }

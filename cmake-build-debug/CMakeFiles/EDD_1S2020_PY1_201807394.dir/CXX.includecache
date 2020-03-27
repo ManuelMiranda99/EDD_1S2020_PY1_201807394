@@ -32,6 +32,12 @@ C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSruct
 ../Classes/Coin.h
 C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.h
 
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.h
+fstream
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/fstream
+../Classes/Coin.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Classes/Coin.h
+
 C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Library/json.hpp
 algorithm
 -
@@ -381,4 +387,6 @@ DataSructures/Matrix.h
 C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Matrix.h
 Library/json.hpp
 C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/Library/json.hpp
+DataSructures/Queue.h
+C:/Users/Manuel/Documents/Universidad/EDD/Lab/EDD_1S2020_PY1_201807394/DataSructures/Queue.h
 
