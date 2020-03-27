@@ -171,7 +171,8 @@ public:
 
         if (first == NULL) {
                 first = last= newNode;
-        }else{
+        }
+        else{
             last->next = newNode;
             newNode->previous = last;;
 
@@ -186,7 +187,8 @@ public:
             while(aux != NULL){
                 if(aux->letter == _letter){
                     break;
-                }else{
+                }
+                else{
                     aux2 = aux;
                     aux = aux->next;
                 }
@@ -195,13 +197,35 @@ public:
                 if(aux->next != NULL){
                     aux2->next = aux->next;
                     aux->next->previous = aux2;
-                }else{
+                }
+                else{
                     aux2->next = NULL;
                 }
             }
             return aux->points;
         }
         return 0;
+    }
+
+    char DeleteNodeAt(int _pos){
+        if(first != NULL){
+            NodeIC *aux2, *aux = first;
+            for(int i = 0;i < _pos;i++){
+                aux2 = aux;
+                aux = aux->next;
+            }
+            if(aux != NULL){
+                if(aux->next != NULL){
+                    aux2->next = aux->next;
+                    aux->next->previous = aux2;
+                }
+                else{
+                    aux2->next = NULL;
+                }
+            }
+            return aux->letter;
+        }
+        return '\00';
     }
 
     string GetCoins() {

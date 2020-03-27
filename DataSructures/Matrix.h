@@ -14,7 +14,6 @@ using namespace std;
 class Matrix {
 private:
     MatrixNode *header;
-    int maxDimension;
 
     MatrixNode * InsertOrderedRow(MatrixNode *, MatrixNode *);
     MatrixNode * InsertOrderedColumn(MatrixNode *, MatrixNode *);
@@ -25,6 +24,8 @@ private:
     MatrixNode *CreateRow(int);
     MatrixNode *CreateColumn(int);
 public:
+    int maxDimension;
+
     Matrix(int);
     void InsertNode(int, int, int);
     void PutCoin(int, int, Coin);

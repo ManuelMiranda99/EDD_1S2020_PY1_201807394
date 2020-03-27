@@ -11,6 +11,239 @@
 
 using json = nlohmann::json;
 
+class BagOfCoins{
+    class NodeB{
+        public:
+            char c;
+            NodeB *next;
+            NodeB(char _c){
+                c = _c;
+                next = NULL;
+            }
+
+    };
+public:
+    NodeB *first, *last;
+    int size;
+    BagOfCoins(){
+        first = last = NULL;
+        size = 0;
+    }
+
+    void FillBag(){
+        // Empty the list
+        first = last = NULL;
+
+        int selectedInsert = rand() % 5 + 1;
+
+        switch (selectedInsert){
+            case 1:
+                InsertNode('A', 12);
+                InsertNode('E', 12);
+                InsertNode('O', 9);
+                InsertNode('I', 6);
+                InsertNode('S', 6);
+                InsertNode('N', 5);
+                InsertNode('L', 4);
+                InsertNode('R', 5);
+                InsertNode('U', 5);
+                InsertNode('T', 4);
+                InsertNode('D', 5);
+                InsertNode('G', 2);
+                InsertNode('C', 4);
+                InsertNode('B', 2);
+                InsertNode('M', 2);
+                InsertNode('P', 2);
+                InsertNode('H', 2);
+                InsertNode('F', 1);
+                InsertNode('V', 1);
+                InsertNode('Y', 1);
+                InsertNode('Q', 1);
+                InsertNode('J', 1);
+                InsertNode(-92, 1);
+                InsertNode('X', 1);
+                InsertNode('Z', 1);
+                break;
+            case 2:
+                InsertNode('Z', 1);
+                InsertNode('X', 1);
+                InsertNode(-92, 1);
+                InsertNode('J', 1);
+                InsertNode('Q', 1);
+                InsertNode('Y', 1);
+                InsertNode('V', 1);
+                InsertNode('F', 1);
+                InsertNode('H', 2);
+                InsertNode('P', 2);
+                InsertNode('M', 2);
+                InsertNode('B', 2);
+                InsertNode('C', 4);
+                InsertNode('G', 2);
+                InsertNode('D', 5);
+                InsertNode('T', 4);
+                InsertNode('U', 5);
+                InsertNode('R', 5);
+                InsertNode('L', 4);
+                InsertNode('N', 5);
+                InsertNode('S', 6);
+                InsertNode('I', 6);
+                InsertNode('O', 9);
+                InsertNode('E', 12);
+                InsertNode('A', 12);
+                break;
+            case 3:
+                InsertNode('U', 5);
+                InsertNode('M', 2);
+                InsertNode('I', 6);
+                InsertNode('G', 2);
+                InsertNode('T', 4);
+                InsertNode('J', 1);
+                InsertNode('E', 12);
+                InsertNode(-92, 1);
+                InsertNode('H', 2);
+                InsertNode('O', 9);
+                InsertNode('R', 5);
+                InsertNode('C', 4);
+                InsertNode('S', 6);
+                InsertNode('D', 5);
+                InsertNode('F', 1);
+                InsertNode('X', 1);
+                InsertNode('B', 2);
+                InsertNode('Z', 1);
+                InsertNode('V', 1);
+                InsertNode('N', 5);
+                InsertNode('Q', 1);
+                InsertNode('P', 2);
+                InsertNode('Y', 1);
+                InsertNode('L', 4);
+                InsertNode('A', 12);
+                break;
+            case 4:
+                InsertNode('T', 4);
+                InsertNode('N', 5);
+                InsertNode('B', 2);
+                InsertNode('G', 2);
+                InsertNode('S', 6);
+                InsertNode('U', 5);
+                InsertNode('V', 1);
+                InsertNode('Y', 1);
+                InsertNode(-92, 1);
+                InsertNode('H', 2);
+                InsertNode('A', 12);
+                InsertNode('I', 6);
+                InsertNode('L', 4);
+                InsertNode('P', 2);
+                InsertNode('J', 1);
+                InsertNode('F', 1);
+                InsertNode('C', 4);
+                InsertNode('E', 12);
+                InsertNode('R', 5);
+                InsertNode('M', 2);
+                InsertNode('O', 9);
+                InsertNode('D', 5);
+                InsertNode('Z', 1);
+                InsertNode('X', 1);
+                InsertNode('Q', 1);
+                break;
+            case 5:
+                InsertNode('Y', 1);
+                InsertNode('P', 2);
+                InsertNode('L', 4);
+                InsertNode('C', 4);
+                InsertNode('X', 1);
+                InsertNode('N', 5);
+                InsertNode('A', 12);
+                InsertNode('H', 2);
+                InsertNode('B', 2);
+                InsertNode('M', 2);
+                InsertNode('U', 5);
+                InsertNode('I', 6);
+                InsertNode('Q', 1);
+                InsertNode('S', 6);
+                InsertNode('D', 5);
+                InsertNode('O', 9);
+                InsertNode('Z', 1);
+                InsertNode(-92, 1);
+                InsertNode('F', 1);
+                InsertNode('G', 2);
+                InsertNode('T', 4);
+                InsertNode('J', 1);
+                InsertNode('V', 1);
+                InsertNode('E', 12);
+                InsertNode('R', 5);
+                break;
+            default:
+                InsertNode('H', 2);
+                InsertNode('D', 5);
+                InsertNode('R', 5);
+                InsertNode('T', 4);
+                InsertNode('M', 2);
+                InsertNode('N', 5);
+                InsertNode('V', 1);
+                InsertNode('E', 12);
+                InsertNode('O', 9);
+                InsertNode('G', 2);
+                InsertNode('L', 4);
+                InsertNode('Z', 1);
+                InsertNode('Y', 1);
+                InsertNode('C', 4);
+                InsertNode('F', 1);
+                InsertNode('U', 5);
+                InsertNode('B', 2);
+                InsertNode('S', 6);
+                InsertNode('Q', 1);
+                InsertNode(-92, 1);
+                InsertNode('A', 12);
+                InsertNode('J', 1);
+                InsertNode('X', 1);
+                InsertNode('I', 6);
+                InsertNode('P', 2);
+                break;
+        }
+    }
+
+    void InsertNode(char _c, int _repeat){
+        for(int i = 0; i < _repeat; i++){
+            RepeatInsertNode(_c);
+        }
+    }
+
+    void RepeatInsertNode(char _c){
+        if(first == NULL){
+            first = last = new NodeB(_c);
+        }else{
+            last->next = new NodeB(_c);
+            last = last->next;
+        }
+        size++;
+    }
+
+    char DeleteNodeAt(int _pos){
+        NodeB *aux = first;
+        NodeB *aux2 = NULL;
+
+        for (int i = 0; i < _pos; ++i) {
+            aux2 = aux;
+            aux = aux->next;
+        }
+
+        if(aux2 == NULL){
+            first = aux->next;
+        }else{
+            /*
+                       aux1 ->
+               aux2      ->      aux.next
+            */
+            aux2->next = aux->next;
+        }
+
+        char returnChar = aux->c;
+        delete(aux);
+        size--;
+        return returnChar;
+    }
+};
+
 class Logic{
 private:
     // Data Structures
@@ -18,7 +251,9 @@ private:
     BinarySearchTree *users = new BinarySearchTree();
     Queue *coins = new Queue();
     Matrix *table;
-    User *player1, *player2;
+    User *player1, *player2, *actualPlayer;
+    BagOfCoins *bag = new BagOfCoins();
+
 public:
     void Move(int, int);
 
@@ -35,10 +270,11 @@ public:
     void Play();
     void StartGame();
     bool ExitStartGame();
-    void CreateUser();
+    void PrintTable();
+    void PassTurn();
 
-    // Random function for the coins
-    void Random();
+    // Create User
+    void CreateUser();
 
     // Select user for Reports
     User * SelectUser();
@@ -139,9 +375,19 @@ void Logic::GameMenu() {
             CreateUser();
             break;
         case 2:
-            // Play
-            player1 = player2 = NULL;
-            StartGame();
+            if(table != NULL){
+                // Play
+                player1 = player2 = NULL;
+                StartGame();
+            }
+            else{
+                system("cls");
+                Move(1, 2);
+                printf("No ha ingresado un archivo de entrada para jugar");
+                Sleep(1000);
+                system("cls");
+                GameMenu();
+            }
             break;
         case 3:
             // Going back
@@ -425,18 +671,24 @@ User * Logic::SelectUser() {
     }
 }
 
+// Play
 void Logic::Play() {
-    string test;
-    cout << "Jugando..." << endl;
-    cout << player1->name << endl;
-    cout << player2->name << endl;
-    cin >> test;
+    Move(1, 0);
+    cout << "Dandole sus fichas a los jugadores... ... ..." << endl;
+    Sleep(500);
+    for (int i = 0; i < 7; ++i) {
+        player1->AddCoins(coins->DeQueue());
+    }
+    Sleep(500);
+    for (int i = 0; i < 7; ++i) {
+        player2->AddCoins(coins->DeQueue());
+    }
+
+    PrintTable();
+    actualPlayer = player1;
 }
 
-void Logic::Random(){
-    int A;
-}
-
+// Create user and put it in the binary tree
 void Logic::CreateUser() {
     string nameOfUser;
 
@@ -452,6 +704,9 @@ void Logic::CreateUser() {
 
 // Place where we select the players
 void Logic::StartGame() {
+
+    player1 = player2 = NULL;
+
     player1 = SelectUser();
     if(player1 == NULL){
         do{
@@ -462,11 +717,6 @@ void Logic::StartGame() {
             player1 = SelectUser();
         }while(player1 == NULL);
     }
-
-    Move(5, 5);
-    cout << ("Jugador 1 es: " + player1->name) << endl;
-
-    Sleep(1000);
 
     player2 = SelectUser();
     if(player2 == NULL || player2 == player1){
@@ -479,16 +729,20 @@ void Logic::StartGame() {
         }while(player2 == NULL || player2 == player1);
     }
 
-    Move(5, 5);
-    cout << ("Jugador 2 es: " + player2->name) << endl;
-    Sleep(1000);
-
     // Fill the queue in a random way
-    Random();
+    srand(time(NULL));
+    bag->FillBag();
+    int selectedChar;
+    for(int i = 0; i< 95;i++){
+        selectedChar = rand() % bag->size;
+
+        coins->EnQueue(bag->DeleteNodeAt(selectedChar));
+    }
     // Playing the game
     Play();
 }
 
+// Exit from the selection of users
 bool Logic::ExitStartGame() {
     bool exit = false;
     system("cls");
@@ -497,7 +751,7 @@ bool Logic::ExitStartGame() {
     int sOpt = 1, sKey;
     do{
         Move(0,6);
-        printf("\n\t\t\t\t No selecciono ni un jugador o selecciono jugador repetido. Desea salir o volver a la seleccion de jugadores? \n");
+        printf("\n\tNo selecciono ni un jugador o selecciono jugador repetido. Desea salir o volver a la seleccion de jugadores? \n");
         printf("    \t1. Si deseo salir \n    \t2. No, si deseo jugar");
         Move(0, 7 + sOpt); printf("--->");
 
@@ -544,3 +798,26 @@ bool Logic::ExitStartGame() {
     return exit;
 }
 
+// Print the table in the console
+void Logic::PrintTable() {
+    system("cls");
+    for (int i = 0; i < table->maxDimension; ++i) {
+        Move( 5, i+5);
+        for (int j = 0; j < table->maxDimension; ++j) {
+            cout << "-|  |-";
+        }
+        cout << endl;
+    }
+    cout << endl;
+    cout << "J1: " << player1->name << endl << player1->GetCoins() << endl << "J2: " << player2->name  << endl << player2->GetCoins();
+}
+
+// Pass the turn to other player
+void Logic::PassTurn() {
+    if(actualPlayer == player1){
+        actualPlayer = player2;
+    }
+    else{
+        actualPlayer = player1;
+    }
+}
