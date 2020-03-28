@@ -674,7 +674,7 @@ User * Logic::SelectUser() {
 // Play
 void Logic::Play() {
     Move(1, 0);
-    cout << "Dandole sus fichas a los jugadores... ... ..." << endl;
+    cout << "\n\n\t\tDandole sus fichas a los jugadores... ... ..." << endl;
     Sleep(500);
     for (int i = 0; i < 7; ++i) {
         player1->AddCoins(coins->DeQueue());
@@ -696,7 +696,7 @@ void Logic::Play() {
         actualPlayer = player2;
     }
 
-    // Variables to use during the playing loop
+    /* -------- Variables to use during the playing loop -------- */
         // This keeps the loop running
     bool playing = true;
         // For the selection of the coin
@@ -734,7 +734,7 @@ void Logic::Play() {
                         break;
                     // Right
                     case 77:
-                        if(coinAt != 6){
+                        if(coinAt != actualPlayer->coins->size - 1){
                             coinAt++;
                             Move(0, table->maxDimension + 8);
                             cout << "                                         ";
@@ -745,7 +745,7 @@ void Logic::Play() {
                 }
             }
             else{
-                // Select coin
+                // Select coin. Select the position of the matrix where you want to put the coin
                 if(key == 13){
                     charToInsert = actualPlayer->GetCoinAt(coinAt);
                     // Positions of the Matrix
@@ -799,9 +799,19 @@ void Logic::Play() {
                         }
                     }
 
-                    table->PutCoin(x, y, new Coin(charToInsert));
+                    // If the position is not occupied
+                    if(table->PutCoin(x, y, new Coin(charToInsert))){
+                        cout << charToInsert;
+                    }
+                    else{
+                        Move(0, table->maxDimension + 6);
+                        cout << "                                                                                 " << endl;
+                        Move(0, table->maxDimension + 6);
+                        cout << "Posicion invalida";
+                        Sleep(500);
+                    }
                     table->GenerateReport();
-                    cout << charToInsert;
+
 
                     Move(0, table->maxDimension + 6);
                     cout << "                                                                                    " << endl;
@@ -809,6 +819,10 @@ void Logic::Play() {
                     Move(0, table->maxDimension + 6);
                     cout << "Jugador actual: " << actualPlayer->name << endl;
                     cout << "Fichas: " << actualPlayer->GetCoins() << endl;
+
+                    Move(9 + (2*coinAt), table->maxDimension + 8);
+
+                    cout << "^";
 
                 }
                 // Exit. Ctrl + X
@@ -855,6 +869,7 @@ void Logic::Play() {
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
                     if(table->CheckMatrixAt(xFinal, yFinal, dictionary)){
+                        xFinal = yFinal = 0;
 
                     }else{
 
@@ -881,9 +896,10 @@ void Logic::CreateUser() {
 
 // Place where we select the players
 void Logic::StartGame() {
-
+    // Initialize the placer in NULL.
     player1 = player2 = NULL;
 
+    /*------PLAYER 1------*/
     player1 = SelectUser();
     if(player1 == NULL){
         do{
@@ -894,7 +910,9 @@ void Logic::StartGame() {
             player1 = SelectUser();
         }while(player1 == NULL);
     }
+    player1->StartGame();
 
+    /*------PLAYER 2------*/
     player2 = SelectUser();
     if(player2 == NULL || player2 == player1){
         do{
@@ -905,6 +923,7 @@ void Logic::StartGame() {
             player2 = SelectUser();
         }while(player2 == NULL || player2 == player1);
     }
+    player2->StartGame();
 
     // Fill the queue in a random way
     srand(time(NULL));

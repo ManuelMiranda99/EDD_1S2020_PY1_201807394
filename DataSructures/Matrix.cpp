@@ -134,13 +134,7 @@ void Matrix::GenerateReport() {
             x++;
             aux = aux->down;
         }
-        graph += "U" + to_string(x) + ";\n\t";
-
-        while(x > 0){
-            graph += "U" + to_string(x) + "->";
-            x--;
-        }
-        graph += "U0; \n\n";
+        graph += "U" + to_string(x) + " [dir=both];\n\t";
 
         /* -------------------- Go through each header Column -------------------- */
         graph += "\t// Columnas\n";
@@ -163,17 +157,11 @@ void Matrix::GenerateReport() {
             x++;
             aux = aux->next;
         }
-        graph += "A" + to_string(x) + ";\n\t";
-
-        while(x > 0){
-            graph += "A" + to_string(x) + "->";
-            x--;
-        }
-        graph += "A0; \n\n";
+        graph += "A" + to_string(x) + "  [dir=both];\n\t";
 
         /* -------------------- Link the principal nodes to the header -------------------- */
         graph += "\t// Nodo raiz con primera fila y columna\n"
-                 "\tMt -> U0;\n\tMt -> A0; \n\n";
+                 "\tMt -> U0 [dir=both];\n\tMt -> A0 [dir=both]; \n\n";
 
         /* -------------------- Rank at the same row the columns -------------------- */
         x = 0;
@@ -298,7 +286,6 @@ MatrixNode * Matrix::InsertOrderedRow(MatrixNode *_newNode, MatrixNode *_header_
     while(true){
         if(aux->YCoord == _newNode->YCoord){
             aux->XCoord = _newNode->XCoord;
-            aux->coin = _newNode->coin;
             return aux;
         }
         else if(aux->YCoord > _newNode->YCoord){
@@ -339,7 +326,6 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
     while(true){
         if(aux->XCoord == _newNode->XCoord){
             aux->YCoord = _newNode->YCoord;
-            aux->coin = _newNode->coin;
             return aux;
         }else if(aux->XCoord > _newNode->XCoord){
             flag = true;
@@ -392,9 +378,9 @@ bool Matrix::PutCoin(int _xCoord, int _yCoord, Coin *_coin) {
     MatrixNode *column = SearchColumn(_xCoord);
     MatrixNode *row = SearchRow(_yCoord);
 
-    if(column == NULL || row == NULL){
+    MatrixNode *newNode = new MatrixNode(_xCoord, _yCoord, 1, _coin);
 
-        MatrixNode *newNode = new MatrixNode(_xCoord, _yCoord, 1, _coin);
+    if(column == NULL || row == NULL){
 
         if(column == NULL && row == NULL){
             column = CreateColumn(_xCoord);
@@ -408,27 +394,29 @@ bool Matrix::PutCoin(int _xCoord, int _yCoord, Coin *_coin) {
             // Create Row
             row = CreateRow(_yCoord);
         }
-        InsertOrderedColumn(newNode, row);
-        InsertOrderedRow(newNode, column);
+        newNode = InsertOrderedColumn(newNode, row);
+        newNode = InsertOrderedRow(newNode, column);
         // Return true because the Node doesnt exist, that means that there is no coin there
         return true;
     }
     // The position exist
     else{
         // Return true if the position doesnt have a Coin. Return false if the position have a Coin
+        newNode = InsertOrderedRow(newNode, column);
+        newNode = InsertOrderedColumn(newNode, row);
         return PutCoinAt(row, _xCoord, _coin);
     }
 }
 
 bool Matrix::PutCoinAt(MatrixNode *_header, int _xPos, Coin *_coin) {
     while(_header->XCoord != _xPos){
-        header = header->next;
+        _header = _header->next;
     }
-    if(header->coin != NULL){
+    if(_header->coin != NULL && _header->coin != _coin){
         return false;
     }
     else{
-        header->PutCoin(_coin);
+        _header->PutCoin(_coin);
         return true;
     }
 }
