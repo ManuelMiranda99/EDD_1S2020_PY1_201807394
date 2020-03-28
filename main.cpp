@@ -703,6 +703,8 @@ void Logic::Play() {
     int coinAt = 0;
         // To insert in the matrix and to eliminate from the list of the player
     char charToInsert;
+        // To save the first place where a person puts a word
+    int xFinal = 0, yFinal = 0;
 
     // Initializing the messages that the program will show
     Move(0, table->maxDimension + 6);
@@ -745,7 +747,7 @@ void Logic::Play() {
             else{
                 // Select coin
                 if(key == 13){
-                    charToInsert = actualPlayer->GetCoinAt(coinAt);
+                    charToInsert = actualPlayer->UseCoin(coinAt);
                     // Positions of the Matrix
                     int x = 0, y = 0;
                     Move(6 + (3*x),y+3);
@@ -842,6 +844,13 @@ void Logic::Play() {
                     cout << "Fichas: " << actualPlayer->GetCoins() << endl;
                 }
                 // Check word in the diccionary. Ctrl + T
+                else if(key == 20){
+                    if(table->CheckMatrixAt(xFinal, yFinal, dictionary);){
+
+                    }else{
+
+                    }
+                }
             }
         }
     }
@@ -969,7 +978,7 @@ void Logic::PrintTable() {
     }
     cout << endl << endl << endl << endl << endl << endl << endl;
     cout << "\tCtrl + X para salir. Ctrl + Z para fichas del jugador actual. Ctrl + W para fichas disponibles" << endl;
-    cout << "\t                                 Ctrl + Y para cambiar fichas";
+    cout << "\t        Ctrl + T para comprobar palabra ingresada. Ctrl + Y para cambiar fichas";
 }
 
 // Pass the turn to other player

@@ -8,6 +8,7 @@
 
 #include "MatrixNode.h"
 #include "fstream"
+#include "CircularDoubleList.h"
 
 using namespace std;
 
@@ -30,6 +31,7 @@ public:
     void InsertNode(int, int, int);
     void PutCoin(int, int, Coin);
     Coin * DeleteNode(int, int);
+    bool CheckMatrixAt(int, int, CircularDoubleList *);
     void GenerateReport();
 };
 

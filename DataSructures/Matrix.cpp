@@ -391,3 +391,7 @@ MatrixNode *Matrix::SearchColumn(int _x) {
 void Matrix::PutCoin(int _XPos, int _YPos, Coin _coin) {
 
 }
+
+bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary) {
+    return false;
+}
