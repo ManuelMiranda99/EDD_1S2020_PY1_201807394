@@ -24,12 +24,13 @@ private:
     MatrixNode *SearchColumn(int);
     MatrixNode *CreateRow(int);
     MatrixNode *CreateColumn(int);
+    bool PutCoinAt(MatrixNode *, int, Coin *);
 public:
     int maxDimension;
 
     Matrix(int);
     void InsertNode(int, int, int);
-    void PutCoin(int, int, Coin);
+    bool PutCoin(int, int, Coin *);
     Coin * DeleteNode(int, int);
     bool CheckMatrixAt(int, int, CircularDoubleList *);
     void GenerateReport();

@@ -15,6 +15,7 @@ CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.obj
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/CircularDoubleList.cpp.obj: ../DataSructures/CircularDoubleList.h
 
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj: ../Classes/Coin.h
+CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj: ../DataSructures/CircularDoubleList.h
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj: ../DataSructures/Matrix.cpp
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj: ../DataSructures/Matrix.h
 CMakeFiles/EDD_1S2020_PY1_201807394.dir/DataSructures/Matrix.cpp.obj: ../DataSructures/MatrixNode.h

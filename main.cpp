@@ -747,7 +747,7 @@ void Logic::Play() {
             else{
                 // Select coin
                 if(key == 13){
-                    charToInsert = actualPlayer->UseCoin(coinAt);
+                    charToInsert = actualPlayer->GetCoinAt(coinAt);
                     // Positions of the Matrix
                     int x = 0, y = 0;
                     Move(6 + (3*x),y+3);
@@ -799,7 +799,16 @@ void Logic::Play() {
                         }
                     }
 
+                    table->PutCoin(x, y, new Coin(charToInsert));
+                    table->GenerateReport();
+                    cout << charToInsert;
 
+                    Move(0, table->maxDimension + 6);
+                    cout << "                                                                                    " << endl;
+                    cout << "                                                                                    " << endl;
+                    Move(0, table->maxDimension + 6);
+                    cout << "Jugador actual: " << actualPlayer->name << endl;
+                    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
 
                 }
                 // Exit. Ctrl + X
@@ -845,7 +854,7 @@ void Logic::Play() {
                 }
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
-                    if(table->CheckMatrixAt(xFinal, yFinal, dictionary);){
+                    if(table->CheckMatrixAt(xFinal, yFinal, dictionary)){
 
                     }else{
 

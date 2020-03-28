@@ -213,7 +213,7 @@ void Matrix::GenerateReport() {
                     else{
                         color = "indianred";
                     }
-                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "style = filled, fillcolor = " + color + "];\n";
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = " + color + "];\n";
                 }
                 temp_node = temp_node->next;
                 xPos++;
@@ -388,8 +388,49 @@ MatrixNode *Matrix::SearchColumn(int _x) {
     return NULL;
 }
 
-void Matrix::PutCoin(int _XPos, int _YPos, Coin _coin) {
+bool Matrix::PutCoin(int _xCoord, int _yCoord, Coin *_coin) {
+    MatrixNode *column = SearchColumn(_xCoord);
+    MatrixNode *row = SearchRow(_yCoord);
 
+    if(column == NULL || row == NULL){
+
+        MatrixNode *newNode = new MatrixNode(_xCoord, _yCoord, 1, _coin);
+
+        if(column == NULL && row == NULL){
+            column = CreateColumn(_xCoord);
+            row = CreateRow(_yCoord);
+        }
+        else if(column == NULL && row != NULL){
+            column = CreateColumn(_xCoord);
+        }
+            // Third Case
+        else if(column != NULL && row == NULL){
+            // Create Row
+            row = CreateRow(_yCoord);
+        }
+        InsertOrderedColumn(newNode, row);
+        InsertOrderedRow(newNode, column);
+        // Return true because the Node doesnt exist, that means that there is no coin there
+        return true;
+    }
+    // The position exist
+    else{
+        // Return true if the position doesnt have a Coin. Return false if the position have a Coin
+        return PutCoinAt(row, _xCoord, _coin);
+    }
+}
+
+bool Matrix::PutCoinAt(MatrixNode *_header, int _xPos, Coin *_coin) {
+    while(_header->XCoord != _xPos){
+        header = header->next;
+    }
+    if(header->coin != NULL){
+        return false;
+    }
+    else{
+        header->PutCoin(_coin);
+        return true;
+    }
 }
 
 bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary) {

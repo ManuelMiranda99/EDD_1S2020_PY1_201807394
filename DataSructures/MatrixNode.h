@@ -13,7 +13,10 @@ public:
     int XCoord, YCoord, multiplier;
     Coin *coin;
 
+    // Matrix node with x and y coords. And multiplier
     MatrixNode(int, int, int);
+    // Matrix node with x and y coords. Coin and multiplier
+    MatrixNode(int, int, int, Coin *);
     int GetMultiplier();
     void PutCoin(Coin *);
 };
