@@ -770,6 +770,8 @@ void Logic::Play() {
     char charToInsert;
         // To save the first place where a person puts a word
     int xFinal = -1, yFinal = -1;
+        // To limitate the movement of the playey
+    bool UtoD = false, LtoR = false;
         // To save the positions in which the player insert a coin
     Positions *auxPositions = new Positions();
 
@@ -840,9 +842,16 @@ void Logic::Play() {
                             // Up
                             case 72:
                                 if(xFinal != -1 && yFinal != -1){
-                                    if(x == xFinal && y != 0){
-                                        y--;
-                                        Move(6 + (3*x), y+3);
+                                    if(!UtoD && !LtoR){
+                                        if(x == xFinal && y != 0){
+                                            y--;
+                                            Move(6 + (3*x), y+3);
+                                        }
+                                    }else if(UtoD){
+                                        if(x == xFinal && y != 0){
+                                            y--;
+                                            Move(6 + (3*x), y+3);
+                                        }
                                     }
                                 }else{
                                     if(y != 0){
@@ -854,9 +863,16 @@ void Logic::Play() {
                             // Down
                             case 80:
                                 if(xFinal != -1 && yFinal != -1){
-                                    if(x == xFinal && y != table->maxDimension - 1){
-                                        y++;
-                                        Move(6 + (3*x), y+3);
+                                    if(!UtoD && !LtoR){
+                                        if(x == xFinal && y != table->maxDimension - 1){
+                                            y++;
+                                            Move(6 + (3*x), y+3);
+                                        }
+                                    }else if(UtoD){
+                                        if(x == xFinal && y != table->maxDimension - 1){
+                                            y++;
+                                            Move(6 + (3*x), y+3);
+                                        }
                                     }
                                 }else{
                                     if(y != table->maxDimension - 1){
@@ -868,9 +884,16 @@ void Logic::Play() {
                             // Left
                             case 75:
                                 if(xFinal != -1 && yFinal != -1){
-                                    if(y == yFinal && x != 0){
-                                        x--;
-                                        Move(6 + (3*x),y+3);
+                                    if(!UtoD && !LtoR){
+                                        if(y == yFinal && x != 0){
+                                            x--;
+                                            Move(6 + (3*x),y+3);
+                                        }
+                                    }else if(LtoR){
+                                        if(y == yFinal && x != 0){
+                                            x--;
+                                            Move(6 + (3*x),y+3);
+                                        }
                                     }
                                 }else{
                                     if(x != 0){
@@ -882,9 +905,16 @@ void Logic::Play() {
                             // Right
                             case 77:
                                 if(xFinal != -1 && yFinal != -1){
-                                    if(y == yFinal && x != table->maxDimension - 1){
-                                        x++;
-                                        Move(6 + (3*x),y+3);
+                                    if(!UtoD && !LtoR){
+                                        if(y == yFinal && x != table->maxDimension - 1){
+                                            x++;
+                                            Move(6 + (3*x),y+3);
+                                        }
+                                    }else if(LtoR){
+                                        if(y == yFinal && x != table->maxDimension - 1){
+                                            x++;
+                                            Move(6 + (3*x),y+3);
+                                        }
                                     }
                                 }else{
                                     if(x != table->maxDimension - 1){
@@ -909,6 +939,11 @@ void Logic::Play() {
                             auxPositions = new Positions();
                             xFinal = x;
                             yFinal = y;
+                        }
+                        if(x != xFinal){
+                            LtoR = true;
+                        }else if(y != yFinal){
+                            UtoD = true;
                         }
 
                         auxPositions->InsertNode(x, y);
@@ -985,8 +1020,9 @@ void Logic::Play() {
                 }
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
+                    xFinal = yFinal = -1;
+                    LtoR = UtoD = false;
                     if(table->CheckMatrixAt(xFinal, yFinal, dictionary, actualPlayer)){
-                        xFinal = yFinal = -1;
 
                         for (int i = 0; i < auxBag->size; ++i) {
                             actualPlayer->AddCoins(coins->DeQueue());
@@ -1006,7 +1042,7 @@ void Logic::Play() {
                         cout << "^";
 
                     }else{
-                        xFinal = yFinal = -1;
+
                         int auxInt = auxBag->size;
                         for(int i = 0; i < auxInt; i++){
                             actualPlayer->AddCoins(auxBag->DeleteNodeAt(0));
