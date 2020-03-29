@@ -363,10 +363,10 @@ void Logic::Move(int _x, int _y) {
 
 void Logic::ReadFile() {
     string route;
-    printf("Ingrese ruta del archivo JSON: ");
+    printf("Ingrese ruta del archivo JSON: C:/Users/Manuel/Desktop/");
     cin >> route;
 
-    ifstream i(route);
+    ifstream i("C:/Users/Manuel/Desktop/" + route);
     json j;
     i >> j;
 
@@ -1055,6 +1055,15 @@ void Logic::Play() {
                                     deleteCoins = true;
                                 }else{
                                     auxiliarBag->RepeatInsertNode(actualPlayer->coins->DeleteNodeAt(coinAt));
+
+                                    coinAt = 0;
+                                    Move(0, table->maxDimension + 7);
+                                    cout << "                                                                                         " << endl;
+                                    cout << " Fichas: " << actualPlayer->GetCoins() << endl;
+                                    Move(9 + (2*coinAt), table->maxDimension + 8);
+
+                                    cout << "^";
+
                                 }
                                 break;
                         }
@@ -1071,8 +1080,6 @@ void Logic::Play() {
                 }
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
-                    xFinal = yFinal = -1;
-                    LtoR = UtoD = false;
                     if(table->CheckMatrixAt(xFinal, yFinal, dictionary, actualPlayer)){
 
                         for (int i = 0; i < auxBag->size; ++i) {
@@ -1123,6 +1130,9 @@ void Logic::Play() {
                         cout << "^";
 
                     }
+                    xFinal = yFinal = -1;
+                    LtoR = UtoD = false;
+                    table->GenerateReport();
                 }
             }
         }

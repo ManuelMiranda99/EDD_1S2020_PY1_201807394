@@ -47,59 +47,100 @@ Coin * Matrix::DeleteNode(int _xCoord, int _yCoord) {
     if(column != NULL && row != NULL){
         returnCoin = DeleteOrderedColumn(row, _xCoord);
         DeleteOrderedRow(column, _yCoord);
-
-        return returnCoin;
     }
-    return NULL;
+
+    if(column->down == NULL){
+        if(column->next == NULL){
+            column->previous->next = NULL;
+            column->next = NULL;
+            column->previous = NULL;
+            delete column;
+        }else{
+            column->previous->next = column->next;
+            column->next->previous = column->previous;
+            column->next = NULL;
+            column->previous = NULL;
+            delete column;
+        }
+    }else if(row->next == NULL){
+        if(row->down == NULL){
+            row->up->down = NULL;
+            row->up = NULL;
+            row->down = NULL;
+            delete row;
+        }
+        else{
+            row->up->down = row->down;
+            row->down->up = row->up;
+            row->up = NULL;
+            row->down = NULL;
+            delete row;
+        }
+    }
+
+    return returnCoin;
 }
 
 Coin * Matrix::DeleteOrderedColumn(MatrixNode *_root, int _xPos) {
     MatrixNode *aux1 = _root;
 
+    Coin *returnCoin = NULL;
+
     while(aux1 != NULL){
         // Delete
         if(aux1->XCoord == _xPos) {
             // If the cell is not a special (x2 or x3) cell, we remove the pointers
-            if (aux1->multiplier <= 1) {
-                /*
-                    aux1.previous ->          <- aux1.next
-                                    <- aux1 ->
-                */
-                aux1->previous->next = aux1->next;
-
-                aux1->next->previous = aux1->previous;
+            if (aux1->multiplier == 1) {
+                if(aux1->next == NULL){
+                    aux1->previous->next = NULL;
+                    aux1->previous = NULL;
+                }
+                else{
+                    aux1->previous->next = aux1->next;
+                    aux1->next->previous = aux1->previous;
+                }
+                returnCoin = aux1->coin;
+            }else{
+                returnCoin = aux1->coin;
+                aux1->coin = NULL;
             }
-            return aux1->coin;
+            break;
         }
         aux1 = aux1->next;
     }
 
-    return NULL;
+    return returnCoin;
 }
 
 Coin * Matrix::DeleteOrderedRow(MatrixNode *_root, int _yPos) {
     MatrixNode *aux1 = _root;
 
+    Coin *returnCoin = NULL;
+
     while(aux1 != NULL){
         // Delete
         if(aux1->YCoord == _yPos) {
             // If the cell is not a special (x2 or x3) cell, we remove the pointers
-            if (aux1->multiplier <= 1) {
-                /*
-                    aux1.up
-                                aux1
-                    aux1.down
-                */
-                aux1->up->down = aux1->down;
-
-                aux1->down->up = aux1->up;
+            if (aux1->multiplier == 1) {
+                if(aux1->down == NULL){
+                    aux1->up->down = NULL;
+                    returnCoin = aux1->coin;
+                }
+                else{
+                    aux1->up->down = aux1->down;
+                    aux1->down->up = aux1->up;
+                    returnCoin = aux1->coin;
+                }
+            }else{
+                returnCoin = aux1->coin;
+                aux1->coin = NULL;
             }
-            return aux1->coin;
+            break;
         }
         aux1 = aux1->down;
     }
 
-    return NULL;
+    return returnCoin;
 }
 
 void Matrix::GenerateReport() {
