@@ -27,3 +27,7 @@ void MatrixNode::PutCoin(Coin *_coin) {
 int MatrixNode::GetMultiplier() {
     return multiplier;
 }
+
+int MatrixNode::GetPoints() {
+    return coin->points * multiplier;
+}

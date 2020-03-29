@@ -421,6 +421,116 @@ bool Matrix::PutCoinAt(MatrixNode *_header, int _xPos, Coin *_coin) {
     }
 }
 
-bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary) {
+bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary, User *_user) {
+
+    MatrixNode *actualNode;
+    MatrixNode *aux = SearchColumn(_xPos);
+    bool flagV = false, flagH = false;
+
+    // In this part of the code, we get the actual node where we put the coin
+    while(aux->YCoord != _yPos){
+        aux = aux->down;
+    }
+
+    actualNode = aux;
+
+    // Check in a vertical way the word
+    if(actualNode->up->coin != NULL || actualNode->down->coin != NULL){
+        // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+        while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+            aux = aux->up;
+        }
+
+        string upWord;
+
+        // Generating the word that is from top to bottom
+        while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->down->coin != NULL){
+            upWord += aux->coin->letter;
+            aux = aux->down;
+        }
+
+        // If the word isn't accepted, we return false, and the next validations never happen
+        if(!_dictionary->CheckWord(upWord)){
+            return false;
+        }
+        else{
+            flagV = true;
+        }
+    }
+    // We continue the analisis of the nodes for the next points
+    if(actualNode->previous->coin != NULL || actualNode->next->coin != NULL){
+        aux = actualNode;
+
+        // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+        while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+            aux = aux->previous;
+        }
+
+        string horizontalWord;
+
+        // Generating the word that is from left to right
+        while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->next->coin != NULL){
+            horizontalWord += aux->coin->letter;
+            aux = aux->next;
+        }
+
+        // If the word isn't accepted, we return false, and the next validations never happen
+        if(!_dictionary->CheckWord(horizontalWord)){
+            return false;
+        }
+        else{
+            flagH = true;
+        }
+
+    }
+
+    // Add the points to the user
+    if(flagV && flagH){
+        // Vertical Points
+        aux = actualNode;
+        VerticalPoints(aux, _user);
+        aux = actualNode;
+        HorizontalPoints(aux, _user);
+        return true;
+    }
+    else if(flagV && !flagH){
+        aux = actualNode;
+        VerticalPoints(aux, _user);
+        return true;
+    }
+    else if(!flagV && flagH){
+        aux = actualNode;
+        HorizontalPoints(aux, _user);
+        return true;
+    }
+
+    // If we get to this place, it means that the player only put one coin
+
     return false;
+}
+
+void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
+    // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+    while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+        aux = aux->previous;
+    }
+
+    // Generating the word that is from left to right
+    while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->next->coin != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->next;
+    }
+}
+
+void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
+    // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+    while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+        aux = aux->up;
+    }
+
+    // Adding the points to the player
+    while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->down->coin != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->down;
+    }
 }

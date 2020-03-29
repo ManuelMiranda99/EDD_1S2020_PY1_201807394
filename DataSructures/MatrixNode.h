@@ -18,6 +18,7 @@ public:
     // Matrix node with x and y coords. Coin and multiplier
     MatrixNode(int, int, int, Coin *);
     int GetMultiplier();
+    int GetPoints();
     void PutCoin(Coin *);
 };
 

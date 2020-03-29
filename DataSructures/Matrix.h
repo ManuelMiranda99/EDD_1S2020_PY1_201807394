@@ -9,6 +9,7 @@
 #include "MatrixNode.h"
 #include "fstream"
 #include "CircularDoubleList.h"
+#include "../Classes/User.h"
 
 using namespace std;
 
@@ -25,6 +26,8 @@ private:
     MatrixNode *CreateRow(int);
     MatrixNode *CreateColumn(int);
     bool PutCoinAt(MatrixNode *, int, Coin *);
+    void VerticalPoints(MatrixNode *, User *);
+    void HorizontalPoints(MatrixNode *, User *);
 public:
     int maxDimension;
 
@@ -32,7 +35,7 @@ public:
     void InsertNode(int, int, int);
     bool PutCoin(int, int, Coin *);
     Coin * DeleteNode(int, int);
-    bool CheckMatrixAt(int, int, CircularDoubleList *);
+    bool CheckMatrixAt(int, int, CircularDoubleList *, User *);
     void GenerateReport();
 };
 

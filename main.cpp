@@ -242,17 +242,29 @@ public:
         size--;
         return returnChar;
     }
+
+    void EmptyBag(){
+        first = NULL;
+    }
 };
 
 class Logic{
 private:
     // Data Structures
+    // Dictionary of words
     CircularDoubleList *dictionary = new CircularDoubleList();
+    // Binary Search Tree of users
     BinarySearchTree *users = new BinarySearchTree();
+    // Coins in the game
     Queue *coins = new Queue();
+    // Table of the game
     Matrix *table;
+    // Users playing. actualPlayer change when a player put a coin
     User *player1, *player2, *actualPlayer;
+    // General bag of coins
     BagOfCoins *bag = new BagOfCoins();
+    // Auxiliar bag of coins for the coins that the user put in the table
+    BagOfCoins *auxBag = new BagOfCoins();
 
 public:
     void Move(int, int);
@@ -704,7 +716,7 @@ void Logic::Play() {
         // To insert in the matrix and to eliminate from the list of the player
     char charToInsert;
         // To save the first place where a person puts a word
-    int xFinal = 0, yFinal = 0;
+    int xFinal = -1, yFinal = -1;
 
     // Initializing the messages that the program will show
     Move(0, table->maxDimension + 6);
@@ -716,6 +728,7 @@ void Logic::Play() {
 
     // While they are playing
     while(playing){
+
         if(kbhit()){
             char key = getch();
             // Move through the Coins of the player
@@ -802,24 +815,33 @@ void Logic::Play() {
                     // If the position is not occupied
                     if(table->PutCoin(x, y, new Coin(charToInsert))){
                         cout << charToInsert;
+
+                        if(xFinal == -1 && yFinal == -1){
+                            xFinal = x;
+                            yFinal = y;
+                        }
+
+                        auxBag->RepeatInsertNode(charToInsert);
+
+                        table->GenerateReport();
+
                     }
                     else{
                         Move(0, table->maxDimension + 6);
                         cout << "                                                                                 " << endl;
                         Move(0, table->maxDimension + 6);
                         cout << "Posicion invalida";
-                        Sleep(500);
+                        Sleep(1000);
+                        actualPlayer->AddCoins(charToInsert);
                     }
-                    table->GenerateReport();
 
+                    coinAt = 0;
 
                     Move(0, table->maxDimension + 6);
-                    cout << "                                                                                    " << endl;
-                    cout << "                                                                                    " << endl;
+                    cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
                     Move(0, table->maxDimension + 6);
-                    cout << "Jugador actual: " << actualPlayer->name << endl;
-                    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
-
+                    cout << " Jugador actual: " << actualPlayer->name << endl;
+                    cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                     Move(9 + (2*coinAt), table->maxDimension + 8);
 
                     cout << "^";
@@ -868,10 +890,44 @@ void Logic::Play() {
                 }
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
-                    if(table->CheckMatrixAt(xFinal, yFinal, dictionary)){
+                    if(table->CheckMatrixAt(xFinal, yFinal, dictionary, actualPlayer)){
                         xFinal = yFinal = 0;
 
+                        for (int i = 0; i < auxBag->size; ++i) {
+                            actualPlayer->AddCoins(coins->DeQueue());
+                        }
+
+                        auxBag->EmptyBag();
+
+                        PassTurn();
+
+                        Move(0, table->maxDimension + 6);
+                        cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
+                        Move(0, table->maxDimension + 6);
+                        cout << " Jugador actual: " << actualPlayer->name << endl;
+                        cout << " Fichas: " << actualPlayer->GetCoins() << endl;
+                        Move(9 + (2*coinAt), table->maxDimension + 8);
+
+                        cout << "^";
+
                     }else{
+                        for(int i = 0; i < auxBag->size; i++){
+                            actualPlayer->AddCoins(auxBag->DeleteNodeAt(auxBag->size - i));
+                        }
+                        Move(0, table->maxDimension + 6);
+                        cout << "                                                                                 " << endl;
+                        Move(0, table->maxDimension + 6);
+                        cout << "Palabra no encontrada en el diccionario";
+                        Sleep(1000);
+
+                        Move(0, table->maxDimension + 6);
+                        cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
+                        Move(0, table->maxDimension + 6);
+                        cout << " Jugador actual: " << actualPlayer->name << endl;
+                        cout << " Fichas: " << actualPlayer->GetCoins() << endl;
+                        Move(9 + (2*coinAt), table->maxDimension + 8);
+
+                        cout << "^";
 
                     }
                 }

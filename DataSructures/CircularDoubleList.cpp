@@ -70,10 +70,14 @@ void CircularDoubleList::GenerateReport() {
 
 bool CircularDoubleList::CheckWord(string _word) {
     bool existingWord = false;
+    string wordToCompare;
+
+    for (char i : _word) {
+        wordToCompare += tolower(i);
+    }
 
     if(first != NULL){
         WordNode *aux = first;
-
         do{
             if(aux->word == _word){
                 existingWord = true;
