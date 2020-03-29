@@ -193,12 +193,20 @@ public:
                 first = NULL;
                 size--;
                 return charToReturn;
-            }else if(_pos == 0 && first->next != NULL){
+            }
+            else if(_pos == 0 && first->next != NULL){
                 charToReturn = first->letter;
                 first = first->next;
                 size--;
                 return charToReturn;
-            }else{
+            }
+            else if(_pos == (size-1)){
+                charToReturn = last->letter;
+                last = last->previous;
+                last->next = NULL;
+                size--;
+            }
+            else{
                 NodeIC *aux1 = first, *aux2;
                 while((aux1 != NULL && (pos != _pos))){
                     aux2 = aux1;

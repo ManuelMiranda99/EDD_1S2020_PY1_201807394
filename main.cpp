@@ -231,10 +231,12 @@ public:
             first = aux->next;
         }else{
             /*
-                       aux1 ->
+                       aux ->
                aux2      ->      aux.next
             */
+
             aux2->next = aux->next;
+
         }
 
         char returnChar = aux->c;
@@ -245,6 +247,57 @@ public:
 
     void EmptyBag(){
         first = NULL;
+        size = 0;
+    }
+};
+
+class NodePos{
+public:
+    int x, y;
+    NodePos *next;
+    NodePos(int _x, int _y){
+        x = _x;
+        y = _y;
+        next = NULL;
+    }
+};
+
+class Positions{
+
+
+public:
+    NodePos *first;
+    int size;
+    Positions(){
+        first = NULL;
+        size = 0;
+    }
+
+    void EmptyList(){
+        first = NULL;
+        size = 0;
+    }
+
+    void InsertNode(int _x, int _y){
+        NodePos *newNode = new NodePos(_x, _y);
+        if(first == NULL){
+            first = newNode;
+        }else{
+            newNode->next = first;
+            first = newNode;
+        }
+        size++;
+    }
+
+    NodePos * DeleteNode(){
+        NodePos *returnNode = first;
+        if(size == 1){
+            first = NULL;
+        }else{
+            first = first->next;
+        }
+        size--;
+        return returnNode;
     }
 };
 
@@ -717,6 +770,8 @@ void Logic::Play() {
     char charToInsert;
         // To save the first place where a person puts a word
     int xFinal = -1, yFinal = -1;
+        // To save the positions in which the player insert a coin
+    Positions *auxPositions = new Positions();
 
     // Initializing the messages that the program will show
     Move(0, table->maxDimension + 6);
@@ -817,9 +872,13 @@ void Logic::Play() {
                         cout << charToInsert;
 
                         if(xFinal == -1 && yFinal == -1){
+                            delete(auxPositions);
+                            auxPositions = new Positions();
                             xFinal = x;
                             yFinal = y;
                         }
+
+                        auxPositions->InsertNode(x, y);
 
                         auxBag->RepeatInsertNode(charToInsert);
 
@@ -855,14 +914,17 @@ void Logic::Play() {
 
                     system("cls");
                     playing = false;
-                    if(player1->points >= player2->points){
-                        cout << "¡¡¡FELICIDADES " << player1->name << " HAS GANADO CON" << player1->points << " PUNTOS!!!" << endl;
+                    if(player1->points > player2->points){
+                        cout << "\n\n\n\t\t\t\tFELICIDADES " << player1->name << " HAS GANADO CON " << player1->points << " PUNTOS!!!" << endl;
                     }
-                    else{
-                        cout << "¡¡¡FELICIDADES " << player2->name << " HAS GANADO CON " << player2->points << " PUNTOS!!!" << endl;
+                    else if(player1->points < player2->points){
+                        cout << "\n\n\n\t\t\t\tFELICIDADES " << player2->name << " HAS GANADO CON " << player2->points << " PUNTOS!!!" << endl;
+                    }else{
+                        cout << "\n\n\n\t\t\t\tEMPATEEEEE CON " << player2->points << " PUNTOS!!!" << endl;
                     }
-                    Sleep(1000);
+                    Sleep(5000);
                     cout << "Saliendo del juego..." << endl;
+                    Sleep(2000);
                     system("cls");
                     GeneralMenu();
                 }
@@ -891,7 +953,7 @@ void Logic::Play() {
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
                     if(table->CheckMatrixAt(xFinal, yFinal, dictionary, actualPlayer)){
-                        xFinal = yFinal = 0;
+                        xFinal = yFinal = -1;
 
                         for (int i = 0; i < auxBag->size; ++i) {
                             actualPlayer->AddCoins(coins->DeQueue());
@@ -911,9 +973,20 @@ void Logic::Play() {
                         cout << "^";
 
                     }else{
-                        for(int i = 0; i < auxBag->size; i++){
-                            actualPlayer->AddCoins(auxBag->DeleteNodeAt(auxBag->size - i));
+                        xFinal = yFinal = -1;
+                        int auxInt = auxBag->size;
+                        for(int i = 0; i < auxInt; i++){
+                            actualPlayer->AddCoins(auxBag->DeleteNodeAt(0));
                         }
+
+                        auxInt = auxPositions->size;
+                        for(int i = 0; i < auxInt; i++){
+                            NodePos *position = auxPositions->DeleteNode();
+                            Move(6 + (3*position->x), position->y + 3);
+                            cout << " ";
+                            table->DeleteNode(position->x, position->y);
+                        }
+
                         Move(0, table->maxDimension + 6);
                         cout << "                                                                                 " << endl;
                         Move(0, table->maxDimension + 6);

@@ -435,53 +435,123 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
     actualNode = aux;
 
     // Check in a vertical way the word
-    if(actualNode->up->coin != NULL || actualNode->down->coin != NULL){
-        // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
-        while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
-            aux = aux->up;
-        }
+    if(actualNode->up->YCoord != -1){
+        if(actualNode->up->coin != NULL){
+            // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+            while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+                aux = aux->up;
+            }
 
-        string upWord;
+            string upWord;
 
-        // Generating the word that is from top to bottom
-        while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->down->coin != NULL){
-            upWord += aux->coin->letter;
-            aux = aux->down;
-        }
+            // Generating the word that is from top to bottom
+            do{
+                upWord += aux->coin->letter;
+                aux = aux->down;
+                if(aux->down == NULL && aux->coin != NULL){
+                    upWord += aux->coin->letter;
+                    break;
+                }
+            }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
 
-        // If the word isn't accepted, we return false, and the next validations never happen
-        if(!_dictionary->CheckWord(upWord)){
-            return false;
-        }
-        else{
-            flagV = true;
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(upWord)){
+                return false;
+            }
+            else{
+                flagV = true;
+            }
         }
     }
+
+    if(actualNode->down != NULL && !flagV){
+        if(actualNode->down->coin != NULL){
+            // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+            while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+                aux = aux->up;
+            }
+
+            string upWord;
+
+            // Generating the word that is from top to bottom
+            do{
+                upWord += aux->coin->letter;
+                aux = aux->down;
+                if(aux->down == NULL && aux->coin != NULL){
+                    upWord += aux->coin->letter;
+                    break;
+                }
+            }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(upWord)){
+                return false;
+            }
+            else{
+                flagV = true;
+            }
+        }
+    }
+
+    aux = actualNode;
+
     // We continue the analisis of the nodes for the next points
-    if(actualNode->previous->coin != NULL || actualNode->next->coin != NULL){
-        aux = actualNode;
+    if(actualNode->previous->XCoord != -1){
+        if(actualNode->previous->coin != NULL){
+            // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+            while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+                aux = aux->previous;
+            }
 
-        // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
-        while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
-            aux = aux->previous;
+            string horizontalWord;
+
+            // Generating the word that is from left to right
+            do{
+                horizontalWord += aux->coin->letter;
+                aux = aux->next;
+                if(aux->next == NULL && aux->coin != NULL){
+                    horizontalWord += aux->coin->letter;
+                    break;
+                }
+            }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(horizontalWord)){
+                return false;
+            }
+            else{
+                flagH = true;
+            }
         }
+    }
 
-        string horizontalWord;
+    if(actualNode->next != NULL && !flagH){
+        if(actualNode->next->coin != NULL){
+            // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+            while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+                aux = aux->previous;
+            }
 
-        // Generating the word that is from left to right
-        while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->next->coin != NULL){
-            horizontalWord += aux->coin->letter;
-            aux = aux->next;
+            string horizontalWord;
+
+            // Generating the word that is from left to right
+            do{
+                horizontalWord += aux->coin->letter;
+                aux = aux->next;
+                if(aux->next == NULL && aux->coin != NULL){
+                    horizontalWord += aux->coin->letter;
+                    break;
+                }
+            }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(horizontalWord)){
+                return false;
+            }
+            else{
+                flagH = true;
+            }
         }
-
-        // If the word isn't accepted, we return false, and the next validations never happen
-        if(!_dictionary->CheckWord(horizontalWord)){
-            return false;
-        }
-        else{
-            flagH = true;
-        }
-
     }
 
     // Add the points to the user
@@ -516,10 +586,14 @@ void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
     }
 
     // Generating the word that is from left to right
-    while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->next->coin != NULL){
+    do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->next;
-    }
+        if(aux->next == NULL){
+            _user->GetPoints(aux->GetPoints());
+            break;
+        }
+    }while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->coin != NULL);
 }
 
 void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
@@ -529,8 +603,12 @@ void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
     }
 
     // Adding the points to the player
-    while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->down->coin != NULL){
+    do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->down;
-    }
+        if(aux->down == NULL){
+            _user->GetPoints(aux->GetPoints());
+            break;
+        }
+    }while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->coin != NULL);
 }

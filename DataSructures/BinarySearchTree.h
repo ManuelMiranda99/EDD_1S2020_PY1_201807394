@@ -94,27 +94,28 @@ class Scoreboard{
 
         void InsertUser(User *_user){
             NodeSB *newNode = new NodeSB(_user);
-
-            if(first == NULL){
-                first = newNode;
-            }else{
-                NodeSB *aux1 = first;
-                NodeSB *aux2;
-
-                while ((aux1 != NULL) && (aux1->user->GetMaximumScore() > newNode->user->GetMaximumScore())) {
-                    aux2 = aux1;
-                    aux1 = aux1->next;
-                }
-
-                if (aux1 == first) {
+            if(newNode->user->scores->first != NULL){
+                if(first == NULL){
                     first = newNode;
-                } else {
-                    aux2->next = newNode;
-                }
+                }else{
+                    NodeSB *aux1 = first;
+                    NodeSB *aux2;
 
-                newNode->next = aux1;
+                    while ((aux1 != NULL) && (aux1->user->GetMaximumScore() > newNode->user->GetMaximumScore())) {
+                        aux2 = aux1;
+                        aux1 = aux1->next;
+                    }
+
+                    if (aux1 == first) {
+                        first = newNode;
+                    } else {
+                        aux2->next = newNode;
+                    }
+
+                    newNode->next = aux1;
+                }
+                size++;
             }
-            size++;
         }
 
         void deleteList(){
@@ -134,6 +135,7 @@ class Scoreboard{
                     x++;
                     aux = aux->next;
                 } while (aux != NULL);
+                aux = first;
                 x = 1;
                 do {
                     if (x == size) {
@@ -141,8 +143,8 @@ class Scoreboard{
                     } else {
                         graph += "X" + to_string(x) + " -> ";
                         x++;
-                        aux = aux->next;
                     }
+                    aux = aux->next;
                 } while (aux != NULL);
                 graph += "; \n }";
 

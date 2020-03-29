@@ -79,10 +79,11 @@ bool CircularDoubleList::CheckWord(string _word) {
     if(first != NULL){
         WordNode *aux = first;
         do{
-            if(aux->word == _word){
+            if(aux->word == wordToCompare){
                 existingWord = true;
                 break;
             }
+            aux = aux->next;
         }while(aux != first);
     }
 
