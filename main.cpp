@@ -1009,6 +1009,57 @@ void Logic::Play() {
                     BagOfCoins *auxiliarBag = new BagOfCoins();
                     cout << "Seleccione las fichas que desea eliminar" << endl;
 
+                    bool deleteCoins = false;
+                    coinAt = 0;
+                    Move(0, table->maxDimension + 7);
+                    cout << "                                                                                         " << endl;
+                    cout << " Fichas: " << actualPlayer->GetCoins() << endl;
+                    Move(9 + (2*coinAt), table->maxDimension + 8);
+
+                    cout << "^";
+                    while(!deleteCoins){
+
+                        do{
+                            key = getch();
+                            if(key == -32){
+                                key = getch();
+                            }
+                        }
+                        // While the pressing key is different from Enter, Left, Right
+                        while(key != 13 && key != 75 && key != 77);
+                        switch(key){
+                            case 75:
+                                if(coinAt != 0){
+                                    coinAt--;
+                                    Move(0, table->maxDimension + 8);
+                                    cout << "                                         ";
+                                    Move(9 + (2*coinAt), table->maxDimension + 8);
+                                    cout << "^";
+                                }
+                                break;
+                            case 77:
+                                if(coinAt != actualPlayer->coins->size - 1){
+                                    coinAt++;
+                                    Move(0, table->maxDimension + 8);
+                                    cout << "                                         ";
+                                    Move(9 + (2*coinAt), table->maxDimension + 8);
+                                    cout << "^";
+                                }
+                                break;
+                            case 13:
+                                Move(0,0);
+                                cout << "Desea eliminar otra? 1)NO   ";
+                                int de;
+                                cin >> de;
+                                if (de == 1){
+                                    deleteCoins = true;
+                                }else{
+                                    auxiliarBag->RepeatInsertNode(actualPlayer->coins->DeleteNodeAt(coinAt));
+                                }
+                                break;
+                        }
+                    }
+
                     // Pass the turn
                     PassTurn();
                     Move(0, table->maxDimension + 6);
