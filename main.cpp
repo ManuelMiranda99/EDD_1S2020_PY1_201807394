@@ -818,6 +818,11 @@ void Logic::Play() {
                     charToInsert = actualPlayer->GetCoinAt(coinAt);
                     // Positions of the Matrix
                     int x = 0, y = 0;
+                    if(xFinal != -1 && yFinal != -1){
+                        x = xFinal;
+                        y = yFinal;
+                    }
+
                     Move(6 + (3*x),y+3);
                     // Boolean variable that will be false until they decide the place where they want to put the coin
                     bool putCoin = false;
@@ -834,30 +839,58 @@ void Logic::Play() {
                         switch(key){
                             // Up
                             case 72:
-                                if(y != 0){
-                                    y--;
-                                    Move(6 + (3*x), y+3);
+                                if(xFinal != -1 && yFinal != -1){
+                                    if(x == xFinal && y != 0){
+                                        y--;
+                                        Move(6 + (3*x), y+3);
+                                    }
+                                }else{
+                                    if(y != 0){
+                                        y--;
+                                        Move(6 + (3*x), y+3);
+                                    }
                                 }
                                 break;
                             // Down
                             case 80:
-                                if(y != table->maxDimension - 1){
-                                    y++;
-                                    Move(6 + (3*x), y+3);
+                                if(xFinal != -1 && yFinal != -1){
+                                    if(x == xFinal && y != table->maxDimension - 1){
+                                        y++;
+                                        Move(6 + (3*x), y+3);
+                                    }
+                                }else{
+                                    if(y != table->maxDimension - 1){
+                                        y++;
+                                        Move(6 + (3*x), y+3);
+                                    }
                                 }
                                 break;
                             // Left
                             case 75:
-                                if(x != 0){
-                                    x--;
-                                    Move(6 + (3*x),y+3);
+                                if(xFinal != -1 && yFinal != -1){
+                                    if(y == yFinal && x != 0){
+                                        x--;
+                                        Move(6 + (3*x),y+3);
+                                    }
+                                }else{
+                                    if(x != 0){
+                                        x--;
+                                        Move(6 + (3*x),y+3);
+                                    }
                                 }
                                 break;
                             // Right
                             case 77:
-                                if(x != table->maxDimension - 1){
-                                    x++;
-                                    Move(6 + (3*x),y+3);
+                                if(xFinal != -1 && yFinal != -1){
+                                    if(y == yFinal && x != table->maxDimension - 1){
+                                        x++;
+                                        Move(6 + (3*x),y+3);
+                                    }
+                                }else{
+                                    if(x != table->maxDimension - 1){
+                                        x++;
+                                        Move(6 + (3*x),y+3);
+                                    }
                                 }
                                 break;
                             // Enter. They decided the position of the coin
