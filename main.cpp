@@ -60,14 +60,14 @@ public:
                 InsertNode('Y', 1);
                 InsertNode('Q', 1);
                 InsertNode('J', 1);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('X', 1);
                 InsertNode('Z', 1);
                 break;
             case 2:
                 InsertNode('Z', 1);
                 InsertNode('X', 1);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('J', 1);
                 InsertNode('Q', 1);
                 InsertNode('Y', 1);
@@ -99,7 +99,7 @@ public:
                 InsertNode('T', 4);
                 InsertNode('J', 1);
                 InsertNode('E', 12);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('H', 2);
                 InsertNode('O', 9);
                 InsertNode('R', 5);
@@ -127,7 +127,7 @@ public:
                 InsertNode('U', 5);
                 InsertNode('V', 1);
                 InsertNode('Y', 1);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('H', 2);
                 InsertNode('A', 12);
                 InsertNode('I', 6);
@@ -163,7 +163,7 @@ public:
                 InsertNode('D', 5);
                 InsertNode('O', 9);
                 InsertNode('Z', 1);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('F', 1);
                 InsertNode('G', 2);
                 InsertNode('T', 4);
@@ -192,7 +192,7 @@ public:
                 InsertNode('B', 2);
                 InsertNode('S', 6);
                 InsertNode('Q', 1);
-                InsertNode(-92, 1);
+                InsertNode(110, 1);
                 InsertNode('A', 12);
                 InsertNode('J', 1);
                 InsertNode('X', 1);
@@ -229,7 +229,8 @@ public:
 
         if(aux2 == NULL){
             first = aux->next;
-        }else{
+        }
+        else{
             /*
                        aux ->
                aux2      ->      aux.next
@@ -753,7 +754,7 @@ void Logic::Play() {
     PrintTable();
 
     // Randomly starting player.
-    int randomPlayer = rand() + 10 + 1;
+    int randomPlayer = rand() % 10 + 1;
     if(randomPlayer < 5){
         actualPlayer = player1;
     }
@@ -1005,14 +1006,14 @@ void Logic::Play() {
                     actualPlayer->GenerateCoinsReport();
                 }
                 // Change coins. Ctrl + Y
-                else if(key == 25){
+                else if(key == 25 && xFinal == -1){
                     BagOfCoins *auxiliarBag = new BagOfCoins();
+                    Move(0, 0);
                     cout << "Seleccione las fichas que desea eliminar" << endl;
 
                     bool deleteCoins = false;
                     coinAt = 0;
                     Move(0, table->maxDimension + 7);
-                    cout << "                                                                                         " << endl;
                     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                     Move(9 + (2*coinAt), table->maxDimension + 8);
 
@@ -1047,21 +1048,25 @@ void Logic::Play() {
                                 }
                                 break;
                             case 13:
+                                auxiliarBag->RepeatInsertNode(actualPlayer->coins->DeleteNodeAt(coinAt));
+                                Move(0, 0);
+                                cout << "                                                                     ";
                                 Move(0,0);
                                 cout << "Desea eliminar otra? 1)NO   ";
-                                int de;
-                                cin >> de;
-                                if (de == 1){
+                                char de = getch();
+                                if (de == 49){
                                     deleteCoins = true;
                                 }else{
-                                    auxiliarBag->RepeatInsertNode(actualPlayer->coins->DeleteNodeAt(coinAt));
+
 
                                     coinAt = 0;
                                     Move(0, table->maxDimension + 7);
                                     cout << "                                                                                         " << endl;
+                                    Move(0, table->maxDimension + 7);
                                     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                                     Move(9 + (2*coinAt), table->maxDimension + 8);
-
+                                    cout << "                                                  ";
+                                    Move(9 + (2*coinAt), table->maxDimension + 8);
                                     cout << "^";
 
                                 }
@@ -1069,14 +1074,28 @@ void Logic::Play() {
                         }
                     }
 
+                    // Putting the coins back to the queue
+                    int auxInt = auxiliarBag->size;
+                    for(int i = 0; i < auxInt; ++i){
+                        actualPlayer->AddCoins(coins->DeQueue());
+                    }
+
+                    for (int i = 0; i < auxInt; ++i) {
+                        coins->EnQueue(auxiliarBag->DeleteNodeAt(0));
+                    }
+                    delete(auxiliarBag);
+
+                    Move(0, 0);
+                    cout << "                                                                                                            ";
+
                     // Pass the turn
                     PassTurn();
                     Move(0, table->maxDimension + 6);
                     cout << "                                                                                    " << endl;
                     cout << "                                                                                    " << endl;
                     Move(0, table->maxDimension + 6);
-                    cout << "Jugador actual: " << actualPlayer->name << endl;
-                    cout << "Fichas: " << actualPlayer->GetCoins() << endl;
+                    cout << " Jugador actual: " << actualPlayer->name << endl;
+                    cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                 }
                 // Check word in the diccionary. Ctrl + T
                 else if(key == 20){
@@ -1265,7 +1284,7 @@ void Logic::PrintTable() {
     }
     cout << endl << endl << endl << endl << endl << endl << endl;
     cout << "\tCtrl + X para salir. Ctrl + Z para fichas del jugador actual. Ctrl + W para fichas disponibles" << endl;
-    cout << "\t        Ctrl + T para comprobar palabra ingresada. Ctrl + Y para cambiar fichas";
+    cout << "\t        Ctrl + T para comprobar palabra ingresada. Ctrl + Y para cambiar fichas (Pierde turno)";
 }
 
 // Pass the turn to other player

@@ -141,7 +141,7 @@ class DoubleList {
                     break;
                 case 'J':
                 case ';':
-                case -92:
+                case 110:
                 case 'X':
                     points = 8;
                     break;
@@ -243,12 +243,7 @@ public:
         if(first != NULL){
             NodeIC *aux = first;
             while(aux != last){
-                if(aux->letter != -92){
-                    text += aux->letter;
-                }
-                else{
-                    text += 'n';
-                }
+                text += aux->letter;
                 text += ',';
                 aux = aux->next;
             }
@@ -264,15 +259,8 @@ public:
         NodeIC *aux = first;
         if (aux != NULL) {
             while (aux != NULL) {
-                if(aux->letter != -92){
-                    graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"" + aux->letter + "\"];\n";
-                    x++;
-                }
-                else{
-                    graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"Ñ\"];\n";
-                    x++;
-                }
-
+                graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"" + aux->letter + "\"];\n";
+                x++;
                 aux = aux->next;
             }
             graph += "nullNode [shape=none,label=\"null\"];\n";
@@ -302,6 +290,13 @@ public:
         }
 
     };
+
+    void EmptyList(){
+        int sizeA = size;
+        for (int i = 0; i < sizeA; ++i) {
+            DeleteNodeAt(0);
+        }
+    }
 
 };
 

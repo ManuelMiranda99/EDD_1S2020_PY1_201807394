@@ -489,9 +489,11 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
             do{
                 upWord += aux->coin->letter;
                 aux = aux->down;
-                if(aux->down == NULL && aux->coin != NULL){
-                    upWord += aux->coin->letter;
-                    break;
+                if(aux != NULL){
+                    if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
+                        upWord += aux->coin->letter;
+                        break;
+                    }
                 }
             }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
 
@@ -518,9 +520,11 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
             do{
                 upWord += aux->coin->letter;
                 aux = aux->down;
-                if(aux->down == NULL && aux->coin != NULL){
-                    upWord += aux->coin->letter;
-                    break;
+                if(aux != NULL){
+                    if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
+                        upWord += aux->coin->letter;
+                        break;
+                    }
                 }
             }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
 
@@ -550,9 +554,11 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
             do{
                 horizontalWord += aux->coin->letter;
                 aux = aux->next;
-                if(aux->next == NULL && aux->coin != NULL){
-                    horizontalWord += aux->coin->letter;
-                    break;
+                if(aux != NULL){
+                    if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
+                        horizontalWord += aux->coin->letter;
+                        break;
+                    }
                 }
             }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
 
@@ -579,9 +585,11 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
             do{
                 horizontalWord += aux->coin->letter;
                 aux = aux->next;
-                if(aux->next == NULL && aux->coin != NULL){
-                    horizontalWord += aux->coin->letter;
-                    break;
+                if(aux != NULL){
+                    if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
+                        horizontalWord += aux->coin->letter;
+                        break;
+                    }
                 }
             }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
 
@@ -630,7 +638,7 @@ void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
     do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->next;
-        if(aux->next == NULL){
+        if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
             _user->GetPoints(aux->GetPoints());
             break;
         }
@@ -647,7 +655,7 @@ void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
     do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->down;
-        if(aux->down == NULL){
+        if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
             _user->GetPoints(aux->GetPoints());
             break;
         }

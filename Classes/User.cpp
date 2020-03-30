@@ -19,6 +19,7 @@ void User::GetPoints(int _points) {
 
 void User::StartGame() {
     points = 0;
+    coins->EmptyList();
 }
 
 int User::GetMaximumScore() {
