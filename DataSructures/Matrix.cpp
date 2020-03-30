@@ -375,7 +375,8 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
 
         if(aux->next != NULL){
             aux = aux->next;
-        }else{
+        }
+        else{
             break;
         }
     }
@@ -388,7 +389,8 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
         aux->previous->next = _newNode;
         _newNode->previous = aux->previous;
         aux->previous = _newNode;
-    }else{
+    }
+    else{
         aux->next = _newNode;
         _newNode->previous = aux;
     }

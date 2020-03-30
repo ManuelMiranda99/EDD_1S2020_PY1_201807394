@@ -1098,7 +1098,7 @@ void Logic::Play() {
                     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                 }
                 // Check word in the diccionary. Ctrl + T
-                else if(key == 20){
+                else if(key == 20 && xFinal != -1 && yFinal != -1){
                     if(table->CheckMatrixAt(xFinal, yFinal, dictionary, actualPlayer)){
 
                         for (int i = 0; i < auxBag->size; ++i) {
