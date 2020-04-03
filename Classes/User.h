@@ -72,14 +72,15 @@ public:
                 aux = aux->next;
             } while (aux != NULL);
             x = 1;
+            aux = first;
             do {
                 if (x == size) {
                     graph += "X" + to_string(x);
                 } else {
                     graph += "X" + to_string(x) + " -> ";
                     x++;
-                    aux = aux->next;
                 }
+                aux = aux->next;
             } while (aux != NULL);
             graph += "; \n }";
 

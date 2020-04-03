@@ -775,10 +775,12 @@ void Logic::Play() {
     bool UtoD = false, LtoR = false;
         // To save the positions in which the player insert a coin
     Positions *auxPositions = new Positions();
+        // To save all the positions where the player put a coin. This to empy the list
+    Positions *totalPositions = new Positions();
 
     // Initializing the messages that the program will show
     Move(0, table->maxDimension + 6);
-    cout << " Jugador actual: " << actualPlayer->name << endl;
+    cout << " Jugador actual: " << actualPlayer->name << "       Puntos: " << to_string(actualPlayer->points) << endl;
     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
     Move(9 + (2*coinAt), table->maxDimension + 8);
 
@@ -948,6 +950,7 @@ void Logic::Play() {
                         }
 
                         auxPositions->InsertNode(x, y);
+                        totalPositions->InsertNode(x, y);
 
                         auxBag->RepeatInsertNode(charToInsert);
 
@@ -968,7 +971,7 @@ void Logic::Play() {
                     Move(0, table->maxDimension + 6);
                     cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
                     Move(0, table->maxDimension + 6);
-                    cout << " Jugador actual: " << actualPlayer->name << endl;
+                    cout << " Jugador actual: " << actualPlayer->name << "       Puntos: " << to_string(actualPlayer->points) <<  endl;
                     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                     Move(9 + (2*coinAt), table->maxDimension + 8);
 
@@ -977,6 +980,12 @@ void Logic::Play() {
                 }
                 // Exit. Ctrl + X
                 else if(key == 24){
+
+                    int auxIntF = totalPositions->size;
+                    for(int i = 0; i < auxIntF; i++){
+                        NodePos *position = totalPositions->DeleteNode();
+                        table->DeleteNode(position->x, position->y);
+                    }
 
                     player1->AddScore();
                     player2->AddScore();
@@ -1094,7 +1103,7 @@ void Logic::Play() {
                     cout << "                                                                                    " << endl;
                     cout << "                                                                                    " << endl;
                     Move(0, table->maxDimension + 6);
-                    cout << " Jugador actual: " << actualPlayer->name << endl;
+                    cout << " Jugador actual: " << actualPlayer->name << "       Puntos: " << to_string(actualPlayer->points) <<  endl;
                     cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                 }
                 // Check word in the diccionary. Ctrl + T
@@ -1112,7 +1121,7 @@ void Logic::Play() {
                         Move(0, table->maxDimension + 6);
                         cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
                         Move(0, table->maxDimension + 6);
-                        cout << " Jugador actual: " << actualPlayer->name << endl;
+                        cout << " Jugador actual: " << actualPlayer->name << "       Puntos: " << to_string(actualPlayer->points) <<  endl;
                         cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                         Move(9 + (2*coinAt), table->maxDimension + 8);
 
@@ -1128,6 +1137,7 @@ void Logic::Play() {
                         auxInt = auxPositions->size;
                         for(int i = 0; i < auxInt; i++){
                             NodePos *position = auxPositions->DeleteNode();
+                            totalPositions->DeleteNode();
                             Move(6 + (3*position->x), position->y + 3);
                             cout << " ";
                             table->DeleteNode(position->x, position->y);
@@ -1142,7 +1152,7 @@ void Logic::Play() {
                         Move(0, table->maxDimension + 6);
                         cout << "                                                                                         " << endl << "                                                                                         " << endl <<  "                                                                                         " ;
                         Move(0, table->maxDimension + 6);
-                        cout << " Jugador actual: " << actualPlayer->name << endl;
+                        cout << " Jugador actual: " << actualPlayer->name << "       Puntos: " << to_string(actualPlayer->points) <<  endl;
                         cout << " Fichas: " << actualPlayer->GetCoins() << endl;
                         Move(9 + (2*coinAt), table->maxDimension + 8);
 
@@ -1204,6 +1214,8 @@ void Logic::StartGame() {
     player2->StartGame();
 
     // Fill the queue in a random way
+    delete(coins);
+    coins = new Queue();
     srand(time(NULL));
     bag->FillBag();
     int selectedChar;

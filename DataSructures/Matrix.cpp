@@ -479,7 +479,7 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
 
     // Check in a vertical way the word
     if(actualNode->up->YCoord != -1){
-        if(actualNode->up->coin != NULL){
+        if(actualNode->up->coin != NULL && actualNode->YCoord == (actualNode->up->YCoord + 1)){
             // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
             while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
                 aux = aux->up;
@@ -510,7 +510,7 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
     }
 
     if(actualNode->down != NULL && !flagV){
-        if(actualNode->down->coin != NULL){
+        if(actualNode->down->coin != NULL && actualNode->YCoord == (actualNode->down->YCoord - 1)){
             // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
             while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
                 aux = aux->up;
@@ -544,7 +544,7 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
 
     // We continue the analisis of the nodes for the next points
     if(actualNode->previous->XCoord != -1){
-        if(actualNode->previous->coin != NULL){
+        if(actualNode->previous->coin != NULL && actualNode->XCoord == (actualNode->previous->XCoord + 1)){
             // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
             while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
                 aux = aux->previous;
@@ -575,7 +575,7 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
     }
 
     if(actualNode->next != NULL && !flagH){
-        if(actualNode->next->coin != NULL){
+        if(actualNode->next->coin != NULL && actualNode->XCoord == (actualNode->next->XCoord - 1)){
             // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
             while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
                 aux = aux->previous;
@@ -636,15 +636,31 @@ void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
         aux = aux->previous;
     }
 
-    // Generating the word that is from left to right
-    do{
+    // Adding the points to the player
+    while(aux != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->next;
+        if(aux != NULL){
+            if((aux->XCoord != (aux->previous->XCoord + 1)) || aux->coin == NULL){
+                break;
+            }
+        }
+    }
+    /*do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->next;
         if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
             _user->GetPoints(aux->GetPoints());
             break;
         }
-    }while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->coin != NULL);
+        if(aux->next == NULL){
+            if(aux->XCoord == (aux->previous->XCoord + 1)){
+                _user->GetPoints(aux->GetPoints());
+
+            }
+            break;
+        }
+    }while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->coin != NULL);*/
 }
 
 void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
@@ -654,12 +670,27 @@ void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
     }
 
     // Adding the points to the player
-    do{
+    while(aux != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->down;
+        if(aux != NULL){
+            if((aux->YCoord != (aux->up->YCoord + 1)) || aux->coin == NULL){
+                break;
+            }
+        }
+    }
+    /*do{
         _user->GetPoints(aux->GetPoints());
         aux = aux->down;
         if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
             _user->GetPoints(aux->GetPoints());
             break;
         }
-    }while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->coin != NULL);
+        if(aux->down == NULL){
+            if(aux->YCoord == (aux->up->YCoord + 1)){
+                _user->GetPoints(aux->GetPoints());
+            }
+            break;
+        }
+    }while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->coin != NULL);*/
 }
