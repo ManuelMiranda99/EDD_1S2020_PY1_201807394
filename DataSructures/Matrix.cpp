@@ -147,6 +147,8 @@ void Matrix::GenerateReport() {
     if(header->down != NULL && header->next != NULL){
 
         string graph = "digraph Matrix {\n\n"
+                       "\tgraph[bgcolor=black, fontcolor=white, label=\"SCRABBLE++\", fontsize=25];\n"
+                       "\tedge[color=white];\n"
                        "\tnode [shape=box];\n\n"
                        "\t// Nodo raiz\n"
                        "\tMt[label=\"" + to_string(header->XCoord) + ", " + to_string(header->YCoord) + "\", width = 1.5, style=filled, fillcolor = firebrick1, group = 1];\n\n";
@@ -158,10 +160,10 @@ void Matrix::GenerateReport() {
         // Auxiliar node to go through each header row
         MatrixNode *aux = header->down;
         graph += "\t// Filas\n"
-                 "\tU0 [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", pos=\"5.3, 3.5!\", width = 1.5, style = filled, fillcolor = bisque1, group=1]; \n";
+                 "\tU0 [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", pos=\"5.3, 3.5!\", width = 1.5, style = filled, fillcolor = aquamarine2, group=1]; \n";
         aux = aux->down;
         while(aux != NULL){
-            graph += "\tU" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = bisque1, group=1]; \n";
+            graph += "\tU" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = aquamarine2, group=1]; \n";
             x++;
             aux = aux->down;
         }
@@ -184,7 +186,7 @@ void Matrix::GenerateReport() {
         // Setting the auxiliar node to go through each header column
         aux = header->next;
         while(aux != NULL){
-            graph += "\tA" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = bisque1, group=" + to_string(aux->XCoord + 2) + "]; \n";
+            graph += "\tA" + to_string(x) + " [label=\"" + to_string(aux->XCoord) + ", " + to_string(aux->YCoord) + "\", width = 1.5, style = filled, fillcolor = azure1, group=" + to_string(aux->XCoord + 2) + "]; \n";
             x++;
             aux = aux->next;
         }
@@ -226,22 +228,23 @@ void Matrix::GenerateReport() {
             MatrixNode *temp_node = aux->next;
             xPos = 0;
             while(temp_node != NULL){
-
+                // If the multiplier is x2
+                string color;
+                if(temp_node->multiplier == 2){
+                    color = "cadetblue";
+                }
+                    // If the multiplier is x3
+                else if(temp_node->multiplier == 3){
+                    color = "indianred";
+                }else{
+                    color = "burlywood2";
+                }
                 // If the node have a coin on it
                 if(temp_node->coin != NULL){
-                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"" + temp_node->coin->letter + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = salmon];\n";
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"" + temp_node->coin->letter + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = " + color + "];\n";
                 }
                 // If the node doesnt have a coin, it is just a special cell
                 else{
-                    // If the multiplier is x2
-                    string color;
-                    if(temp_node->multiplier == 2){
-                        color = "cadetblue";
-                    }
-                    // If the multiplier is x3
-                    else{
-                        color = "indianred";
-                    }
                     graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = " + color + "];\n";
                 }
                 temp_node = temp_node->next;
@@ -623,6 +626,13 @@ bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary
         aux = actualNode;
         HorizontalPoints(aux, _user);
         return true;
+    }else{
+        string letter;
+        letter += aux->coin->letter;
+        if(_dictionary->CheckWord(letter)){
+            _user->GetPoints(actualNode->GetPoints());
+            return true;
+        }
     }
 
     // If we get to this place, it means that the player only put one coin
@@ -646,21 +656,6 @@ void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
             }
         }
     }
-    /*do{
-        _user->GetPoints(aux->GetPoints());
-        aux = aux->next;
-        if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
-            _user->GetPoints(aux->GetPoints());
-            break;
-        }
-        if(aux->next == NULL){
-            if(aux->XCoord == (aux->previous->XCoord + 1)){
-                _user->GetPoints(aux->GetPoints());
-
-            }
-            break;
-        }
-    }while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->coin != NULL);*/
 }
 
 void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
@@ -679,18 +674,4 @@ void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
             }
         }
     }
-    /*do{
-        _user->GetPoints(aux->GetPoints());
-        aux = aux->down;
-        if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
-            _user->GetPoints(aux->GetPoints());
-            break;
-        }
-        if(aux->down == NULL){
-            if(aux->YCoord == (aux->up->YCoord + 1)){
-                _user->GetPoints(aux->GetPoints());
-            }
-            break;
-        }
-    }while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->coin != NULL);*/
 }

@@ -42,12 +42,15 @@ public:
     }
     void GenerateReport(){
         string graph = "digraph L { \n"
-                       "rankdir=LR;";
+                       "\trankdir=LR;\n"
+                       "\tgraph[bgcolor=black];\n"
+                       "\tnode[shape=box, style=filled, fillcolor=lemonchiffon1];\n"
+                       "\tedge[color=white];\n\n";
         int x = 1;
         NodeSL *aux = first;
         if(aux != NULL){
             do{
-                graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" + aux->name + "\"];\n";
+                graph += "X" + to_string(x) + " [label=\"" + aux->name + "\"];\n";
                 x++;
                 aux = aux->next;
             }while (aux != NULL);
@@ -125,13 +128,16 @@ class Scoreboard{
 
         void GenerateReport(){
             string graph = "digraph L { \n"
-                           "rankdir=LR;";
+                           "\trankdir=LR;\n"
+                           "\tgraph[bgcolor=black, label=\"Scoreboard\", fontcolor=white];\n"
+                           "\tnode[shape=box, style=filled, fillcolor=lemonchiffon1];\n"
+                           "\tedge[color=white];\n\n";
             int x = 1;
             NodeSB *aux = first;
             if (aux != NULL) {
                 do {
-                    graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" +
-                             "Usuario: " + aux->user->name + " - Puntaje maximo:" + to_string(aux->user->GetMaximumScore()) + "\"];\n";
+                    graph += "X" + to_string(x) + " [label=\"" +
+                             "" + aux->user->name + " - " + to_string(aux->user->GetMaximumScore()) + "pts\"];\n";
                     x++;
                     aux = aux->next;
                 } while (aux != NULL);

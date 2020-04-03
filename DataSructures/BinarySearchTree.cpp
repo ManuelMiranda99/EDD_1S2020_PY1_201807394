@@ -109,7 +109,9 @@ void BinarySearchTree::RecursivePostOrder(User *_node) {
 void BinarySearchTree::GenerateReport() {
     string graph = "digraph grafica{\n"
                    "rankdir=TB;\n"
-                   "node [shape=record, style=filled, fillcolor=blue];\n";
+                   "graph[bgcolor=black, label=\"Usuarios\"];\n"
+                   "node [style=filled, fillcolor=lemonchiffon1];\n"
+                   "edge [color=white];\n";
     graph += root->GenerateGraphviz();
     graph += "}";
 

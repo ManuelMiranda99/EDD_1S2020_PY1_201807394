@@ -52,17 +52,13 @@ string User::GetCoins() {
 
 string User::GenerateGraphviz() {
     string graph;
-    if(left == NULL && right == NULL){
-        graph += "\"" + name + "\" [label=\"" + name + "\"];\n";
-    }else{
-        graph += "\"" + name + "\" [label=\"<C0>|" + name + "|<C1>\"];\n";
-    }
+    graph += "\"" + name + "\" [label=\"" + name + "\"];\n";
 
     if(left != NULL){
-        graph += left->GenerateGraphviz() + "\"" + name + "\":C0->\"" + left->name + "\";\n";
+        graph += left->GenerateGraphviz() + "\"" + name + "\"->\"" + left->name + "\";\n";
     }
     if(right != NULL){
-        graph += right->GenerateGraphviz() + "\"" + name + "\":C1->\"" + right->name + "\";\n";
+        graph += right->GenerateGraphviz() + "\"" + name + "\"->\"" + right->name + "\";\n";
     }
     graph += "\n";
     return graph;

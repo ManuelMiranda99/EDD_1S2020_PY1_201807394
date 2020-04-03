@@ -8,7 +8,17 @@
 CircularDoubleList::CircularDoubleList() { first = NULL; last = NULL; size = 0;}
 
 void CircularDoubleList::InsertNode(string _newWord) {
-    WordNode *newNode = new WordNode(_newWord);
+    string wordToInsert;
+
+    for (char i : _newWord) {
+        if(i==-61){
+            wordToInsert += 'n';
+        }else if(i!=-79) {
+            wordToInsert += tolower(i);
+        }
+    }
+
+    WordNode *newNode = new WordNode(wordToInsert);
 
     if(first == NULL){
         first = newNode;
@@ -29,7 +39,10 @@ void CircularDoubleList::InsertNode(string _newWord) {
 
 void CircularDoubleList::GenerateReport() {
     if(first != NULL){
-        string graph = "digraph L{\n";
+        string graph = "digraph L{\n"
+                       "graph[bgcolor=black];\n"
+                       "node[shape=box, style=filled, fillcolor=lemonchiffon1]; \n"
+                       "edge[color=white];\n\n";
         int x = 1;
         WordNode *aux = first;
 
@@ -44,18 +57,17 @@ void CircularDoubleList::GenerateReport() {
         x = 1;
         aux = first;
         do{
-            graph += "X" + to_string(x) + "->";
+            if(x==1){
+                graph += "X1->X2 [constraint=false, dir=both];\n";
+            }else{
+                graph += "X" + to_string(x) + "->";
+            }
             x++;
             aux = aux->next;
         }while(aux != last);
-        graph += "X" + to_string(x) + "->X1; \n";
+        graph += "X" + to_string(x) + "->X1 [dir=both]; \n";
 
-        string auxX = to_string(x);
-        while(x > 1){
-            graph += "X" + to_string(x) + "->";
-            x--;
-        }
-        graph += "X1->X" + auxX + "; \n }";
+        graph += "\n }";
         ofstream writeToFile;
         writeToFile.open("Diccionario.txt", ios_base::out | ios_base::trunc);
         if(writeToFile.is_open()){

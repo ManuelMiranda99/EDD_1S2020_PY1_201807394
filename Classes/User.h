@@ -60,14 +60,16 @@ public:
 
     void GenerateReport() {
         string graph = "digraph L { \n"
-                       "\tGraph[label=\"" + user + "\"]"
-                       "\trankdir=LR;";
+                       "\tgraph[bgcolor=black, label=\"" + user + "\", fontcolor=white];\n"
+                       "\trankdir=LR;\n"
+                       "\tnode[shape=box, style=filled, fillcolor=lemonchiffon1];\n"
+                       "\tedge[color=white];\n\n";
         int x = 1;
         NodeIS *aux = first;
         if (aux != NULL) {
             do {
-                graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" +
-                         to_string(aux->score) + "\"];\n";
+                graph += "X" + to_string(x) + " [label=\"" +
+                         to_string(aux->score) + "pts\"];\n";
                 x++;
                 aux = aux->next;
             } while (aux != NULL);
@@ -255,12 +257,15 @@ public:
 
     void GenerateReport() {
         string graph = "digraph L {\n"
-                       "\tGraph[label=\"" + Uname + "\"]";
+                       "\trankdir=LR;\n"
+                       "\tgraph[label=\"" + Uname + "\", bgcolor=black, fontcolor=white];\n"
+                        "\tnode[shape=box, style=filled, fillcolor=lemonchiffon1]\n"
+                        "\tedge[color=white];\n\n";
         int x = 1;
         NodeIC *aux = first;
         if (aux != NULL) {
             while (aux != NULL) {
-                graph += "X" + to_string(x) + " [color=lightgray,style=filled, label=\"" + aux->letter + "\"];\n";
+                graph += "X" + to_string(x) + " [label=\"" + aux->letter + "\"];\n";
                 x++;
                 aux = aux->next;
             }
@@ -272,13 +277,8 @@ public:
                 x++;
                 aux = aux->next;
             }
-            x--;
-            graph += " nullNode; \n";
-            while (x > 1) {
-                graph += "X" + to_string(x) + "->";
-                x--;
-            }
-            graph += " X1; \n }";
+            graph += " nullNode [dir=both]; \n";
+            graph += "\n }";
             ofstream writeToFile;
             writeToFile.open("FichasIndividuales.txt", ios_base::out | ios_base::trunc);
             if (writeToFile.is_open()) {
