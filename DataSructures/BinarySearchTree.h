@@ -50,14 +50,15 @@ public:
                 graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" + aux->name + "\"];\n";
                 x++;
                 aux = aux->next;
-            }while (aux != first);
+            }while (aux != NULL);
             x = 1;
+            aux = first;
             do{
                 graph += "X" + to_string(x) + " -> ";
                 x++;
                 aux = aux->next;
-            }while(aux != first);
-            graph += " X1; \n }";
+            }while(aux->next != NULL);
+            graph += " X" + to_string(x) + "; \n }";
 
             ofstream writeToFile;
             writeToFile.open("ReportePreInPost.txt", ios_base::out | ios_base::trunc);
@@ -93,27 +94,28 @@ class Scoreboard{
 
         void InsertUser(User *_user){
             NodeSB *newNode = new NodeSB(_user);
-
-            if(first == NULL){
-                first = newNode;
-            }else{
-                NodeSB *aux1 = first;
-                NodeSB *aux2;
-
-                while ((aux1 != NULL) && (aux1->user->GetMaximumScore() > newNode->user->GetMaximumScore())) {
-                    aux2 = aux1;
-                    aux1 = aux1->next;
-                }
-
-                if (aux1 == first) {
+            if(newNode->user->scores->first != NULL){
+                if(first == NULL){
                     first = newNode;
-                } else {
-                    aux2->next = newNode;
-                }
+                }else{
+                    NodeSB *aux1 = first;
+                    NodeSB *aux2;
 
-                newNode->next = aux1;
+                    while ((aux1 != NULL) && (aux1->user->GetMaximumScore() > newNode->user->GetMaximumScore())) {
+                        aux2 = aux1;
+                        aux1 = aux1->next;
+                    }
+
+                    if (aux1 == first) {
+                        first = newNode;
+                    } else {
+                        aux2->next = newNode;
+                    }
+
+                    newNode->next = aux1;
+                }
+                size++;
             }
-            size++;
         }
 
         void deleteList(){
@@ -133,6 +135,7 @@ class Scoreboard{
                     x++;
                     aux = aux->next;
                 } while (aux != NULL);
+                aux = first;
                 x = 1;
                 do {
                     if (x == size) {
@@ -140,8 +143,8 @@ class Scoreboard{
                     } else {
                         graph += "X" + to_string(x) + " -> ";
                         x++;
-                        aux = aux->next;
                     }
+                    aux = aux->next;
                 } while (aux != NULL);
                 graph += "; \n }";
 
@@ -162,6 +165,7 @@ class BinarySearchTree {
     public:
         User *root;
         int size;
+        string txt;
         SimpleListReport *report;
         Scoreboard *scoreboard;
 
@@ -169,7 +173,8 @@ class BinarySearchTree {
         void addUser(string);
 
         // Try to use IDs for each user. This to help the GetUser functionality
-        User GetUser(string);
+        User * GetUser(string);
+        User * GetUser(int);
         void PreOrderReport();
         void InOrderReport();
         void PostOrderReport();
@@ -178,10 +183,10 @@ class BinarySearchTree {
     private:
         User * RecursiveAdd(User *, string);
         User * RecursiveGetUser(User *, string);
+        User * RecursiveGetUser(User *, int);
         void RecursivePreOrder(User *);
         void RecursiveInOrder(User *);
         void RecursivePostOrder(User *);
-
         void RecursiveGenerateScoreboard(User *);
 };
 

@@ -60,9 +60,10 @@ public:
 
     void GenerateReport() {
         string graph = "digraph L { \n"
-                       "rankdir=LR;";
+                       "\tGraph[label=\"" + user + "\"]"
+                       "\trankdir=LR;";
         int x = 1;
-        NodeIS *aux = this->first;
+        NodeIS *aux = first;
         if (aux != NULL) {
             do {
                 graph += "X" + to_string(x) + " [shape=box,color=lightblue,style=filled,label=\"" +
@@ -71,14 +72,15 @@ public:
                 aux = aux->next;
             } while (aux != NULL);
             x = 1;
+            aux = first;
             do {
                 if (x == size) {
                     graph += "X" + to_string(x);
                 } else {
                     graph += "X" + to_string(x) + " -> ";
                     x++;
-                    aux = aux->next;
                 }
+                aux = aux->next;
             } while (aux != NULL);
             graph += "; \n }";
 
@@ -140,7 +142,7 @@ class DoubleList {
                     break;
                 case 'J':
                 case ';':
-                case -92:
+                case 110:
                 case 'X':
                     points = 8;
                     break;
@@ -159,11 +161,13 @@ class DoubleList {
 
 private:
     NodeIC *first, *last;
-    int size;
+    string Uname;
 public:
-    DoubleList() {
+    int size;
+    DoubleList(string _name) {
         first = last = NULL;
         size = 0;
+        Uname = _name;
     }
 
     void InsertNode(char _letter) {
@@ -171,7 +175,8 @@ public:
 
         if (first == NULL) {
                 first = last= newNode;
-        }else{
+        }
+        else{
             last->next = newNode;
             newNode->previous = last;;
 
@@ -180,28 +185,58 @@ public:
         size++;
     }
 
-    int DeleteNode(char _letter) {
+    char DeleteNodeAt(int _pos){
+        int pos = 0;
+        char charToReturn = '\00';
         if(first != NULL){
-            NodeIC *aux2, *aux = first;
-            while(aux != NULL){
-                if(aux->letter == _letter){
-                    break;
-                }else{
-                    aux2 = aux;
-                    aux = aux->next;
-                }
+            if(_pos == 0 && first->next == NULL){
+                charToReturn = first->letter;
+                first = NULL;
+                size--;
+                return charToReturn;
             }
-            if(aux != NULL){
-                if(aux->next != NULL){
-                    aux2->next = aux->next;
-                    aux->next->previous = aux2;
-                }else{
-                    aux2->next = NULL;
-                }
+            else if(_pos == 0 && first->next != NULL){
+                charToReturn = first->letter;
+                first = first->next;
+                size--;
+                return charToReturn;
             }
-            return aux->points;
+            else if(_pos == (size-1)){
+                charToReturn = last->letter;
+                last = last->previous;
+                last->next = NULL;
+                size--;
+            }
+            else{
+                NodeIC *aux1 = first, *aux2;
+                while((aux1 != NULL && (pos != _pos))){
+                    aux2 = aux1;
+                    aux1 = aux1->next;
+                    pos++;
+                }
+                /*
+             *      aux2 -> <- aux1.next
+             *          <-aux1->
+             * */
+                if(aux1 != NULL){
+                    if(aux1->next != NULL){
+                        aux2->next = aux1->next;
+                        aux1->next->previous = aux2;
+                    }else{
+                        aux2->next = NULL;
+                    }
+                }
+
+                charToReturn = aux1->letter;
+
+                delete(aux1);
+                size--;
+
+                return charToReturn;
+            }
         }
-        return 0;
+
+        return charToReturn;
     }
 
     string GetCoins() {
@@ -209,7 +244,8 @@ public:
         if(first != NULL){
             NodeIC *aux = first;
             while(aux != last){
-                text += aux->letter + ", ";
+                text += aux->letter;
+                text += ',';
                 aux = aux->next;
             }
             text += aux->letter;
@@ -218,7 +254,8 @@ public:
     }
 
     void GenerateReport() {
-        string graph = "digraph L {\n";
+        string graph = "digraph L {\n"
+                       "\tGraph[label=\"" + Uname + "\"]";
         int x = 1;
         NodeIC *aux = first;
         if (aux != NULL) {
@@ -254,6 +291,14 @@ public:
         }
 
     };
+
+    void EmptyList(){
+        int sizeA = size;
+        for (int i = 0; i < sizeA; ++i) {
+            DeleteNodeAt(0);
+        }
+    }
+
 };
 
 class User {
@@ -263,19 +308,30 @@ class User {
         User *left, *right;
 
         SimpleListIS *scores;
-        DoubleList *coins;
+        DoubleList *coins, *usedCoins;
 
         int points;
+        // Constructor
         User(string, int);
+        // Add points to the player (When putting a coin)
         void GetPoints(int);
+        // Initializing the points to 0 for the start of a game
         void StartGame();
+        // Insert a coin in the list of coins
         void AddCoins(char);
-        bool UseCoin(char);
+        // Delete the coin in the list of an specific position. Return the char
+        char GetCoinAt(int);
+        // Get the coins in the list
         string GetCoins();
+        // Add the last score that the player got
         void AddScore();
+        // Get the maximum score that the player got
         int GetMaximumScore();
+        // Generate the Graphviz for the tree of users
         string GenerateGraphviz();
+        // Individual Report of scores
         void GenerateScoresReport();
+        // Individual Report of Coins
         void GenerateCoinsReport();
 };
 

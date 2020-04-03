@@ -7,7 +7,8 @@
 User::User(string _name, int _id) {
     name = _name;
     id = _id;
-    coins = new DoubleList();
+    coins = new DoubleList(name);
+    usedCoins = new DoubleList(name);
     scores = new SimpleListIS(name);
     left = right = NULL;
 }
@@ -18,6 +19,7 @@ void User::GetPoints(int _points) {
 
 void User::StartGame() {
     points = 0;
+    coins->EmptyList();
 }
 
 int User::GetMaximumScore() {
@@ -36,18 +38,12 @@ void User::AddCoins(char _letter) {
     coins->InsertNode(_letter);
 }
 
-void User::AddScore() {
-    scores->InsertScore(points);
+char User::GetCoinAt(int _pos) {
+    return coins->DeleteNodeAt(_pos);
 }
 
-bool User::UseCoin(char _letter) {
-    int scoreCoin = coins->DeleteNode(_letter);
-    if(scoreCoin != NULL || scoreCoin != 0){
-        GetPoints(scoreCoin);
-        return true;
-    }else{
-        return false;
-    }
+void User::AddScore() {
+    scores->InsertScore(points);
 }
 
 string User::GetCoins() {

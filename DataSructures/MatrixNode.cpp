@@ -12,11 +12,22 @@ MatrixNode::MatrixNode(int _X, int _Y, int _multiplier) {
     coin = 0;
 }
 
-int MatrixNode::GetMultiplier() {
-    return multiplier;
+MatrixNode::MatrixNode(int _X, int _Y, int _multiplier, Coin *_coin){
+    XCoord = _X;
+    YCoord = _Y;
+    multiplier = _multiplier;
+    up = down = next = previous = 0;
+    coin = _coin;
 }
 
 void MatrixNode::PutCoin(Coin *_coin) {
     coin = _coin;
 }
 
+int MatrixNode::GetMultiplier() {
+    return multiplier;
+}
+
+int MatrixNode::GetPoints() {
+    return coin->points * multiplier;
+}

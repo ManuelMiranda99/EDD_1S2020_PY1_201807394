@@ -38,8 +38,109 @@ void Matrix::InsertNode(int _XCoord, int _YCoord, int _Multiplier) {
     newNode = InsertOrderedRow(newNode, column);
 }
 
-Coin Matrix::DeleteNode(int _xCoord, int _yCoord) {
+Coin * Matrix::DeleteNode(int _xCoord, int _yCoord) {
+    MatrixNode *column = SearchColumn(_xCoord);
+    MatrixNode *row = SearchRow(_yCoord);
 
+    Coin *returnCoin;
+
+    if(column != NULL && row != NULL){
+        returnCoin = DeleteOrderedColumn(row, _xCoord);
+        DeleteOrderedRow(column, _yCoord);
+    }
+
+    if(column->down == NULL){
+        if(column->next == NULL){
+            column->previous->next = NULL;
+            column->next = NULL;
+            column->previous = NULL;
+            delete column;
+        }else{
+            column->previous->next = column->next;
+            column->next->previous = column->previous;
+            column->next = NULL;
+            column->previous = NULL;
+            delete column;
+        }
+    }else if(row->next == NULL){
+        if(row->down == NULL){
+            row->up->down = NULL;
+            row->up = NULL;
+            row->down = NULL;
+            delete row;
+        }
+        else{
+            row->up->down = row->down;
+            row->down->up = row->up;
+            row->up = NULL;
+            row->down = NULL;
+            delete row;
+        }
+    }
+
+    return returnCoin;
+}
+
+Coin * Matrix::DeleteOrderedColumn(MatrixNode *_root, int _xPos) {
+    MatrixNode *aux1 = _root;
+
+    Coin *returnCoin = NULL;
+
+    while(aux1 != NULL){
+        // Delete
+        if(aux1->XCoord == _xPos) {
+            // If the cell is not a special (x2 or x3) cell, we remove the pointers
+            if (aux1->multiplier == 1) {
+                if(aux1->next == NULL){
+                    aux1->previous->next = NULL;
+                    aux1->previous = NULL;
+                }
+                else{
+                    aux1->previous->next = aux1->next;
+                    aux1->next->previous = aux1->previous;
+                }
+                returnCoin = aux1->coin;
+            }else{
+                returnCoin = aux1->coin;
+                aux1->coin = NULL;
+            }
+            break;
+        }
+        aux1 = aux1->next;
+    }
+
+    return returnCoin;
+}
+
+Coin * Matrix::DeleteOrderedRow(MatrixNode *_root, int _yPos) {
+    MatrixNode *aux1 = _root;
+
+    Coin *returnCoin = NULL;
+
+    while(aux1 != NULL){
+        // Delete
+        if(aux1->YCoord == _yPos) {
+            // If the cell is not a special (x2 or x3) cell, we remove the pointers
+            if (aux1->multiplier == 1) {
+                if(aux1->down == NULL){
+                    aux1->up->down = NULL;
+                    returnCoin = aux1->coin;
+                }
+                else{
+                    aux1->up->down = aux1->down;
+                    aux1->down->up = aux1->up;
+                    returnCoin = aux1->coin;
+                }
+            }else{
+                returnCoin = aux1->coin;
+                aux1->coin = NULL;
+            }
+            break;
+        }
+        aux1 = aux1->down;
+    }
+
+    return returnCoin;
 }
 
 void Matrix::GenerateReport() {
@@ -74,13 +175,7 @@ void Matrix::GenerateReport() {
             x++;
             aux = aux->down;
         }
-        graph += "U" + to_string(x) + ";\n\t";
-
-        while(x > 0){
-            graph += "U" + to_string(x) + "->";
-            x--;
-        }
-        graph += "U0; \n\n";
+        graph += "U" + to_string(x) + " [dir=both];\n\t";
 
         /* -------------------- Go through each header Column -------------------- */
         graph += "\t// Columnas\n";
@@ -103,17 +198,11 @@ void Matrix::GenerateReport() {
             x++;
             aux = aux->next;
         }
-        graph += "A" + to_string(x) + ";\n\t";
-
-        while(x > 0){
-            graph += "A" + to_string(x) + "->";
-            x--;
-        }
-        graph += "A0; \n\n";
+        graph += "A" + to_string(x) + "  [dir=both];\n\t";
 
         /* -------------------- Link the principal nodes to the header -------------------- */
         graph += "\t// Nodo raiz con primera fila y columna\n"
-                 "\tMt -> U0;\n\tMt -> A0; \n\n";
+                 "\tMt -> U0 [dir=both];\n\tMt -> A0 [dir=both]; \n\n";
 
         /* -------------------- Rank at the same row the columns -------------------- */
         x = 0;
@@ -153,7 +242,7 @@ void Matrix::GenerateReport() {
                     else{
                         color = "indianred";
                     }
-                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + "style = filled, fillcolor = " + color + "];\n";
+                    graph += "\tN" + to_string(temp_node->XCoord) + "_L" + to_string(temp_node->YCoord) + " [label=\"x" + to_string(temp_node->multiplier) + "\", width=1.5, group = " + to_string(temp_node->XCoord + 2) + ", style = filled, fillcolor = " + color + "];\n";
                 }
                 temp_node = temp_node->next;
                 xPos++;
@@ -238,16 +327,17 @@ MatrixNode * Matrix::InsertOrderedRow(MatrixNode *_newNode, MatrixNode *_header_
     while(true){
         if(aux->YCoord == _newNode->YCoord){
             aux->XCoord = _newNode->XCoord;
-            aux->coin = _newNode->coin;
             return aux;
-        }else if(aux->YCoord > _newNode->YCoord){
+        }
+        else if(aux->YCoord > _newNode->YCoord){
             flag = true;
             break;
         }
 
         if(aux->down != NULL){
             aux = aux->down;
-        }else{
+        }
+        else{
             break;
         }
     }
@@ -262,7 +352,8 @@ MatrixNode * Matrix::InsertOrderedRow(MatrixNode *_newNode, MatrixNode *_header_
         aux->up->down = _newNode;
         _newNode->up = aux->up;
         aux->up = _newNode;
-    }else{
+    }
+    else{
         aux->down = _newNode;
         _newNode->up = aux;
     }
@@ -276,7 +367,6 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
     while(true){
         if(aux->XCoord == _newNode->XCoord){
             aux->YCoord = _newNode->YCoord;
-            aux->coin = _newNode->coin;
             return aux;
         }else if(aux->XCoord > _newNode->XCoord){
             flag = true;
@@ -285,7 +375,8 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
 
         if(aux->next != NULL){
             aux = aux->next;
-        }else{
+        }
+        else{
             break;
         }
     }
@@ -298,7 +389,8 @@ MatrixNode * Matrix::InsertOrderedColumn(MatrixNode *_newNode, MatrixNode *_head
         aux->previous->next = _newNode;
         _newNode->previous = aux->previous;
         aux->previous = _newNode;
-    }else{
+    }
+    else{
         aux->next = _newNode;
         _newNode->previous = aux;
     }
@@ -325,6 +417,280 @@ MatrixNode *Matrix::SearchColumn(int _x) {
     return NULL;
 }
 
-void Matrix::PutCoin(int _XPos, int _YPos, Coin _coin) {
+bool Matrix::PutCoin(int _xCoord, int _yCoord, Coin *_coin) {
+    MatrixNode *column = SearchColumn(_xCoord);
+    MatrixNode *row = SearchRow(_yCoord);
 
+    MatrixNode *newNode = new MatrixNode(_xCoord, _yCoord, 1, _coin);
+
+    if(column == NULL || row == NULL){
+
+        if(column == NULL && row == NULL){
+            column = CreateColumn(_xCoord);
+            row = CreateRow(_yCoord);
+        }
+        else if(column == NULL && row != NULL){
+            column = CreateColumn(_xCoord);
+        }
+            // Third Case
+        else if(column != NULL && row == NULL){
+            // Create Row
+            row = CreateRow(_yCoord);
+        }
+        newNode = InsertOrderedColumn(newNode, row);
+        newNode = InsertOrderedRow(newNode, column);
+        // Return true because the Node doesnt exist, that means that there is no coin there
+        return true;
+    }
+    // The position exist
+    else{
+        // Return true if the position doesnt have a Coin. Return false if the position have a Coin
+        newNode = InsertOrderedRow(newNode, column);
+        newNode = InsertOrderedColumn(newNode, row);
+        return PutCoinAt(row, _xCoord, _coin);
+    }
+}
+
+bool Matrix::PutCoinAt(MatrixNode *_header, int _xPos, Coin *_coin) {
+    while(_header->XCoord != _xPos){
+        _header = _header->next;
+    }
+    if(_header->coin != NULL && _header->coin != _coin){
+        return false;
+    }
+    else{
+        _header->PutCoin(_coin);
+        return true;
+    }
+}
+
+bool Matrix::CheckMatrixAt(int _xPos, int _yPos, CircularDoubleList *_dictionary, User *_user) {
+
+    MatrixNode *actualNode;
+    MatrixNode *aux = SearchColumn(_xPos);
+    bool flagV = false, flagH = false;
+
+    // In this part of the code, we get the actual node where we put the coin
+    while(aux->YCoord != _yPos){
+        aux = aux->down;
+    }
+
+    actualNode = aux;
+
+    // Check in a vertical way the word
+    if(actualNode->up->YCoord != -1){
+        if(actualNode->up->coin != NULL && actualNode->YCoord == (actualNode->up->YCoord + 1)){
+            // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+            while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+                aux = aux->up;
+            }
+
+            string upWord;
+
+            // Generating the word that is from top to bottom
+            do{
+                upWord += aux->coin->letter;
+                aux = aux->down;
+                if(aux != NULL){
+                    if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
+                        upWord += aux->coin->letter;
+                        break;
+                    }
+                }
+            }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(upWord)){
+                return false;
+            }
+            else{
+                flagV = true;
+            }
+        }
+    }
+
+    if(actualNode->down != NULL && !flagV){
+        if(actualNode->down->coin != NULL && actualNode->YCoord == (actualNode->down->YCoord - 1)){
+            // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+            while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+                aux = aux->up;
+            }
+
+            string upWord;
+
+            // Generating the word that is from top to bottom
+            do{
+                upWord += aux->coin->letter;
+                aux = aux->down;
+                if(aux != NULL){
+                    if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
+                        upWord += aux->coin->letter;
+                        break;
+                    }
+                }
+            }while(aux != NULL && aux->YCoord == (aux->up->YCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(upWord)){
+                return false;
+            }
+            else{
+                flagV = true;
+            }
+        }
+    }
+
+    aux = actualNode;
+
+    // We continue the analisis of the nodes for the next points
+    if(actualNode->previous->XCoord != -1){
+        if(actualNode->previous->coin != NULL && actualNode->XCoord == (actualNode->previous->XCoord + 1)){
+            // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+            while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+                aux = aux->previous;
+            }
+
+            string horizontalWord;
+
+            // Generating the word that is from left to right
+            do{
+                horizontalWord += aux->coin->letter;
+                aux = aux->next;
+                if(aux != NULL){
+                    if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
+                        horizontalWord += aux->coin->letter;
+                        break;
+                    }
+                }
+            }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(horizontalWord)){
+                return false;
+            }
+            else{
+                flagH = true;
+            }
+        }
+    }
+
+    if(actualNode->next != NULL && !flagH){
+        if(actualNode->next->coin != NULL && actualNode->XCoord == (actualNode->next->XCoord - 1)){
+            // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+            while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+                aux = aux->previous;
+            }
+
+            string horizontalWord;
+
+            // Generating the word that is from left to right
+            do{
+                horizontalWord += aux->coin->letter;
+                aux = aux->next;
+                if(aux != NULL){
+                    if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
+                        horizontalWord += aux->coin->letter;
+                        break;
+                    }
+                }
+            }while(aux != NULL && aux->XCoord == (aux->previous->XCoord + 1) && aux->coin != NULL);
+
+            // If the word isn't accepted, we return false, and the next validations never happen
+            if(!_dictionary->CheckWord(horizontalWord)){
+                return false;
+            }
+            else{
+                flagH = true;
+            }
+        }
+    }
+
+    // Add the points to the user
+    if(flagV && flagH){
+        // Vertical Points
+        aux = actualNode;
+        VerticalPoints(aux, _user);
+        aux = actualNode;
+        HorizontalPoints(aux, _user);
+        return true;
+    }
+    else if(flagV && !flagH){
+        aux = actualNode;
+        VerticalPoints(aux, _user);
+        return true;
+    }
+    else if(!flagV && flagH){
+        aux = actualNode;
+        HorizontalPoints(aux, _user);
+        return true;
+    }
+
+    // If we get to this place, it means that the player only put one coin
+
+    return false;
+}
+
+void Matrix::HorizontalPoints(MatrixNode *aux, User *_user) {
+    // If the previous node is inmediatly previous to the actual node, the coord is not a header and there is coin on it
+    while(aux->previous->XCoord == (aux->XCoord - 1) && aux->previous->XCoord != -1 && aux->previous->coin != NULL){
+        aux = aux->previous;
+    }
+
+    // Adding the points to the player
+    while(aux != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->next;
+        if(aux != NULL){
+            if((aux->XCoord != (aux->previous->XCoord + 1)) || aux->coin == NULL){
+                break;
+            }
+        }
+    }
+    /*do{
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->next;
+        if(aux->next == NULL && aux->coin != NULL && aux->XCoord == (aux->previous->XCoord + 1)){
+            _user->GetPoints(aux->GetPoints());
+            break;
+        }
+        if(aux->next == NULL){
+            if(aux->XCoord == (aux->previous->XCoord + 1)){
+                _user->GetPoints(aux->GetPoints());
+
+            }
+            break;
+        }
+    }while(aux != NULL && aux->next->XCoord == (aux->XCoord + 1) && aux->coin != NULL);*/
+}
+
+void Matrix::VerticalPoints(MatrixNode *aux, User *_user) {
+    // If the up node is inmediatly up to the actual node, the coord is not a header and there is coin on it
+    while(aux->up->YCoord == (aux->YCoord - 1) && aux->up->YCoord != -1 && aux->up->coin != NULL){
+        aux = aux->up;
+    }
+
+    // Adding the points to the player
+    while(aux != NULL){
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->down;
+        if(aux != NULL){
+            if((aux->YCoord != (aux->up->YCoord + 1)) || aux->coin == NULL){
+                break;
+            }
+        }
+    }
+    /*do{
+        _user->GetPoints(aux->GetPoints());
+        aux = aux->down;
+        if(aux->down == NULL && aux->coin != NULL && aux->YCoord == (aux->up->YCoord + 1)){
+            _user->GetPoints(aux->GetPoints());
+            break;
+        }
+        if(aux->down == NULL){
+            if(aux->YCoord == (aux->up->YCoord + 1)){
+                _user->GetPoints(aux->GetPoints());
+            }
+            break;
+        }
+    }while(aux != NULL && aux->down->YCoord == (aux->YCoord + 1) && aux->coin != NULL);*/
 }

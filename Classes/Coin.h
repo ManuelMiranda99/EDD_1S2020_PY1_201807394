@@ -32,7 +32,7 @@ public:
             case 'Q':
                 points = 5;
                 break;
-            case 'J': case ';': case -92: case 'X':
+            case 'J': case ';': case 110: case 'X':
                 points = 8;
                 break;
             case 'Z':
